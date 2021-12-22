@@ -1,0 +1,11 @@
+M291 P"Homing print head" S0 T2
+G28
+
+M291 P"Detecting coarse Z level..." S0 T2
+G32
+
+M291 P"Mapping print base topology..." S0 T2
+G29
+
+; Load into memory
+G29 S1
