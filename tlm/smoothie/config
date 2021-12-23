@@ -14,7 +14,7 @@
 #   See http://smoothieware.org/player
 #
 on_boot_gcode_enable                         true
-on_boot_gcode                                /sd/on_boot.gcode
+on_boot_gcode                                /sd/sys/on_boot.gcode
 
 #
 # Network settings
@@ -212,11 +212,9 @@ switch.hotendfan.failsafe_set_to             1                # On HALT, set to 
 # Switch 2 -- "bltouch"
 
 switch.bltouch.enable                        true             # Create and activate new Switch module "bltouch"
-switch.bltouch.input_on_command              M280 S3          # S3 == deploy  probe
-switch.bltouch.input_off_command             M280 S7          # S7 == retract probe
-switch.bltouch.default_on_value              S3               # Use 'S3' for a raw M280 command
+switch.bltouch.input_on_command              M280             # S3 == deploy  probe
+switch.bltouch.input_off_command             M280             # S7 == retract probe
 switch.bltouch.startup_state                 false            # On power-up, use startup_value
-switch.bltouch.startup_value                 S10.6            # On power-up or HALT, set to clear errors: dutycyc == 10.6
 switch.bltouch.output_type                   hwpwm            # Duty Cycle settable with S parameter 0.0...100.0
 switch.bltouch.output_pin                    1.23             # Port.pin this module controls, must be PWM capable
 switch.bltouch.pwm_period_ms                 20               # Set period to 20ms (50Hz)
@@ -227,12 +225,12 @@ switch.bltouch.pwm_period_ms                 20               # Set period to 20
 #   See http://smoothieware.org/pin-configuration -- more punctuation to set levels and state
 #
 zprobe.enable                                true
-zprobe.probe_pin                             1.28^            # Port.pin to read probe trigger signal
+zprobe.max_z                                 520              # Maximum travel in mm for a probe command
+zprobe.probe_height                          10               # Height in mm above bed to start probe
 zprobe.fast_feedrate                         80               # Moving descent rate mm/sec
 zprobe.slow_feedrate                         5                # Probing descent rate in mm/sec
 zprobe.return_feedrate                       15               # Returning ascent rate in mm/sec
-zprobe.probe_height                          15               # Height in mm above bed to start probe
-zprobe.max_z                                 520              # Maximum travel in mm for a probe command
+zprobe.probe_pin                             1.28^            # Port.pin to read probe trigger signal
 
 #
 # Temperature switches
@@ -240,7 +238,6 @@ zprobe.max_z                                 520              # Maximum travel i
 #
 
 # Temperature Switch 0 -- "hotend"
-# TODO
 temperatureswitch.hotend.enable              true             # Create and activate new Temperature Switch module "hotend"
 temperatureswitch.hotend.switch              hotendfan        # Set the switch to use by name
 temperatureswitch.hotend.designator          T                # Designator character to monitor from command M105
