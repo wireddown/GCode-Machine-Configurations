@@ -37,11 +37,14 @@ M574  X2 Y2 Z2 S1                         ; Set active-high endstops
 ;;;   Diagonals 400.000:400.000:400.000, delta radius 157.015, homed height 524.359, bed radius 175.0, X -0.241°, Y 0.100°, Z 0.000°
 ;;;   Endstop adjustments X-0.23 Y0.37 Z-0.14, tilt X0.00% Y0.00%
 ;;; adjustments after final G32 :: "deviation before 0.042 after 0.025" :: where 'before' == above and 'after' == below
-;;;   Diagonals 400.000:400.000:400.000, delta radius 156.944, homed height 524.338, bed radius 175.0, X -0.236°, Y 0.088°, Z 0.000°
+;;;   Diagonals 400.000:400.000:400.000, delta radius 156.944, homed height 524.138, bed radius 175.0, X -0.236°, Y 0.088°, Z 0.000°
 ;;;   Endstop adjustments X-0.21 Y0.37 Z-0.16, tilt X0.00% Y0.00%
-M665  L400    R156.944  H524.338  B175.0  X-0.236  Y0.088  Z0.00
+M665  L400    R156.944  H524.437  B175.0  X-0.205  Y0.051  Z0.00
 M666  X-0.21  Y0.37     Z-0.16    A0      B0
-G31   P25     X-2.4     Y21.4     Z0.80          ; Set probe trigger threshold, offset from nozzle as measured from paper imprint, and trigger height
+
+; Set probe trigger threshold, offset from nozzle as measured from paper imprint,
+;   and trigger height as measured by jogging with probe deployed
+G31   P25     X-2.4     Y21.4     Z0.92
 
 ;; Z-Probe
 M307  H3   A-1   C-1   D-1                ; Disable heater on PWM channel 3 to reuse it for the BLTouch
