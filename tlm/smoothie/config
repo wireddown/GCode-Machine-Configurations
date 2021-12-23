@@ -1,15 +1,10 @@
 # Smoothieboard configuration file
 #
-#   See http://smoothieware.org/configuring-smoothie to learn more
+#   See http://smoothieware.org/configuring-smoothie to get started
 #   See http://smoothieware.org/configuration-options for more reference
 #
 #   ! Lines must not exceed 132 characters
 #
-# TODO -- measure and confirm these
-#  configure extruder retraction
-#    M200 D0.0000 P57988
-#    M207 S3.0000 F2700.0000 Z0.0000 Q6000.0000 P57988
-#    M208 S0.0000 F480.0000 P57988
 
 ## we can also use the 'include' keyword :)
 
@@ -36,7 +31,7 @@ network.hostname                             kizumi
 #
 arm_solution                                 linear_delta     # Selects the linear delta arm solution
 arm_length                                   400.00           # Length of an arm from hinge to hinge
-arm_radius                                   157.1345         # Corrected by G32
+arm_radius                                   156.9835         # Corrected by G32
 
 #
 # Levelling strategies
@@ -46,14 +41,14 @@ arm_radius                                   157.1345         # Corrected by G32
 
 leveling-strategy.delta-calibration.enable          true      # Settings for G32
 leveling-strategy.delta-calibration.radius          150       # Probe radius in mm
-leveling-strategy.delta-calibration.initial_height  10        # Height in mm above bed to start probing
+leveling-strategy.delta-calibration.initial_height  15        # Height in mm above bed to start probing
 
 leveling-strategy.delta-grid.enable                 true      # Settings for G31
 leveling-strategy.delta-grid.radius                 150       # Grid radius in mm
 leveling-strategy.delta-grid.size                   9         # Grid points per side, must be an odd number
 leveling-strategy.delta-grid.do_home                true      # Whether to home before calibration
 leveling-strategy.delta-grid.save                   true      # Whether to automatically save the grid
-leveling-strategy.delta-grid.initial_height         10        # Height in mm above bed to start probling
+leveling-strategy.delta-grid.initial_height         15        # Height in mm above bed to start probling
 leveling-strategy.delta-grid.probe_offsets          0,20,0    # Probe offset from nozzle in mm as x,y,0
 
 #
@@ -81,10 +76,9 @@ gamma_max_rate                               40000            # Maximum Z tower 
 # Physical implementation
 #   See http://smoothieware.org/stepper-motors
 #
-# TODO
-alpha_steps_per_mm                           159.53           # Steps per mm for alpha ( X ) stepper and tower
-beta_steps_per_mm                            159.53           # Steps per mm for beta  ( Y ) stepper and tower
-gamma_steps_per_mm                           159.53           # Steps per mm for gamma ( Z ) stepper and tower
+alpha_steps_per_mm                           160              # Steps per mm for alpha ( X ) stepper and tower
+beta_steps_per_mm                            160              # Steps per mm for beta  ( Y ) stepper and tower
+gamma_steps_per_mm                           160              # Steps per mm for gamma ( Z ) stepper and tower
 
 #
 # Stepper motor configuration 
@@ -127,14 +121,22 @@ delta_current                                1.3              # Motor current fo
 # Extruder 0 -- "hotend"
 # TODO
 extruder.hotend.enable                       true             # Create and activate new Extruder module "hotend"
-extruder.hotend.steps_per_mm                 890              # Steps per mm for extruder stepper
-extruder.hotend.default_feed_rate            480              # Default rate in mm/min for moves where only the extruder moves
+extruder.hotend.steps_per_mm                 800              # Steps per mm for extruder stepper
+extruder.hotend.default_feed_rate            300              # Default rate in mm/min for moves where only the extruder moves
 extruder.hotend.acceleration                 1500             # Acceleration for the stepper motor mm/sec/sec
-extruder.hotend.max_speed                    18               # Maximum speed in mm/sec
+extruder.hotend.max_speed                    50               # Maximum speed in mm/sec
+extruder.hotend.filament_diameter            0                # Volumetric extrusion: mm/sec becomes mm^3/sec
 
 extruder.hotend.step_pin                     2.3              # Port.pin for extruder stepper signal
 extruder.hotend.dir_pin                      0.22             # Port.pin for extruder direction signal
 extruder.hotend.en_pin                       0.21             # Port.pin for extruder enable signal
+
+extruder.hotend.retract_length               5                # Retract length in mm
+extruder.hotend.retract_feedrate             45               # Retract feedrate in mm/sec
+extruder.hotend.retract_recover_length       0                # Additional length for recover
+extruder.hotend.retract_recover_feedrate     8                # Recover feedrate in mm/sec
+extruder.hotend.retract_zlift_length         0                # Z-lift on retract in mm
+extruder.hotend.retract_zlift_feedrate       6000             # Z-lift feedrate in mm/min
 
 #
 # Temperature controllers
@@ -152,12 +154,12 @@ temperature_control.hotend.thermistor           EPCOS100K     # See http://smoot
 temperature_control.hotend.set_m_code           104           # M-code to set the temperature for this module
 temperature_control.hotend.set_and_wait_m_code  109           # M-code to set-and-wait for this module
 temperature_control.hotend.designator           T             # Designator letter for this module in M105 command
-# TODO
+
 temperature_control.hotend.max_temp             300           # Set maximum temperature
 temperature_control.hotend.min_temp             0             # Set minimum temperature
-temperature_control.hotend.p_factor             40.0          # P ( proportional ) factor
-temperature_control.hotend.i_factor             3.096         # I ( integral ) factor
-temperature_control.hotend.d_factor             129           # D ( derivative ) factor
+temperature_control.hotend.p_factor             44.1855       # P ( proportional ) factor
+temperature_control.hotend.i_factor             4.4519        # I ( integral ) factor
+temperature_control.hotend.d_factor             109.6354      # D ( derivative ) factor
 temperature_control.hotend.max_pwm              255           # Max pwm
 
 temperature_control.hotend.runaway_heating_timeout   600      # How long it can take to heat up in seconds
@@ -174,12 +176,12 @@ temperature_control.bed.thermistor              EPCOS100K     # See http://smoot
 temperature_control.bed.set_m_code              140           # M-code to set the temperature for this module
 temperature_control.bed.set_and_wait_m_code     190           # M-code to set-and-wait for this module
 temperature_control.bed.designator              B             # Designator letter for this module in M105 command
-# TODO
+
 temperature_control.bed.max_temp                120           # Set maximum temperature
 temperature_control.bed.min_temp                0             # Set minimum temperature 
-temperature_control.bed.p_factor                204.9         # P ( proportional ) factor
-temperature_control.bed.i_factor                9.655         # I ( integral ) factor
-temperature_control.bed.d_factor                1087          # D ( derivative ) factor
+temperature_control.bed.p_factor                292.5547      # P ( proportional ) factor
+temperature_control.bed.i_factor                36.0067       # I ( integral ) factor
+temperature_control.bed.d_factor                594.2517      # D ( derivative ) factor
 temperature_control.bed.max_pwm                 255           # Max pwm
 
 temperature_control.bed.runaway_heating_timeout      1000     # How long it can take to heat up in seconds
@@ -230,7 +232,7 @@ switch.bltouch.pwm_period_ms                 20               # Set period to 20
 #
 zprobe.enable                                true
 zprobe.max_z                                 520              # Maximum travel in mm for a probe command
-zprobe.probe_height                          10               # Height in mm above bed to start probe
+zprobe.probe_height                          15               # Height in mm above bed to start probe
 zprobe.fast_feedrate                         80               # Moving descent rate mm/sec
 zprobe.slow_feedrate                         5                # Probing descent rate in mm/sec
 zprobe.return_feedrate                       15               # Returning ascent rate in mm/sec
@@ -282,7 +284,7 @@ beta_min_endstop                             nc               # Not connected
 # Z tower
 
 gamma_homing_direction                       home_to_max      # Move toward max endstop when homing
-gamma_max                                    525              # Position when homed
+gamma_max                                    524              # Position when homed
 gamma_max_travel                             700              # Max travel in mm when homing
 gamma_fast_homing_rate_mm_s                  80               # Fast first pass homing feedrate in mm/sec
 gamma_slow_homing_rate_mm_s                  10               # Slow second pass homing feedrate in mm/sec
