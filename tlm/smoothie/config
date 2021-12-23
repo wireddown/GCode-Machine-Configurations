@@ -13,7 +13,25 @@
 #   See http://smoothieware.org/player
 #
 on_boot_gcode_enable                         true
-on_boot_gcode                                /sd/sys/on_boot.gcode
+on_boot_gcode                                /sd/sys/on-boot.gcode
+
+# Found online for MKS sBase v1.3, but for a different OEM
+#   https://gist.github.com/zeroflow/e049de4efdfdadad11f517f38d77564d
+#      after_suspend_gcode                          G91_G0Z10E-5F4000_G90_G0X0Y-85
+#      leave_heaters_on_suspend                     true
+#      before_resume_gcode                          G91_G1E5_G90
+# Tevo doesn't use any in their config file...
+#    https://github.com/Homers3D/Tevo-Little-Monster/tree/master/Control%20Board
+
+# Just a guess
+after_suspend_gcode                          G91_G0Z20E-5F4800_G90_M83_G92E0
+leave_heaters_on_suspend                     true
+before_resume_gcode                          G90_M83_G1E5F100_G92E0_G0F2400_G4S2
+
+# Not possible -- running a file while suspended is not supported
+# ## after_suspend_gcode                          M32_sys/after-pause.gcode
+# ## leave_heaters_on_suspend                     true
+# ## before_resume_gcode                          M32_sys/before-resume.gcode
 
 #
 # Network settings
@@ -124,11 +142,11 @@ extruder.hotend.enable                       true             # Create and activ
 extruder.hotend.steps_per_mm                 855              # Steps per mm for extruder stepper
 extruder.hotend.default_feed_rate            80               # Default rate in mm/min for moves where only the extruder moves
 extruder.hotend.acceleration                 1500             # Acceleration for the stepper motor mm/sec/sec
-extruder.hotend.max_speed                    20               # Maximum speed in mm/sec
+extruder.hotend.max_speed                    30               # Maximum speed in mm/sec
 extruder.hotend.filament_diameter            0                # Volumetric extrusion: mm/sec becomes mm^3/sec
 
-extruder.hotend.retract_length               3                # Retract length in mm
-extruder.hotend.retract_feedrate             35               # Retract feedrate in mm/sec
+extruder.hotend.retract_length               4                # Retract length in mm
+extruder.hotend.retract_feedrate             30               # Retract feedrate in mm/sec
 extruder.hotend.retract_recover_length       0                # Additional length for recover
 extruder.hotend.retract_recover_feedrate     8                # Recover feedrate in mm/sec
 extruder.hotend.retract_zlift_length         0                # Z-lift on retract in mm
