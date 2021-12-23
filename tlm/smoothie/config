@@ -4,6 +4,8 @@
 #   See http://smoothieware.org/configuration-options for more reference
 #
 #   ! Lines must not exceed 132 characters
+#
+# TODO -- measure and confirm these
 
 ## we can also use the 'include' keyword :)
 
@@ -12,15 +14,15 @@
 #   See http://smoothieware.org/delta
 #
 arm_solution                                 linear_delta     # Selects the linear delta arm solution
-arm_length                                   397.1900         # Length of an arm from hinge to hinge
-arm_radius                                   157.0741         # Horizontal distance from hinge to hinge with centered effector
+arm_length                                   400.00           # Length of an arm from hinge to hinge
+arm_radius                                   156.80           # Horizontal distance from hinge to hinge with centered effector
 
 #
 # Motion configuration
 #   See http://smoothieware.org/motion-control
 #
-default_seek_rate                            4000             # Default speed in mm/min for G0 moves
-default_feed_rate                            4000             # Default speed in mm/min for G1/G2/G3 moves
+default_seek_rate                            6000             # Default speed in mm/min for G0 moves
+default_feed_rate                            2400             # Default speed in mm/min for G1/G2/G3 moves
 delta_segments_per_second                    100              # Number of segments per second
 mm_per_arc_segment                           0.0              # Exact  length for line segments that divide arcs
 mm_max_arc_error                             0.01             # Maximum error for line segments that divide arcs
@@ -28,9 +30,9 @@ mm_max_arc_error                             0.01             # Maximum error fo
 acceleration                                 5000             # Acceleration in mm/sec/sec
 junction_deviation                           0.05             # See http://smoothieware.org/motion-control#junction-deviation
 
-x_axis_max_speed                             40000            # Maximum effector speed in mm/min
-y_axis_max_speed                             40000            # Maximum effector speed in mm/min
-z_axis_max_speed                             40000            # Maximum effector speed in mm/min
+x_axis_max_speed                             30000            # Maximum effector speed in mm/min
+y_axis_max_speed                             30000            # Maximum effector speed in mm/min
+z_axis_max_speed                             30000            # Maximum effector speed in mm/min
 
 alpha_max_rate                               40000            # Maximum X tower carriage speed in mm/min
 beta_max_rate                                40000            # Maximum Y tower carriage speed in mm/min
@@ -40,6 +42,7 @@ gamma_max_rate                               40000            # Maximum Z tower 
 # Physical implementation
 #   See http://smoothieware.org/stepper-motors
 #
+# TODO
 alpha_steps_per_mm                           159.53           # Steps per mm for alpha ( X ) stepper and tower
 beta_steps_per_mm                            159.53           # Steps per mm for beta  ( Y ) stepper and tower
 gamma_steps_per_mm                           159.53           # Steps per mm for gamma ( Z ) stepper and tower
@@ -83,12 +86,12 @@ delta_current                                1.3              # Motor current fo
 #
 
 # Extruder 0 -- "hotend"
-
+# TODO
 extruder.hotend.enable                       true             # Create and activate new Extruder module "hotend"
 extruder.hotend.steps_per_mm                 890              # Steps per mm for extruder stepper
-extruder.hotend.default_feed_rate            720              # Default rate in mm/min for moves where only the extruder moves
+extruder.hotend.default_feed_rate            480              # Default rate in mm/min for moves where only the extruder moves
 extruder.hotend.acceleration                 1500             # Acceleration for the stepper motor mm/sec/sec
-extruder.hotend.max_speed                    50               # Maximum speed in mm/sec
+extruder.hotend.max_speed                    18               # Maximum speed in mm/sec
 
 extruder.hotend.step_pin                     2.3              # Port.pin for extruder stepper signal
 extruder.hotend.dir_pin                      0.22             # Port.pin for extruder direction signal
@@ -110,7 +113,7 @@ temperature_control.hotend.thermistor           EPCOS100K     # See http://smoot
 temperature_control.hotend.set_m_code           104           # M-code to set the temperature for this module
 temperature_control.hotend.set_and_wait_m_code  109           # M-code to set-and-wait for this module
 temperature_control.hotend.designator           T             # Designator letter for this module in M105 command
-
+# TODO
 temperature_control.hotend.max_temp             300           # Set maximum temperature
 temperature_control.hotend.min_temp             0             # Set minimum temperature
 temperature_control.hotend.p_factor             40.0          # P ( proportional ) factor
@@ -132,7 +135,7 @@ temperature_control.bed.thermistor              EPCOS100K     # See http://smoot
 temperature_control.bed.set_m_code              140           # M-code to set the temperature for this module
 temperature_control.bed.set_and_wait_m_code     190           # M-code to set-and-wait for this module
 temperature_control.bed.designator              B             # Designator letter for this module in M105 command
-
+# TODO
 temperature_control.bed.max_temp                120           # Set maximum temperature
 temperature_control.bed.min_temp                0             # Set minimum temperature 
 temperature_control.bed.p_factor                204.9         # P ( proportional ) factor
@@ -351,7 +354,7 @@ custom_menu.auto_calibrate.command    M280_S10.6|G28|M280_S3|M190_S80|G32|G31|M3
 #   See http://smoothieware.org/network
 #
 network.enable                               false
-network.webserver.enable                     true
+network.webserver.enable                     false
 network.telnet.enable                        false
 network.ip_address                           auto
 network.hostname                             kizumi
