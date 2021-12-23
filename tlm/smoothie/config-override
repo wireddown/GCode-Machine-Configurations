@@ -10,15 +10,15 @@ M203 X500.00000 Y500.00000 Z500.00000
 ;Max actuator feedrates in mm/sec:
 M203.1 X625.00000 Y625.00000 Z625.00000 
 ;Optional arm solution specific settings:
-M665 L400.0000 R156.8533
+M665 L400.0000 R157.0982
 ;WCS settings
 G54
 ;Digipot Motor currents:
 M907 X1.50000 Y1.50000 Z1.50000 A1.30000 
 ;Home offset (mm):
-M206 X0.00 Y0.00 Z-0.52 
+M206 X0.00 Y0.00 Z-0.36 
 ;Trim (mm):
-M666 X-1.205 Y-0.470 Z-1.698
+M666 X-1.158 Y-0.360 Z-1.690
 ;Max Z
 M665 Z523.600
 ;E Steps per mm:
@@ -45,3 +45,5 @@ M143 S1 P120.0000
 M670 S2.00 K80.00 R12.00 Z520.00 H10.00
 ;Probe offsets:
 M565 X0.00000 Y20.00000 Z0.00000
+;Load saved grid
+M375
