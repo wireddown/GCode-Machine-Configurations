@@ -35,6 +35,24 @@ arm_length                                   400.00           # Length of an arm
 arm_radius                                   156.80           # Horizontal distance from hinge to hinge with centered effector
 
 #
+# Levelling strategies
+#   See http://smoothieware.org/zprobe#delta-calibration -- measure and calculate physical geometry constants
+#   See http://smoothieware.org/zprobe#delta-grid-compensation -- measure and map flatness of the bed
+#
+
+leveling-strategy.delta-calibration.enable          true
+leveling-strategy.delta-calibration.radius          150       # Probe radius in mm
+leveling-strategy.delta-calibration.initial_height  10        # Height in mm above bed to start probing
+
+leveling-strategy.delta-grid.enable                 true
+leveling-strategy.delta-grid.radius                 150       # Grid radius in mm
+leveling-strategy.delta-grid.size                   9         # Grid points per side, must be an odd number
+leveling-strategy.delta-grid.do_home                true      # Whether to home before calibration
+leveling-strategy.delta-grid.save                   true      # Whether to automatically save the grid
+leveling-strategy.delta-grid.initial_height         10        # Height in mm above bed to start probling
+leveling-strategy.delta-grid.probe_offsets          0,20,0    # Probe offset from nozzle in mm as x,y,0
+
+#
 # Motion configuration
 #   See http://smoothieware.org/motion-control
 #
@@ -95,12 +113,6 @@ gamma_current                                1.5              # Motor current fo
 # Extruder 0
 
 delta_current                                1.3              # Motor current for first extruder stepper
-
-#
-# Current control
-#   See http://smoothieware.org/currentcontrol
-#
-currentcontrol_module_enable                 true               # Control stepper motor current via the configuration file
 
 #
 # Extruders
@@ -179,41 +191,42 @@ temperature_control.bed.runaway_range                20       # How far from the
 # Switch 0 -- "partfan"
 
 switch.partfan.enable                        true             # Create and activate new Switch module "partfan"
-switch.partfan.output_type                   pwm              # Pulse-density settable with S parameter 0...255
-switch.partfan.output_pin                    2.4              # Port.pin this module controls
 switch.partfan.input_on_command              M106             # Command that will turn this switch on
 switch.partfan.input_off_command             M107             # Command that will turn this switch off
 switch.partfan.startup_state                 false            # On power-up, use startup_value
-switch.partfan.startup_value                 255              # On power-up, set to no speed
+switch.partfan.startup_value                 127              # On turn-on, set to half speed
+switch.partfan.output_type                   pwm              # Pulse-density settable with S parameter 0...255
+switch.partfan.output_pin                    2.4              # Port.pin this module controls
 switch.partfan.failsafe_set_to               0                # On HALT, set to no speed
 
 # Switch 1 -- "hotendfan"
 
 switch.hotendfan.enable                      true             # Create and activate new Switch module "hotendfan"
-switch.hotendfan.output_type                 digital          # This is a static on/off pin
-switch.hotendfan.output_pin                  2.6              # Port.pin this module controls
 switch.hotendfan.input_on_command            M42              # Command that will turn this switch on
 switch.hotendfan.input_off_command           M43              # Command that will turn this switch off
 switch.hotendfan.startup_state               false            # On power-up, turn this switch off
+switch.hotendfan.output_type                 digital          # This is a static on/off pin
+switch.hotendfan.output_pin                  2.6              # Port.pin this module controls
 switch.hotendfan.failsafe_set_to             1                # On HALT, set to full speed
 
 # Switch 2 -- "bltouch"
 
 switch.bltouch.enable                        true             # Create and activate new Switch module "bltouch"
+switch.bltouch.input_on_command              M280 S3          # S3 == deploy  probe
+switch.bltouch.input_off_command             M280 S7          # S7 == retract probe
+switch.bltouch.default_on_value              3                # Use 'S3' for a raw M280 command
+switch.bltouch.startup_state                 false            # On power-up, use startup_value
+switch.bltouch.startup_value                 10.6             # On power-up or HALT, set to clear errors: dutycyc == 10.6
 switch.bltouch.output_type                   hwpwm            # Duty Cycle settable with S parameter 0.0...100.0
 switch.bltouch.output_pin                    1.23             # Port.pin this module controls, must be PWM capable
 switch.bltouch.pwm_period_ms                 20               # Set period to 20ms (50Hz)
-switch.bltouch.input_on_command              M280 S3          # S3 == deploy  probe
-switch.bltouch.input_off_command             M280 S7          # S7 == retract probe
-switch.bltouch.startup_state                 false            # On power-up, use startup_value
-switch.bltouch.startup_value                 10.6             # On power-up or HALT, set to clear errors: dutycyc == 10.6
-switch.bltouch.default_on_value              3                # Use 'S3' for a raw M280 command
 
 #
 # Z-probe
 #   See http://smoothieware.org/zprobe
 #   See http://smoothieware.org/pin-configuration -- more punctuation to set levels and state
 #
+# TODO
 zprobe.enable                                true
 zprobe.probe_pin                             1.28^            # Port.pin to read probe trigger signal
 zprobe.fast_feedrate                         80               # Moving descent rate mm/sec
@@ -228,7 +241,7 @@ zprobe.max_z                                 500              # Maximum travel i
 #
 
 # Temperature Switch 0 -- "hotend"
-
+# TODO
 temperatureswitch.hotend.enable              true             # Create and activate new Temperature Switch module "hotend"
 temperatureswitch.hotend.switch              hotendfan        # Set the switch to use by name
 temperatureswitch.hotend.designator          T                # Designator character to monitor from command M105
@@ -246,72 +259,60 @@ delta_homing                                 true             # Forces all three
 
 # X tower
 
-alpha_min_endstop                            nc               # Not connected
-alpha_max_endstop                            1.25v            # Port.pin to read max endstop
 alpha_homing_direction                       home_to_max      # Move toward max endstop when homing
 alpha_max                                    0                # Position when homed
 alpha_max_travel                             700              # Max travel in mm when homing
 alpha_fast_homing_rate_mm_s                  80               # Fast first pass homing feedrate in mm/sec
 alpha_slow_homing_rate_mm_s                  10               # Slow second pass homing feedrate in mm/sec
 alpha_homing_retract_mm                      5                # Distance to retract from the endstop after it is hit
+alpha_max_endstop                            1.25v            # Port.pin to read max endstop
+alpha_min_endstop                            nc               # Not connected
 
 # Y tower
 
-beta_min_endstop                             nc               # Not connected
-beta_max_endstop                             1.27v            # Port.pin to read max endstop
 beta_homing_direction                        home_to_max      # Move toward max endstop when homing
 beta_max                                     0                # Position when homed
 beta_max_travel                              700              # Max travel in mm when homing
 beta_fast_homing_rate_mm_s                   80               # Fast first pass homing feedrate in mm/sec
 beta_slow_homing_rate_mm_s                   10               # Slow second pass homing feedrate in mm/sec
 beta_homing_retract_mm                       5                # Distance to retract from the endstop after it is hit
+beta_max_endstop                             1.27v            # Port.pin to read max endstop
+beta_min_endstop                             nc               # Not connected
 
 # Z tower
 
-gamma_min_endstop                            nc               # Not connected
-gamma_max_endstop                            1.29v            # Port.pin to read max endstop
 gamma_homing_direction                       home_to_max      # Move toward max endstop when homing
 gamma_max                                    520              # Position when homed
 gamma_max_travel                             700              # Max travel in mm when homing
 gamma_fast_homing_rate_mm_s                  80               # Fast first pass homing feedrate in mm/sec
 gamma_slow_homing_rate_mm_s                  10               # Slow second pass homing feedrate in mm/sec
 gamma_homing_retract_mm                      5                # Distance to retract from the endstop after it is hit
+gamma_max_endstop                            1.29v            # Port.pin to read max endstop
+gamma_min_endstop                            nc               # Not connected
 
 #
-# Levelling strategies
-#   See http://smoothieware.org/zprobe#delta-calibration -- measure and calculate physical geometry constants
-#   See http://smoothieware.org/zprobe#delta-grid-compensation -- measure and map flatness of the bed
+# Current control
+#   See http://smoothieware.org/currentcontrol
 #
-
-leveling-strategy.delta-calibration.enable          true
-leveling-strategy.delta-calibration.radius          150       # Probe radius in mm
-leveling-strategy.delta-calibration.initial_height  10        # Height in mm above bed to start probing
-
-leveling-strategy.delta-grid.enable                 true
-leveling-strategy.delta-grid.radius                 150       # Grid radius in mm
-leveling-strategy.delta-grid.size                   9         # Grid points per side, must be an odd number
-leveling-strategy.delta-grid.do_home                true      # Whether to home before calibration
-leveling-strategy.delta-grid.save                   true      # Whether to automatically save the grid
-leveling-strategy.delta-grid.initial_height         10        # Height in mm above bed to start probling
-leveling-strategy.delta-grid.probe_offsets          0,0,0     # Probe offset from nozzle in mm as x,y,0
+currentcontrol_module_enable                 true             # Control stepper motor current via the configuration file
 
 #
 # Kill button
 #   See http://smoothieware.org/killbutton
 #
 kill_button_enable                           true
-kill_button_pin                              2.12               # Kill button pin, default is same as pause button 2.12
+kill_button_pin                              2.12             # Kill button pin, default is same as pause button 2.12
 
 #
 # System configuration
 #   See http://smoothieware.org/configuration-options -- "Communication" section
 #   See http://smoothieware.org/usb
 #
-uart0.baud_rate                              115200             # Baud rate for the UART serial port
-second_usb_serial_enable                     false              # This enables a second USB serial port
+uart0.baud_rate                              115200           # Baud rate for the UART serial port
+second_usb_serial_enable                     false            # This enables a second USB serial port
 
 #
 # Laser module configuration
 #   See http://smoothieware.org/laser
 #
-laser_module_enable                           false           # Whether to activate the laser module at all
+laser_module_enable                          false            # Whether to activate the laser module at all
