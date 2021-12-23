@@ -214,9 +214,9 @@ switch.hotendfan.failsafe_set_to             1                # On HALT, set to 
 switch.bltouch.enable                        true             # Create and activate new Switch module "bltouch"
 switch.bltouch.input_on_command              M280 S3          # S3 == deploy  probe
 switch.bltouch.input_off_command             M280 S7          # S7 == retract probe
-switch.bltouch.default_on_value              3                # Use 'S3' for a raw M280 command
+switch.bltouch.default_on_value              S3               # Use 'S3' for a raw M280 command
 switch.bltouch.startup_state                 false            # On power-up, use startup_value
-switch.bltouch.startup_value                 10.6             # On power-up or HALT, set to clear errors: dutycyc == 10.6
+switch.bltouch.startup_value                 S10.6            # On power-up or HALT, set to clear errors: dutycyc == 10.6
 switch.bltouch.output_type                   hwpwm            # Duty Cycle settable with S parameter 0.0...100.0
 switch.bltouch.output_pin                    1.23             # Port.pin this module controls, must be PWM capable
 switch.bltouch.pwm_period_ms                 20               # Set period to 20ms (50Hz)
@@ -226,14 +226,13 @@ switch.bltouch.pwm_period_ms                 20               # Set period to 20
 #   See http://smoothieware.org/zprobe
 #   See http://smoothieware.org/pin-configuration -- more punctuation to set levels and state
 #
-# TODO
 zprobe.enable                                true
 zprobe.probe_pin                             1.28^            # Port.pin to read probe trigger signal
 zprobe.fast_feedrate                         80               # Moving descent rate mm/sec
 zprobe.slow_feedrate                         5                # Probing descent rate in mm/sec
 zprobe.return_feedrate                       15               # Returning ascent rate in mm/sec
 zprobe.probe_height                          15               # Height in mm above bed to start probe
-zprobe.max_z                                 500              # Maximum travel in mm for a probe command
+zprobe.max_z                                 520              # Maximum travel in mm for a probe command
 
 #
 # Temperature switches
@@ -282,7 +281,7 @@ beta_min_endstop                             nc               # Not connected
 # Z tower
 
 gamma_homing_direction                       home_to_max      # Move toward max endstop when homing
-gamma_max                                    520              # Position when homed
+gamma_max                                    525              # Position when homed
 gamma_max_travel                             700              # Max travel in mm when homing
 gamma_fast_homing_rate_mm_s                  80               # Fast first pass homing feedrate in mm/sec
 gamma_slow_homing_rate_mm_s                  10               # Slow second pass homing feedrate in mm/sec
