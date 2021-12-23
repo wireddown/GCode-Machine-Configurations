@@ -47,7 +47,7 @@ leveling-strategy.delta-grid.enable                 true      # Settings for G31
 leveling-strategy.delta-grid.radius                 150       # Grid radius in mm
 leveling-strategy.delta-grid.size                   9         # Grid points per side, must be an odd number
 leveling-strategy.delta-grid.do_home                true      # Whether to home before calibration
-leveling-strategy.delta-grid.save                   true      # Whether to automatically save the grid
+leveling-strategy.delta-grid.save                   false     # Whether to automatically save the grid
 leveling-strategy.delta-grid.initial_height         15        # Height in mm above bed to start probling
 leveling-strategy.delta-grid.probe_offsets          0,20,0    # Probe offset from nozzle in mm as x,y,0
 
@@ -121,7 +121,7 @@ delta_current                                1.3              # Motor current fo
 # Extruder 0 -- "hotend"
 # TODO
 extruder.hotend.enable                       true             # Create and activate new Extruder module "hotend"
-extruder.hotend.steps_per_mm                 800              # Steps per mm for extruder stepper
+extruder.hotend.steps_per_mm                 855              # Steps per mm for extruder stepper
 extruder.hotend.default_feed_rate            300              # Default rate in mm/min for moves where only the extruder moves
 extruder.hotend.acceleration                 1500             # Acceleration for the stepper motor mm/sec/sec
 extruder.hotend.max_speed                    50               # Maximum speed in mm/sec
