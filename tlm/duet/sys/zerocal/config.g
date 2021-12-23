@@ -23,50 +23,25 @@ M208  Z0 S1                               ; Set minimum Z to 0 mm
 M574  X2 Y2 Z2 S1                         ; Set active-high endstops
 
 ;; Physical geometry in mm
-;M665  L400  R156.8  H525  B175            ; Set delta diagonal rod length, radius, homed height, printable radius
-;M666  X0    Y0      Z0    A0   B0         ; Zero all endstop adjustments and tilt corrections
-;
-;; first-pass G32
-;;   Diagonals 400.000:400.000:400.000, delta radius 156.733, homed height 524.714, bed radius 175.0, X -0.195°, Y -0.020°, Z 0.000°
-;;   Endstop adjustments X-0.27 Y0.41 Z-0.14, tilt X0.00% Y0.00%
-;M665  L400  R156.733 H524.714 B175.0 X-0.195 Y-0.020 Z0.000
-;M666  X-0.27 Y0.41 Z-0.14 A0.00 B0.00
-;
-;; new max height == 523.60
-; measured by manually jogging the position until the first end-stop dimmed
-; also measured Z probe offset == 0.84 (with blue tape), add 0.04 margin
-;M665  L400  R156.733 H523.600 B175.0 X0 Y0 Z0
-;M666  X0    Y0       Z0       A0     B0         ; Zero all endstop adjustments and tilt corrections
-;G31   P25   X-2.4    Y21.4    Z0.80             ; Set probe trigger threshold, offset from nozzle as measured from paper imprint, and trigger height (was: 1.07)
-;
-; second pass @ G32 -- 0.709 deviation
-; take new R, H from machine G32
-;M665  L400  R156.965 H524.333 B175.0 X0 Y0 Z0
-;M666  X0    Y0       Z0       A0     B0         ; Zero all endstop adjustments and tilt corrections
-;G31   P25   X-2.4    Y21.4    Z0.80             ; Set probe trigger threshold, offset from nozzle as measured from paper imprint, and trigger height (was: 1.07)
-;
-; third pass @ G32 -- 0.256 deviation
-; take new R, H
-;M665  L400  R156.896 H524.322 B175.0 X0 Y0 Z0
-;M666  X0    Y0       Z0       A0     B0         ; Zero all endstop adjustments and tilt corrections
-;G31   P25   X-2.4    Y21.4    Z0.80             ; Set probe trigger threshold, offset from nozzle as measured from paper imprint, and trigger height (was: 1.07)
-;
-; lock in values and check
-; results
-;   Diagonals 400.000:400.000:400.000, delta radius 157.015, homed height 524.359, bed radius 175.0, X -0.241°, Y 0.100°, Z 0.000°
-;   Endstop adjustments X-0.23 Y0.37 Z-0.14, tilt X0.00% Y0.00%
-; keep R and H
-; take new XYZ, XYZAB
-;M665  L400    R156.896  H524.322  B175.0  X-0.241  Y0.100  Z0.00
-;M666  X-0.23  Y0.37     Z-0.14    A0      B0
-;G31   P25     X-2.4     Y21.4     Z0.80          ; Set probe trigger threshold, offset from nozzle as measured from paper imprint, and trigger height (was: 1.07)
-
-; adjustments after final G32 :: "deviation before 0.042 after 0.025" :: where 'before' == above and 'after' == below
-;   Diagonals 400.000:400.000:400.000, delta radius 156.944, homed height 524.338, bed radius 175.0, X -0.236°, Y 0.088°, Z 0.000°
-;   Endstop adjustments X-0.21 Y0.37 Z-0.16, tilt X0.00% Y0.00%
+;;M665  L400  R156.8  H525  B175            ; Set delta diagonal rod length, radius, homed height, printable radius
+;;M666  X0    Y0      Z0    A0   B0         ; Zero all endstop adjustments and tilt corrections
+;;; first-pass G32
+;;;   Diagonals 400.000:400.000:400.000, delta radius 156.733, homed height 524.714, bed radius 175.0, X -0.195°, Y -0.020°, Z 0.000°
+;;;   Endstop adjustments X-0.27 Y0.41 Z-0.14, tilt X0.00% Y0.00%
+;;; new max height == 523.60
+;;;   measured by manually jogging the position until the first end-stop dimmed
+;;;   also measured Z probe offset == 0.84 (with blue tape), add 0.04 margin
+;;; second pass @ G32 -- 0.709 deviation
+;;; third pass @ G32 -- 0.256 deviation
+;;; lock in values and check
+;;;   Diagonals 400.000:400.000:400.000, delta radius 157.015, homed height 524.359, bed radius 175.0, X -0.241°, Y 0.100°, Z 0.000°
+;;;   Endstop adjustments X-0.23 Y0.37 Z-0.14, tilt X0.00% Y0.00%
+;;; adjustments after final G32 :: "deviation before 0.042 after 0.025" :: where 'before' == above and 'after' == below
+;;;   Diagonals 400.000:400.000:400.000, delta radius 156.944, homed height 524.338, bed radius 175.0, X -0.236°, Y 0.088°, Z 0.000°
+;;;   Endstop adjustments X-0.21 Y0.37 Z-0.16, tilt X0.00% Y0.00%
 M665  L400    R156.944  H524.338  B175.0  X-0.236  Y0.088  Z0.00
 M666  X-0.21  Y0.37     Z-0.16    A0      B0
-G31   P25     X-2.4     Y21.4     Z0.80          ; Set probe trigger threshold, offset from nozzle as measured from paper imprint, and trigger height (was: 1.07)
+G31   P25     X-2.4     Y21.4     Z0.80          ; Set probe trigger threshold, offset from nozzle as measured from paper imprint, and trigger height
 
 ;; Z-Probe
 M307  H3   A-1   C-1   D-1                ; Disable heater on PWM channel 3 to reuse it for the BLTouch
@@ -109,8 +84,12 @@ M566  X1000   Y1000   Z1000   E40         ; Set maximum instantaneous speed chan
 M84   S30                                 ; Set idle timeout
 
 ;; Custom settings
-M106  P0  S0                              ; Part fan 0 off
-M106  P1  S0                              ; Part fan 1 off
+M106  P0   S0                             ; Part fan 0 off
+M106  P1   S0                             ; Part fan 1 off
 G90                                       ; Send absolute coordinates...
 M83                                       ; ...but relative extruder moves
+
 G28                                       ; Go home via homedelta.g
+M557  R130 S20                            ; Grid-level radius R mm with a mesh spacing of S mm
+M376  H12                                 ; Taper the grid-level compensation to 0 at H mm
+G29   S1                                  ; Load the grid-leveling height map

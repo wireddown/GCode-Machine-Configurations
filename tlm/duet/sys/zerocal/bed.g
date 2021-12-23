@@ -36,3 +36,6 @@ G30  P12  X0.00     Y68.035    Z-99999  H0
 G30  P13  X62.6     Y-26       Z-99999  H0
 G30  P14  X-62.6    Y-26       Z-99999  H0
 G30  P15  X0        Y0         Z-99999  S6
+
+; Load the grid-leveling height map
+G29  S1

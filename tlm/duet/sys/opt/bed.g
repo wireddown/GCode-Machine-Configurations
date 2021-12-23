@@ -4,12 +4,17 @@
 ; Before running this, you must configure your Z-probe trigger height
 ; to match your physical geometry via the G31 command in config.g.
 
-G90                    ; use absolute coordinates
-M561                   ; clear any bed transform
-;;;; M290 R0   S0           ; clear any baby stepping
-G28                    ; home all towers
-G1   Z10  F4200        ; Move hotend to 10 mm above bed
-G30 S-1                ; dummy probe to warm up the BLTouch
+G90                    ; Use absolute coordinates
+M561                   ; Clear any bed transform
+M290 R0   S0           ; Clear any baby stepping
+G28                    ; Home all towers
+M401                   ; Deploy probe
+G4   S1                ; Wait S seconds
+
+G0   Z200 F9600        ; Dive
+G0   Z70  F4200        ; Decelerate
+G0   Z15  F1600        ; Move hotend to Z mm above bed
+G30  S-1               ; Dummy probe to warm up the BLTouch
 
 ; Probe the bed at 12 peripheral and 3 halfway points, 
 ; and perform 6-factor auto compensation. 
@@ -31,3 +36,6 @@ G30  P12  X0.00     Y68.035    Z-99999  H0
 G30  P13  X62.6     Y-26       Z-99999  H0
 G30  P14  X-62.6    Y-26       Z-99999  H0
 G30  P15  X0        Y0         Z-99999  S6
+
+; Load the grid-leveling height map
+G29  S1
