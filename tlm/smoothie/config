@@ -184,7 +184,7 @@ switch.partfan.output_pin                    2.4              # Port.pin this mo
 switch.partfan.input_on_command              M106             # Command that will turn this switch on
 switch.partfan.input_off_command             M107             # Command that will turn this switch off
 switch.partfan.startup_state                 false            # On power-up, use startup_value
-switch.partfan.startup_value                 0                # On power-up, set to no speed
+switch.partfan.startup_value                 255              # On power-up, set to no speed
 switch.partfan.failsafe_set_to               0                # On HALT, set to no speed
 
 # Switch 1 -- "hotendfan"
@@ -252,7 +252,7 @@ alpha_homing_direction                       home_to_max      # Move toward max 
 alpha_max                                    0                # Position when homed
 alpha_max_travel                             700              # Max travel in mm when homing
 alpha_fast_homing_rate_mm_s                  80               # Fast first pass homing feedrate in mm/sec
-alpha_slow_homing_rate_mm_s                  5                # Slow second pass homing feedrate in mm/sec
+alpha_slow_homing_rate_mm_s                  10               # Slow second pass homing feedrate in mm/sec
 alpha_homing_retract_mm                      5                # Distance to retract from the endstop after it is hit
 
 # Y tower
@@ -263,7 +263,7 @@ beta_homing_direction                        home_to_max      # Move toward max 
 beta_max                                     0                # Position when homed
 beta_max_travel                              700              # Max travel in mm when homing
 beta_fast_homing_rate_mm_s                   80               # Fast first pass homing feedrate in mm/sec
-beta_slow_homing_rate_mm_s                   5                # Slow second pass homing feedrate in mm/sec
+beta_slow_homing_rate_mm_s                   10               # Slow second pass homing feedrate in mm/sec
 beta_homing_retract_mm                       5                # Distance to retract from the endstop after it is hit
 
 # Z tower
@@ -274,7 +274,7 @@ gamma_homing_direction                       home_to_max      # Move toward max 
 gamma_max                                    520              # Position when homed
 gamma_max_travel                             700              # Max travel in mm when homing
 gamma_fast_homing_rate_mm_s                  80               # Fast first pass homing feedrate in mm/sec
-gamma_slow_homing_rate_mm_s                  5                # Slow second pass homing feedrate in mm/sec
+gamma_slow_homing_rate_mm_s                  10               # Slow second pass homing feedrate in mm/sec
 gamma_homing_retract_mm                      5                # Distance to retract from the endstop after it is hit
 
 #
@@ -294,50 +294,6 @@ leveling-strategy.delta-grid.do_home                true      # Whether to home 
 leveling-strategy.delta-grid.save                   true      # Whether to automatically save the grid
 leveling-strategy.delta-grid.initial_height         10        # Height in mm above bed to start probling
 leveling-strategy.delta-grid.probe_offsets          0,0,0     # Probe offset from nozzle in mm as x,y,0
-
-#
-# Custom menus
-#   See http://smoothieware.org/panel#custom-menu-entries
-#
-#   NOTE
-#     '_' gets converted to ' ' in both the menu and commands
-#     '|' gets converted to newline to separate multiple commands
-#
-custom_menu.coolingfan_off.enable     true              #
-custom_menu.coolingfan_off.name       JoeFan_Off       #
-custom_menu.coolingfan_off.command    M43               #
-
-custom_menu.coolingfan_on.enable      true              #
-custom_menu.coolingfan_on.name        JoeFan_On        #
-custom_menu.coolingfan_on.command     M42               #
-
-custom_menu.blower_off.enable         true              #
-custom_menu.blower_off.name           Joe_Off        #
-custom_menu.blower_off.command        M107              #
-
-custom_menu.blower_on.enable          true              #
-custom_menu.blower_on.name            Joe_On         #
-custom_menu.blower_on.command         M106_S255         #
-
-custom_menu.bl_up.enable              true              #
-custom_menu.bl_up.name                BLJoe_Up        #
-custom_menu.bl_up.command             M280_S7           #
-
-custom_menu.bl_down.enable            true              #
-custom_menu.bl_down.name              BLJoe_Down      #
-custom_menu.bl_down.command           M280_S3           #
-
-custom_menu.bl_reset.enable           true              #
-custom_menu.bl_reset.name             BLJoe_Reset     #
-custom_menu.bl_reset.command          M280_S10.6        #
-
-custom_menu.bl_test.enable            true              #
-custom_menu.bl_test.name              BLJoe_Test      #
-custom_menu.bl_test.command           M280_S8.4         #
-
-custom_menu.auto_calibrate.enable     true              #
-custom_menu.auto_calibrate.name       Auto_Joe    #
-custom_menu.auto_calibrate.command    M280_S10.6|G28|M280_S3|M190_S80|G32|G31|M374|M500|M280_S7|G28|M140_S0|M84|reset #
 
 #
 # Kill button
