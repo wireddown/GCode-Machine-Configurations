@@ -23,7 +23,7 @@ M208  Z0 S1                               ; Set minimum Z to 0 mm
 M574  X2 Y2 Z2 S1                         ; Set active-high endstops
 
 ;; Physical geometry in mm
-;;M665  L400  R156.8  H525  B175            ; Set delta diagonal rod length, radius, homed height, printable radius
+;;M665  L400  R156.8  H520  B175            ; Set delta diagonal rod length, radius, homed height, printable radius
 ;;M666  X0    Y0      Z0    A0   B0         ; Zero all endstop adjustments and tilt corrections
 ;;; first-pass G32
 ;;;   Diagonals 400.000:400.000:400.000, delta radius 156.733, homed height 524.714, bed radius 175.0, X -0.195°, Y -0.020°, Z 0.000°
