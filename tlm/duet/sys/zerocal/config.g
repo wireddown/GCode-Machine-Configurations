@@ -62,23 +62,25 @@ M569  P1 S1                               ; Stepper 1 goes forwards
 M569  P2 S1                               ; Stepper 2 goes forwards
 M569  P3 S0                               ; Stepper 3 goes backwards
 
-;; Fans
-;  - Set name, fan port, initial speed [0..1], PWM inversion and frequency; disable thermostatic control
-M106  C"Part Fan 1"  P0  S0.5  I0  F250  H-1
-M106  C"Part Fan 2"  P1  S0.5  I0  F250  H-1
-M106  C"Tool Fan"    P2  S0.5  I0  F250  H-1
+;; Part fans
+;  - Set name, fan port, initial speed [0..1], PWM inversion and frequency, disable thermostatic control, blip at full-speed for 1 sec, lowest speed is off, then 20%
+M106  C"Part Fans"  P0  S0.0  I0  F250  H-1  B1.0  L0.2
 
 ;; Heaters
 M305  S"Bed heater"    P0  T100000  B4138  C0   ; Heater 0 has thermistor + ADC parameters
 M143  H0  S150                                  ; Set temperature limit for heater 0 to 150C
 M305  S"Hotend heater" P1  X200  R430  F60      ; Heater 1 has PT100 on ch200, 430 ohm ref, 60 Hz noise
 M143  H1  S300                                  ; Set temperature limit for heater 1 to 300C
-M307  H1  A477.5   C252.5  D4.5  S1.0  B0       ; Set PID parameters for hotend: gAin timeConstant Deadtime maxPWM, no bang-bang
+M307  H1  A347.8   C253.1  D3.9  S1.0  B0       ; Set PID parameters for hotend: gAin timeConstant Deadtime maxPWM, no bang-bang
 
 ;; Tools
 M563  S"Hotend"   P0  D0  H1  F2          ; Define tool 0's drive, heater, and fan
 G10   P0  X0  Y0  Z0                      ; Set nozzle offset from origin
 G10   P0  S200  R100                      ; Set initial tool 0 service and reserve temperatures in C
+
+;; Machine fans
+;  - Set name, fan port, PWM inversion and frequency; configure thermostatic control for 50 C on Heater 1
+M106  C"Tool Fan" P2  S0.5  I0  F250  T50  H1  B1.0  L0.2
 
 ;; Speed and dynamics
 M203  X18000  Y18000  Z18000  E900        ; Set maximum speeds (mm/min)
@@ -87,12 +89,13 @@ M566  X1000   Y1000   Z1000   E40         ; Set maximum instantaneous speed chan
 M84   S30                                 ; Set idle timeout
 
 ;; Custom settings
-M106  P0   S0                             ; Part fan 0 off
-M106  P1   S0                             ; Part fan 1 off
 G90                                       ; Send absolute coordinates...
 M83                                       ; ...but relative extruder moves
 
 G28                                       ; Go home via homedelta.g
+M290  R0   S-0.34                         ; Use baby stepping on Z to move S mm in absolute coordinates
 M557  R130 S20                            ; Grid-level radius R mm with a mesh spacing of S mm
 M376  H12                                 ; Taper the grid-level compensation to 0 at H mm
 G29   S1                                  ; Load the grid-leveling height map
+
+M106  P0   S0                             ; Part fan 0 off
