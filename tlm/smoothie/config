@@ -31,7 +31,7 @@ network.hostname                             kizumi
 #
 arm_solution                                 linear_delta     # Selects the linear delta arm solution
 arm_length                                   400.00           # Length of an arm from hinge to hinge
-arm_radius                                   156.9835         # Corrected by G32
+arm_radius                                   156.8533         # Corrected by G32
 
 #
 # Levelling strategies
@@ -41,14 +41,14 @@ arm_radius                                   156.9835         # Corrected by G32
 
 leveling-strategy.delta-calibration.enable          true      # Settings for G32
 leveling-strategy.delta-calibration.radius          150       # Probe radius in mm
-leveling-strategy.delta-calibration.initial_height  15        # Height in mm above bed to start probing
+leveling-strategy.delta-calibration.initial_height  10        # Height in mm above bed to start probing
 
 leveling-strategy.delta-grid.enable                 true      # Settings for G31
 leveling-strategy.delta-grid.radius                 150       # Grid radius in mm
 leveling-strategy.delta-grid.size                   9         # Grid points per side, must be an odd number
 leveling-strategy.delta-grid.do_home                true      # Whether to home before calibration
 leveling-strategy.delta-grid.save                   true      # Whether to automatically save+load the grid
-leveling-strategy.delta-grid.initial_height         15        # Height in mm above bed to start probling
+leveling-strategy.delta-grid.initial_height         10        # Height in mm above bed to start probling
 leveling-strategy.delta-grid.probe_offsets          0,20,0    # Probe offset from nozzle in mm as x,y,0
 
 #
@@ -122,9 +122,9 @@ delta_current                                1.3              # Motor current fo
 
 extruder.hotend.enable                       true             # Create and activate new Extruder module "hotend"
 extruder.hotend.steps_per_mm                 855              # Steps per mm for extruder stepper
-extruder.hotend.default_feed_rate            300              # Default rate in mm/min for moves where only the extruder moves
+extruder.hotend.default_feed_rate            80               # Default rate in mm/min for moves where only the extruder moves
 extruder.hotend.acceleration                 1500             # Acceleration for the stepper motor mm/sec/sec
-extruder.hotend.max_speed                    50               # Maximum speed in mm/sec
+extruder.hotend.max_speed                    20               # Maximum speed in mm/sec
 extruder.hotend.filament_diameter            0                # Volumetric extrusion: mm/sec becomes mm^3/sec
 
 extruder.hotend.retract_length               3                # Retract length in mm
@@ -159,11 +159,12 @@ temperature_control.hotend.runaway_range             20       # How far from the
 
 temperature_control.hotend.heater_pin           2.7           # Port.pin that controls the heater
 temperature_control.hotend.thermistor_pin       0.23          # Port.pin for the thermistor to read
-temperature_control.hotend.thermistor           EPCOS100K     # See http://smoothieware.org/temperaturecontrol#thermistor
+temperature_control.hotend.thermistor           Semitec       # See http://smoothieware.org/temperaturecontrol#thermistor and
+                                                # https://e3d-online.dozuki.com/Guide/V6+Smoothieware+Configuration/25#s243
 
-temperature_control.hotend.p_factor             44.1855       # P ( proportional ) factor
-temperature_control.hotend.i_factor             4.4519        # I ( integral ) factor
-temperature_control.hotend.d_factor             109.6354      # D ( derivative ) factor
+temperature_control.hotend.p_factor             60.9103       # P ( proportional ) factor
+temperature_control.hotend.i_factor             5.0759        # I ( integral ) factor
+temperature_control.hotend.d_factor             182.7308      # D ( derivative ) factor
 temperature_control.hotend.max_pwm              255           # Max pwm
 
 # Temperature Control 1 -- "bed"
@@ -232,10 +233,10 @@ switch.bltouch.pwm_period_ms                 20               # Set period to 20
 #
 zprobe.enable                                true
 zprobe.max_z                                 520              # Maximum travel in mm for a probe command
-zprobe.probe_height                          15               # Height in mm above bed to start probe
+zprobe.probe_height                          10               # Height in mm above bed to start probe
 zprobe.fast_feedrate                         80               # Moving descent rate mm/sec
-zprobe.slow_feedrate                         5                # Probing descent rate in mm/sec
-zprobe.return_feedrate                       15               # Returning ascent rate in mm/sec
+zprobe.slow_feedrate                         2                # Probing descent rate in mm/sec
+zprobe.return_feedrate                       12               # Returning ascent rate in mm/sec
 zprobe.probe_pin                             1.28^            # Port.pin to read probe trigger signal
 
 #
@@ -265,7 +266,7 @@ alpha_homing_direction                       home_to_max      # Move toward max 
 alpha_max                                    0                # Position when homed
 alpha_max_travel                             700              # Max travel in mm when homing
 alpha_fast_homing_rate_mm_s                  80               # Fast first pass homing feedrate in mm/sec
-alpha_slow_homing_rate_mm_s                  13.33            # Slow second pass homing feedrate in mm/sec
+alpha_slow_homing_rate_mm_s                  12               # Slow second pass homing feedrate in mm/sec
 alpha_homing_retract_mm                      5                # Distance to retract from the endstop after it is hit
 alpha_max_endstop                            1.25v            # Port.pin to read max endstop
 alpha_min_endstop                            nc               # Not connected
@@ -276,7 +277,7 @@ beta_homing_direction                        home_to_max      # Move toward max 
 beta_max                                     0                # Position when homed
 beta_max_travel                              700              # Max travel in mm when homing
 beta_fast_homing_rate_mm_s                   80               # Fast first pass homing feedrate in mm/sec
-beta_slow_homing_rate_mm_s                   13.33            # Slow second pass homing feedrate in mm/sec
+beta_slow_homing_rate_mm_s                   12               # Slow second pass homing feedrate in mm/sec
 beta_homing_retract_mm                       5                # Distance to retract from the endstop after it is hit
 beta_max_endstop                             1.27v            # Port.pin to read max endstop
 beta_min_endstop                             nc               # Not connected
@@ -284,10 +285,10 @@ beta_min_endstop                             nc               # Not connected
 # Z tower
 
 gamma_homing_direction                       home_to_max      # Move toward max endstop when homing
-gamma_max                                    524              # Position when homed
+gamma_max                                    523.6            # Position when homed
 gamma_max_travel                             700              # Max travel in mm when homing
 gamma_fast_homing_rate_mm_s                  80               # Fast first pass homing feedrate in mm/sec
-gamma_slow_homing_rate_mm_s                  13.33            # Slow second pass homing feedrate in mm/sec
+gamma_slow_homing_rate_mm_s                  12               # Slow second pass homing feedrate in mm/sec
 gamma_homing_retract_mm                      5                # Distance to retract from the endstop after it is hit
 gamma_max_endstop                            1.29v            # Port.pin to read max endstop
 gamma_min_endstop                            nc               # Not connected
