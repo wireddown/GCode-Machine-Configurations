@@ -10,6 +10,23 @@
 ## we can also use the 'include' keyword :)
 
 #
+# G-code player
+#   See http://smoothieware.org/player
+#
+on_boot_gcode_enable                         true
+on_boot_gcode                                /sd/on_boot.gcode
+
+#
+# Network settings
+#   See http://smoothieware.org/network
+#
+network.enable                               false
+network.webserver.enable                     false
+network.telnet.enable                        false
+network.ip_address                           auto
+network.hostname                             kizumi
+
+#
 # Delta kinematic geometry
 #   See http://smoothieware.org/delta
 #
@@ -78,6 +95,12 @@ gamma_current                                1.5              # Motor current fo
 # Extruder 0
 
 delta_current                                1.3              # Motor current for first extruder stepper
+
+#
+# Current control
+#   See http://smoothieware.org/currentcontrol
+#
+currentcontrol_module_enable                 true               # Control stepper motor current via the configuration file
 
 #
 # Extruders
@@ -187,6 +210,19 @@ switch.bltouch.startup_value                 10.6             # On power-up or H
 switch.bltouch.default_on_value              3                # Use 'S3' for a raw M280 command
 
 #
+# Z-probe
+#   See http://smoothieware.org/zprobe
+#   See http://smoothieware.org/pin-configuration -- more punctuation to set levels and state
+#
+zprobe.enable                                true
+zprobe.probe_pin                             1.28^            # Port.pin to read probe trigger signal
+zprobe.fast_feedrate                         80               # Moving descent rate mm/sec
+zprobe.slow_feedrate                         5                # Probing descent rate in mm/sec
+zprobe.return_feedrate                       15               # Returning ascent rate in mm/sec
+zprobe.probe_height                          15               # Height in mm above bed to start probe
+zprobe.max_z                                 500              # Maximum travel in mm for a probe command
+
+#
 # Temperature switches
 #   See http://smoothieware.org/temperatureswitch
 #
@@ -242,19 +278,6 @@ gamma_slow_homing_rate_mm_s                  5                # Slow second pass
 gamma_homing_retract_mm                      5                # Distance to retract from the endstop after it is hit
 
 #
-# Z-probe
-#   See http://smoothieware.org/zprobe
-#   See http://smoothieware.org/pin-configuration -- more punctuation to set levels and state
-#
-zprobe.enable                                true
-zprobe.probe_pin                             1.28^            # Port.pin to read probe trigger signal
-zprobe.fast_feedrate                         80               # Moving descent rate mm/sec
-zprobe.slow_feedrate                         5                # Probing descent rate in mm/sec
-zprobe.return_feedrate                       15               # Returning ascent rate in mm/sec
-zprobe.probe_height                          15               # Height in mm above bed to start probe
-zprobe.max_z                                 500              # Maximum travel in mm for a probe command
-
-#
 # Levelling strategies
 #   See http://smoothieware.org/zprobe#delta-calibration -- measure and calculate physical geometry constants
 #   See http://smoothieware.org/zprobe#delta-grid-compensation -- measure and map flatness of the bed
@@ -273,39 +296,6 @@ leveling-strategy.delta-grid.initial_height         10        # Height in mm abo
 leveling-strategy.delta-grid.probe_offsets          0,0,0     # Probe offset from nozzle in mm as x,y,0
 
 #
-# Panel
-#   See http://smoothieware.org/panel
-#   See http://smoothieware.org/pin-configuration -- more punctuation to set levels and state
-#
-panel.enable                                 false            # Set to true to enable the panel code
-
-# Example for reprap discount GLCD
-# on glcd EXP1 is to left and EXP2 is to right, pin 1 is bottom left, pin 2 is top left etc.
-# +5v is EXP1 pin 10, Gnd is EXP1 pin 9
-#panel.lcd                             reprap_discount_glcd
-#panel.spi_channel                     0                 # SPI channel to use  ; GLCD EXP1 Pins 3,5 (MOSI, SCLK)
-#panel.spi_cs_pin                      0.16              # SPI chip select     ; GLCD EXP1 Pin 4
-#panel.encoder_a_pin                   3.25!^            # Encoder pin         ; GLCD EXP2 Pin 3
-#panel.encoder_b_pin                   3.26!^            # Encoder pin         ; GLCD EXP2 Pin 5
-#panel.click_button_pin                1.30!^            # Click button        ; GLCD EXP1 Pin 2
-#panel.buzz_pin                        1.31              # Pin for buzzer      ; GLCD EXP1 Pin 1
-#panel.back_button_pin                 2.11!^            # Back button         ; GLCD EXP2 Pin 8
-#panel.encoder_resolution              4
-#panel.external_sd                     true              # set to true if there is an extrernal sdcard on the panel
-#panel.external_sd.spi_channel         1                 # set spi channel the sdcard is on
-#panel.external_sd.spi_cs_pin          0.28              # set spi chip select for the sdcard (or any spare pin)
-#panel.external_sd.sdcd_pin            0.27!^            # sd detect signal (set to nc if no sdcard detect) (or any spare pin)
-
-#panel.menu_offset                     0                 # Some panels will need 1 here
-
-#panel.alpha_jog_feedrate              6000              # X jogging feedrate in mm/min
-#panel.beta_jog_feedrate               6000              # Y jogging feedrate in mm/min
-#panel.gamma_jog_feedrate              3000              # Z jogging feedrate in mm/min
-
-#panel.hotend_temperature              210               # Temp to set hotend when preheat is selected
-#panel.bed_temperature                 80                # Temp to set bed when preheat is selected
-
-#
 # Custom menus
 #   See http://smoothieware.org/panel#custom-menu-entries
 #
@@ -314,58 +304,40 @@ panel.enable                                 false            # Set to true to e
 #     '|' gets converted to newline to separate multiple commands
 #
 custom_menu.coolingfan_off.enable     true              #
-custom_menu.coolingfan_off.name       CoolFan_Off       #
+custom_menu.coolingfan_off.name       JoeFan_Off       #
 custom_menu.coolingfan_off.command    M43               #
 
 custom_menu.coolingfan_on.enable      true              #
-custom_menu.coolingfan_on.name        CoolFan_On        #
+custom_menu.coolingfan_on.name        JoeFan_On        #
 custom_menu.coolingfan_on.command     M42               #
 
 custom_menu.blower_off.enable         true              #
-custom_menu.blower_off.name           Blower_Off        #
+custom_menu.blower_off.name           Joe_Off        #
 custom_menu.blower_off.command        M107              #
 
 custom_menu.blower_on.enable          true              #
-custom_menu.blower_on.name            Blower_On         #
+custom_menu.blower_on.name            Joe_On         #
 custom_menu.blower_on.command         M106_S255         #
 
 custom_menu.bl_up.enable              true              #
-custom_menu.bl_up.name                BLTouch_Up        #
+custom_menu.bl_up.name                BLJoe_Up        #
 custom_menu.bl_up.command             M280_S7           #
 
 custom_menu.bl_down.enable            true              #
-custom_menu.bl_down.name              BLTouch_Down      #
+custom_menu.bl_down.name              BLJoe_Down      #
 custom_menu.bl_down.command           M280_S3           #
 
 custom_menu.bl_reset.enable           true              #
-custom_menu.bl_reset.name             BLTouch_Reset     #
+custom_menu.bl_reset.name             BLJoe_Reset     #
 custom_menu.bl_reset.command          M280_S10.6        #
 
 custom_menu.bl_test.enable            true              #
-custom_menu.bl_test.name              BLTouch_Test      #
+custom_menu.bl_test.name              BLJoe_Test      #
 custom_menu.bl_test.command           M280_S8.4         #
 
 custom_menu.auto_calibrate.enable     true              #
-custom_menu.auto_calibrate.name       Auto_Calibrate    #
+custom_menu.auto_calibrate.name       Auto_Joe    #
 custom_menu.auto_calibrate.command    M280_S10.6|G28|M280_S3|M190_S80|G32|G31|M374|M500|M280_S7|G28|M140_S0|M84|reset #
-
-#
-# Network settings
-#   See http://smoothieware.org/network
-#
-network.enable                               false
-network.webserver.enable                     false
-network.telnet.enable                        false
-network.ip_address                           auto
-network.hostname                             kizumi
-
-#
-# System configuration
-#   See http://smoothieware.org/configuration-options -- "Communication" section
-#   See http://smoothieware.org/usb
-#
-uart0.baud_rate                              115200             # Baud rate for the UART serial port
-second_usb_serial_enable                     false              # This enables a second USB serial port
 
 #
 # Kill button
@@ -375,17 +347,12 @@ kill_button_enable                           true
 kill_button_pin                              2.12               # Kill button pin, default is same as pause button 2.12
 
 #
-# Current control
-#   See http://smoothieware.org/currentcontrol
+# System configuration
+#   See http://smoothieware.org/configuration-options -- "Communication" section
+#   See http://smoothieware.org/usb
 #
-currentcontrol_module_enable                 true               # Control stepper motor current via the configuration file
-
-#
-# G-code player
-#   See http://smoothieware.org/player
-#
-on_boot_gcode_enable                         true
-on_boot_gcode                                /sd/on_boot.gcode
+uart0.baud_rate                              115200             # Baud rate for the UART serial port
+second_usb_serial_enable                     false              # This enables a second USB serial port
 
 #
 # Laser module configuration
