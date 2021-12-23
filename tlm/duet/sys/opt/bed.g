@@ -1,13 +1,19 @@
 ; bed.g
 ; called to perform automatic delta calibration via G32
+;
+; Before running this, you must configure your Z-probe trigger height
+; to match your physical geometry via the G31 command in config.g.
 
+G90                    ; use absolute coordinates
 M561                   ; clear any bed transform
+;;;; M290 R0   S0           ; clear any baby stepping
 G28                    ; home all towers
-M98  Pdeployprobe.g
-G30  P0 X0 Y0 Z-99999  ; dummy probe
+G1   Z10  F4200        ; Move hotend to 10 mm above bed
+G30 S-1                ; dummy probe to warm up the BLTouch
 
-; Probe the bed at 12 peripheral and 3 halfway points, and perform 6-factor auto compensation
-; Before running this, you should have set up your Z-probe trigger height to suit your build, in the G31 command in config.g.
+; Probe the bed at 12 peripheral and 3 halfway points, 
+; and perform 6-factor auto compensation. 
+
 ; Grid from http://www.escher3d.com/pages/wizards/wizardbed.php
 G30  P0   X0.00     Y141.175   Z-99999  H0
 G30  P1   X67.12    Y125.075   Z-99999  H0
@@ -25,5 +31,3 @@ G30  P12  X0.00     Y68.035    Z-99999  H0
 G30  P13  X62.6     Y-26       Z-99999  H0
 G30  P14  X-62.6    Y-26       Z-99999  H0
 G30  P15  X0        Y0         Z-99999  S6
-
-M98 Pretractprobe.g

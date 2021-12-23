@@ -1,2 +1,1 @@
-; auto tune heater 1, default PWM, 240C target
-M303 H1 S240
+M303 H1 S225    ; auto tune heater 1, default PWM, 225C target or maximum temperature
