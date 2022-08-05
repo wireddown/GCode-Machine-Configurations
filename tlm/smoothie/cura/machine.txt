@@ -1,0 +1,38 @@
+SETTINGS
+
+345.0
+345.0
+500.0
+Elliptic
+Origin at center
+RepRap
+
+-20
+-10
+10
+10
+500.0
+Apply extruder offsets to code
+
+0.8
+1.75
+0.0
+0.0
+
+START
+
+G28              ; Home all axes
+M280 S10.6       ; Clear BLTouch errors
+G4   S1          ; Wait S seconds
+
+G0   Z180  F9600 ; Lower nozzle quickly
+G0   Z40   F4800 ; Decelerate
+
+G4   S2          ; Pause for cleaning
+G0   Z1    F3600 ; Return to bed
+
+END
+
+G28              ; Home all
+M400             ; Wait for all moves
+M84              ; Disable steppers

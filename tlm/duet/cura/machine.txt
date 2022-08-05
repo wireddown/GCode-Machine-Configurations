@@ -1,0 +1,38 @@
+SETTINGS
+
+348.0
+348.0
+520.0
+Elliptic
+Origin at center
+RepRap
+
+-20
+-10
+10
+10
+525.0
+Apply extruder offsets to code
+
+0.6
+1.75
+0.0
+0.0
+
+START
+
+M106  P0   S0        ; Part fans off
+G28                  ; Home all
+
+G0    Z190 F9600     ; Dive
+G0    Z50  F4800     ;      down
+G0    Z20  F2400     ;           slowa
+G4    S2             ; Wait S seconds
+G0    Z1   F1200     ; Move to bed
+
+END
+
+M106  P0 S0          ; Part fans off
+G28                  ; Home all
+M18   E0             ; De-engergize the extruder
+M84   S60            ; Set idle hold timeout
