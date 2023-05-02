@@ -42,24 +42,24 @@ git clone --branch $fw_branch_name --depth 1 https://github.com/MarlinFirmware/M
 # Get Creality firmware settings
 Write-Host -ForegroundColor Green "Downloading Marlin firmware configuration branch $fw_branch_name"
 git clone --branch $fw_branch_name --depth 1 --sparse https://github.com/MarlinFirmware/Configurations.git $fw_config_folder
-pushd $fw_config_folder
+Push-Location $fw_config_folder
 git sparse-checkout set "config/default" "$fw_config_printer_folder"
-popd
+Pop-Location
 
 # Patch firmware
-pushd $fw_root_folder
+Push-Location $fw_root_folder
 git switch --create $patch_branch_name
 
 $message = "Copy baseline Ender 3 V2 configuration from Marlin/Configurations/../$fw_config_printer_subfolder"
 Write-Host -ForegroundColor Green "$message"
-cp -v -force "../$fw_config_folder/$fw_config_printer_folder/$fw_config_printer_subfolder/*.h" "Marlin"
-cp -force -recurse -exclude "*private*.txt" "../$fw_config_folder/$fw_config_printer_folder/LCD Files/$LCD_screen_folder" "Marlin"
+Copy-Item -v -force "../$fw_config_folder/$fw_config_printer_folder/$fw_config_printer_subfolder/*.h" "Marlin"
+Copy-Item -force -recurse -exclude "*private*.txt" "../$fw_config_folder/$fw_config_printer_folder/LCD Files/$LCD_screen_folder" "Marlin"
 git add Marlin
 git commit -q -m "$message"
 
 $message = "Copy custom boot screen"
 Write-Host -ForegroundColor Green "$message"
-cp -force "../custom-screen.jpg" "Marlin/$LCD_screen_folder/$LCD_boot_screen_path"
+Copy-Item -force "../custom-screen.jpg" "Marlin/$LCD_screen_folder/$LCD_boot_screen_path"
 git add Marlin
 git status --short
 git commit -q -m "$message"
@@ -72,7 +72,7 @@ foreach ($folder in $fw_patch_message_for_folder.Keys) {
     }
 }
 
-popd
+Pop-Location
 
+Write-Host -ForegroundColor Green "Launching VS Code"
 # code $fw_root_folder
-
