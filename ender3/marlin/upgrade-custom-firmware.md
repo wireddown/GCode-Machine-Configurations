@@ -179,8 +179,9 @@ Applying: Set PlatformIO for STM32F103RE_creality environment
 - ✅ Patch `0000` diffs are understood
 - ✅ Diffs between Creality and Marlin UI are understood
   - ❌ `HOST_ACTION_COMMANDS`
-    - ➡️ Seems buggy with the Creality LCD UI scheme
-    - ➡️ Printer **hard freezes and beeps after parking**
+    - ➡️ Seems buggy with the Creality LCD screen
+    - ➡️ Printer **hard freezes and beeps after parking** for Creality UI
+    - ➡️ Printer resumes and **hard freezes** immediately for Jyers UI
     - ➡️ OctoPrint responds to printer messages https://reprap.org/wiki/G-code#Action_commands
 - ✅ Build warnings
   - ➡️ _(seems ok -- screen is responsive)_ Note: Auto-assigned `LCD_SERIAL_PORT`
@@ -221,3 +222,5 @@ Applying: Set PlatformIO for STM32F103RE_creality environment
   - `PRINTCOUNTER`
   - `GCODE_REPEAT_MARKERS`
   - `SAVED_POSITIONS`
+  - JyersUI has more options
+    - Tradeoff is no pausing, only canceling
