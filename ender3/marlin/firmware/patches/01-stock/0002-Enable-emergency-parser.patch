@@ -1,0 +1,25 @@
+From 56cb2dd76265e935a8e922bd6278a7606387905d Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Sat, 29 Apr 2023 16:12:20 -0700
+Subject: [PATCH 02/16] Enable emergency parser
+
+---
+ Marlin/Configuration_adv.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Marlin/Configuration_adv.h b/Marlin/Configuration_adv.h
+index 3bd38f13ab..367e3d6099 100644
+--- a/Marlin/Configuration_adv.h
++++ b/Marlin/Configuration_adv.h
+@@ -2322,7 +2322,7 @@
+  * Currently handles M108, M112, M410, M876
+  * NOTE: Not yet implemented for all platforms.
+  */
+-//#define EMERGENCY_PARSER
++#define EMERGENCY_PARSER
+ 
+ /**
+  * Realtime Reporting (requires EMERGENCY_PARSER)
+-- 
+2.40.0.windows.1
+

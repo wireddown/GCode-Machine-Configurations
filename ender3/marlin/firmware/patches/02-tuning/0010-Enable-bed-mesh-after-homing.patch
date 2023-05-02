@@ -1,0 +1,25 @@
+From 897ceb15f7d4504ae31289b5bb72660ba9f5fa85 Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Sun, 30 Apr 2023 15:58:28 -0700
+Subject: [PATCH 10/16] Enable bed mesh after homing
+
+---
+ Marlin/Configuration.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Marlin/Configuration.h b/Marlin/Configuration.h
+index 637ef592ee..a461b12e91 100644
+--- a/Marlin/Configuration.h
++++ b/Marlin/Configuration.h
+@@ -1754,7 +1754,7 @@
+  * leveling immediately after G28.
+  */
+ //#define RESTORE_LEVELING_AFTER_G28
+-//#define ENABLE_LEVELING_AFTER_G28
++#define ENABLE_LEVELING_AFTER_G28
+ 
+ /**
+  * Auto-leveling needs preheating
+-- 
+2.40.0.windows.1
+

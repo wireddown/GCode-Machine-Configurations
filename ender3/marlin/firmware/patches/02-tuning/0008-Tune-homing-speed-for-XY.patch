@@ -1,0 +1,39 @@
+From 1aa13f19924fa73cab1365b29ca5c832f1f3a027 Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Sun, 30 Apr 2023 15:55:45 -0700
+Subject: [PATCH 08/16] Tune homing speed for XY
+
+---
+ Marlin/Configuration.h     | 2 +-
+ Marlin/Configuration_adv.h | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Marlin/Configuration.h b/Marlin/Configuration.h
+index 8f9c8a1499..5524f4dcc0 100644
+--- a/Marlin/Configuration.h
++++ b/Marlin/Configuration.h
+@@ -1953,7 +1953,7 @@
+ #endif
+ 
+ // Homing speeds (mm/min)
+-#define HOMING_FEEDRATE_MM_M { (50*60), (50*60), (4*60) }
++#define HOMING_FEEDRATE_MM_M { (60*60), (80*60), (4*60) }
+ 
+ // Validate that endstops are triggered on homing moves
+ #define VALIDATE_HOMING_ENDSTOPS
+diff --git a/Marlin/Configuration_adv.h b/Marlin/Configuration_adv.h
+index 4e7994edda..fec328042c 100644
+--- a/Marlin/Configuration_adv.h
++++ b/Marlin/Configuration_adv.h
+@@ -837,7 +837,7 @@
+ //#define SENSORLESS_BACKOFF_MM  { 2, 2, 0 }  // (mm) Backoff from endstops before sensorless homing
+ 
+ #define HOMING_BUMP_MM      { 5, 5, 2 }       // (mm) Backoff from endstops after first bump
+-#define HOMING_BUMP_DIVISOR { 2, 2, 4 }       // Re-Bump Speed Divisor (Divides the Homing Feedrate)
++#define HOMING_BUMP_DIVISOR { 5, 5, 4 }       // Re-Bump Speed Divisor (Divides the Homing Feedrate)
+ 
+ //#define HOMING_BACKOFF_POST_MM { 2, 2, 2 }  // (mm) Backoff from endstops after homing
+ 
+-- 
+2.40.0.windows.1
+

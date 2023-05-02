@@ -1,0 +1,44 @@
+From 6180eb9c493d501296ddf0fac03baf9ba6679ff2 Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Sat, 29 Apr 2023 20:44:25 -0700
+Subject: [PATCH 14/16] Changes for unique identification
+
+---
+ Marlin/Configuration.h   | 4 ++--
+ Marlin/src/inc/Version.h | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/Marlin/Configuration.h b/Marlin/Configuration.h
+index 260bc65430..efeeb9aa5a 100644
+--- a/Marlin/Configuration.h
++++ b/Marlin/Configuration.h
+@@ -136,11 +136,11 @@
+ //#define BLUETOOTH
+ 
+ // Name displayed in the LCD "Ready" message and Info menu
+-#define CUSTOM_MACHINE_NAME "Ender-3 V2"
++#define CUSTOM_MACHINE_NAME "B'Elanna"
+ 
+ // Printer's unique ID, used by some programs to differentiate between machines.
+ // Choose your own or use a service like https://www.uuidgenerator.net/version4
+-//#define MACHINE_UUID "00000000-0000-0000-0000-000000000000"
++#define MACHINE_UUID "CC074656-0000-0000-0000-000000000014"
+ 
+ /**
+  * Stepper Drivers
+diff --git a/Marlin/src/inc/Version.h b/Marlin/src/inc/Version.h
+index cd9661a6ce..cfbb79bb48 100644
+--- a/Marlin/src/inc/Version.h
++++ b/Marlin/src/inc/Version.h
+@@ -25,7 +25,7 @@
+  * Release version. Leave the Marlin version or apply a custom scheme.
+  */
+ #ifndef SHORT_BUILD_VERSION
+-  #define SHORT_BUILD_VERSION "bugfix-2.0.x"
++  #define SHORT_BUILD_VERSION "bugfix-2.0.x+wireddown"
+ #endif
+ 
+ /**
+-- 
+2.40.0.windows.1
+

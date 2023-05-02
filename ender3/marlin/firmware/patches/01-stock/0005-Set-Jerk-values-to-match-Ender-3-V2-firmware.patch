@@ -1,0 +1,29 @@
+From 066db32c8d97de83f9534e4001f893872c818fe4 Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Sun, 30 Apr 2023 10:42:22 -0700
+Subject: [PATCH 05/16] Set Jerk values to match Ender-3 V2 firmware
+
+---
+ Marlin/Configuration.h | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/Marlin/Configuration.h b/Marlin/Configuration.h
+index bdc7146c16..791085fe5f 100644
+--- a/Marlin/Configuration.h
++++ b/Marlin/Configuration.h
+@@ -1135,9 +1135,9 @@
+  */
+ #define CLASSIC_JERK
+ #if ENABLED(CLASSIC_JERK)
+-  #define DEFAULT_XJERK 10.0
+-  #define DEFAULT_YJERK 10.0
+-  #define DEFAULT_ZJERK  0.3
++  #define DEFAULT_XJERK  8.0
++  #define DEFAULT_YJERK  8.0
++  #define DEFAULT_ZJERK  0.4
+   //#define DEFAULT_IJERK  0.3
+   //#define DEFAULT_JJERK  0.3
+   //#define DEFAULT_KJERK  0.3
+-- 
+2.40.0.windows.1
+

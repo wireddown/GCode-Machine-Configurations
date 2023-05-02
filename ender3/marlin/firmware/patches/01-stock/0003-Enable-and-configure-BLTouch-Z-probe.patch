@@ -1,0 +1,102 @@
+From 53a028dd84c8f8df00f048980f7d8473aa6c75ca Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Sat, 29 Apr 2023 16:13:23 -0700
+Subject: [PATCH 03/16] Enable and configure BLTouch Z probe
+
+---
+ Marlin/Configuration.h     | 19 ++++++++++---------
+ Marlin/Configuration_adv.h |  4 ++--
+ 2 files changed, 12 insertions(+), 11 deletions(-)
+
+diff --git a/Marlin/Configuration.h b/Marlin/Configuration.h
+index abd01df22f..e489ee65e6 100644
+--- a/Marlin/Configuration.h
++++ b/Marlin/Configuration.h
+@@ -1189,10 +1189,10 @@
+  * The probe replaces the Z-MIN endstop and is used for Z homing.
+  * (Automatically enables USE_PROBE_FOR_Z_HOMING.)
+  */
+-#define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
++//#define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
+ 
+ // Force the use of the probe for Z-axis homing
+-//#define USE_PROBE_FOR_Z_HOMING
++#define USE_PROBE_FOR_Z_HOMING
+ 
+ /**
+  * Z_MIN_PROBE_PIN
+@@ -1246,7 +1246,7 @@
+ /**
+  * The BLTouch probe uses a Hall effect sensor and emulates a servo.
+  */
+-//#define BLTOUCH
++#define BLTOUCH
+ 
+ /**
+  * MagLev V4 probe by MDD
+@@ -1377,7 +1377,8 @@
+  *     |    [-]    |
+  *     O-- FRONT --+
+  */
+-#define NOZZLE_TO_PROBE_OFFSET { 10, 10, 0 }
++// Measured by tracing the stock nozzle and stock probe locations on paper
++#define NOZZLE_TO_PROBE_OFFSET { -47, -5, 0 }
+ 
+ // Most probes should stay away from the edges of the bed, but
+ // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
+@@ -1390,7 +1391,7 @@
+ #define Z_PROBE_FEEDRATE_FAST (4*60)
+ 
+ // Feedrate (mm/min) for the "accurate" probe of each point
+-#define Z_PROBE_FEEDRATE_SLOW (Z_PROBE_FEEDRATE_FAST / 2)
++#define Z_PROBE_FEEDRATE_SLOW (Z_PROBE_FEEDRATE_FAST / 4)
+ 
+ /**
+  * Probe Activation Switch
+@@ -1454,9 +1455,9 @@
+  * Example: `M851 Z-5` with a CLEARANCE of 4  =>  9mm from bed to nozzle.
+  *     But: `M851 Z+1` with a CLEARANCE of 2  =>  2mm from bed to nozzle.
+  */
+-#define Z_CLEARANCE_DEPLOY_PROBE   10 // Z Clearance for Deploy/Stow
+-#define Z_CLEARANCE_BETWEEN_PROBES  5 // Z Clearance between probe points
+-#define Z_CLEARANCE_MULTI_PROBE     5 // Z Clearance between multiple probes
++#define Z_CLEARANCE_DEPLOY_PROBE    4 // Z Clearance for Deploy/Stow
++#define Z_CLEARANCE_BETWEEN_PROBES  4 // Z Clearance between probe points
++#define Z_CLEARANCE_MULTI_PROBE     4 // Z Clearance between multiple probes
+ //#define Z_AFTER_PROBING           5 // Z position after probing is done
+ 
+ #define Z_PROBE_LOW_POINT          -2 // Farthest distance below the trigger-point to go before stopping
+@@ -1944,7 +1945,7 @@
+  * - Allows Z homing only when XY positions are known and trusted.
+  * - If stepper drivers sleep, XY homing may be required again before Z homing.
+  */
+-//#define Z_SAFE_HOMING
++#define Z_SAFE_HOMING
+ 
+ #if ENABLED(Z_SAFE_HOMING)
+   #define Z_SAFE_HOMING_X_POINT ((X_BED_SIZE - 10) / 2)    // X point for Z homing
+diff --git a/Marlin/Configuration_adv.h b/Marlin/Configuration_adv.h
+index 367e3d6099..b673480395 100644
+--- a/Marlin/Configuration_adv.h
++++ b/Marlin/Configuration_adv.h
+@@ -1964,7 +1964,7 @@
+ #if ENABLED(BABYSTEPPING)
+   //#define INTEGRATED_BABYSTEPPING         // EXPERIMENTAL integration of babystepping into the Stepper ISR
+   //#define BABYSTEP_WITHOUT_HOMING
+-  //#define BABYSTEP_ALWAYS_AVAILABLE       // Allow babystepping at all times (not just during movement).
++  #define BABYSTEP_ALWAYS_AVAILABLE         // Allow babystepping at all times (not just during movement).
+   //#define BABYSTEP_XY                     // Also enable X/Y Babystepping. Not supported on DELTA!
+   #define BABYSTEP_INVERT_Z false           // Change if Z babysteps should go the other way
+   //#define BABYSTEP_MILLIMETER_UNITS       // Specify BABYSTEP_MULTIPLICATOR_(XY|Z) in mm instead of micro-steps
+@@ -1983,7 +1983,7 @@
+ 
+   //#define BABYSTEP_DISPLAY_TOTAL          // Display total babysteps since last G28
+ 
+-  //#define BABYSTEP_ZPROBE_OFFSET          // Combine M851 Z and Babystepping
++  #define BABYSTEP_ZPROBE_OFFSET            // Combine M851 Z and Babystepping
+   #if ENABLED(BABYSTEP_ZPROBE_OFFSET)
+     //#define BABYSTEP_HOTEND_Z_OFFSET      // For multiple hotends, babystep relative Z offsets
+     //#define BABYSTEP_ZPROBE_GFX_OVERLAY   // Enable graphical overlay on Z-offset editor
+-- 
+2.40.0.windows.1
+

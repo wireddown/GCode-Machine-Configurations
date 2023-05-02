@@ -1,0 +1,25 @@
+From 602e8c96c98afed0ba406c141073b631bc6221d7 Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Sun, 30 Apr 2023 15:59:02 -0700
+Subject: [PATCH 11/16] Keep alphabetical sort for SD file list
+
+---
+ Marlin/Configuration_adv.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Marlin/Configuration_adv.h b/Marlin/Configuration_adv.h
+index 10b65bc61a..5a0a544275 100644
+--- a/Marlin/Configuration_adv.h
++++ b/Marlin/Configuration_adv.h
+@@ -1442,7 +1442,7 @@
+ 
+   // Reverse SD sort to show "more recent" files first, according to the card's FAT.
+   // Since the FAT gets out of order with usage, SDCARD_SORT_ALPHA is recommended.
+-  #define SDCARD_RATHERRECENTFIRST
++  //#define SDCARD_RATHERRECENTFIRST
+ 
+   #define SD_MENU_CONFIRM_START             // Confirm the selected SD file before printing
+ 
+-- 
+2.40.0.windows.1
+

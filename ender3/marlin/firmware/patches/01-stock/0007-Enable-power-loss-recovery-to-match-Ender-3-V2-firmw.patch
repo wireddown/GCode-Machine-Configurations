@@ -1,0 +1,25 @@
+From 56e836b0779e4703bdbfe47b091a3a8bdfd36632 Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Sun, 30 Apr 2023 10:43:36 -0700
+Subject: [PATCH 07/16] Enable power loss recovery to match Ender-3 V2 firmware
+
+---
+ Marlin/Configuration_adv.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Marlin/Configuration_adv.h b/Marlin/Configuration_adv.h
+index b673480395..4e7994edda 100644
+--- a/Marlin/Configuration_adv.h
++++ b/Marlin/Configuration_adv.h
+@@ -1469,7 +1469,7 @@
+    */
+   #define POWER_LOSS_RECOVERY
+   #if ENABLED(POWER_LOSS_RECOVERY)
+-    #define PLR_ENABLED_DEFAULT   false // Power Loss Recovery enabled by default. (Set with 'M413 Sn' & M500)
++    #define PLR_ENABLED_DEFAULT    true // Power Loss Recovery enabled by default. (Set with 'M413 Sn' & M500)
+     //#define BACKUP_POWER_SUPPLY       // Backup power / UPS to move the steppers on power loss
+     //#define POWER_LOSS_ZRAISE       2 // (mm) Z axis raise on resume (on power loss with UPS)
+     //#define POWER_LOSS_PIN         44 // Pin to detect power loss. Set to -1 to disable default pin on boards without module.
+-- 
+2.40.0.windows.1
+

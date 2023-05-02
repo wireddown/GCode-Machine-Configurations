@@ -1,0 +1,63 @@
+From 454504d59e1a66f7f6aecbadf7fec60ba8c6a7b4 Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Sun, 30 Apr 2023 15:57:15 -0700
+Subject: [PATCH 09/16] Tune bed leveling configuration
+
+---
+ Marlin/Configuration.h     | 6 +++---
+ Marlin/Configuration_adv.h | 8 ++++----
+ 2 files changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/Marlin/Configuration.h b/Marlin/Configuration.h
+index 5524f4dcc0..637ef592ee 100644
+--- a/Marlin/Configuration.h
++++ b/Marlin/Configuration.h
+@@ -1385,7 +1385,7 @@
+ #define PROBING_MARGIN 10
+ 
+ // X and Y axis travel speed (mm/min) between probes
+-#define XY_PROBE_FEEDRATE (50*60)
++#define XY_PROBE_FEEDRATE (100*60)
+ 
+ // Feedrate (mm/min) for the first approach when double-probing (MULTIPLE_PROBING == 2)
+ #define Z_PROBE_FEEDRATE_FAST (4*60)
+@@ -1744,7 +1744,7 @@
+  */
+ //#define AUTO_BED_LEVELING_3POINT
+ //#define AUTO_BED_LEVELING_LINEAR
+-//#define AUTO_BED_LEVELING_BILINEAR
++#define AUTO_BED_LEVELING_BILINEAR
+ //#define AUTO_BED_LEVELING_UBL
+ //#define MESH_BED_LEVELING
+ 
+@@ -1811,7 +1811,7 @@
+ #if EITHER(AUTO_BED_LEVELING_LINEAR, AUTO_BED_LEVELING_BILINEAR)
+ 
+   // Set the number of grid points per dimension.
+-  #define GRID_MAX_POINTS_X 3
++  #define GRID_MAX_POINTS_X 5
+   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
+ 
+   // Probe along the Y axis, advancing X after each column
+diff --git a/Marlin/Configuration_adv.h b/Marlin/Configuration_adv.h
+index fec328042c..10b65bc61a 100644
+--- a/Marlin/Configuration_adv.h
++++ b/Marlin/Configuration_adv.h
+@@ -2051,10 +2051,10 @@
+  * the probe to be unable to reach any points.
+  */
+ #if PROBE_SELECTED && !IS_KINEMATIC
+-  //#define PROBING_MARGIN_LEFT PROBING_MARGIN
+-  //#define PROBING_MARGIN_RIGHT PROBING_MARGIN
+-  //#define PROBING_MARGIN_FRONT PROBING_MARGIN
+-  //#define PROBING_MARGIN_BACK PROBING_MARGIN
++  #define PROBING_MARGIN_LEFT  20
++  #define PROBING_MARGIN_RIGHT  0
++  #define PROBING_MARGIN_FRONT 20
++  #define PROBING_MARGIN_BACK   0
+ #endif
+ 
+ #if EITHER(MESH_BED_LEVELING, AUTO_BED_LEVELING_UBL)
+-- 
+2.40.0.windows.1
+

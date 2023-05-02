@@ -1,0 +1,25 @@
+From a2397d6e2c4a692be9237745910c3407c4f98161 Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Sat, 29 Apr 2023 14:37:23 -0700
+Subject: [PATCH 16/16] Set PlatformIO for STM32F103RE_creality environment
+
+---
+ platformio.ini | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/platformio.ini b/platformio.ini
+index bcace14d28..4a199bc453 100644
+--- a/platformio.ini
++++ b/platformio.ini
+@@ -13,7 +13,7 @@
+ [platformio]
+ src_dir      = Marlin
+ boards_dir   = buildroot/share/PlatformIO/boards
+-default_envs = mega2560
++default_envs = STM32F103RE_creality
+ include_dir  = Marlin
+ extra_configs =
+     Marlin/config.ini
+-- 
+2.40.0.windows.1
+

@@ -1,0 +1,25 @@
+From 8e1199e472f0694a629531e45131611b5522978c Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Sat, 29 Apr 2023 20:43:20 -0700
+Subject: [PATCH 15/16] Set wireddown as author
+
+---
+ Marlin/Configuration.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Marlin/Configuration.h b/Marlin/Configuration.h
+index efeeb9aa5a..2e00aea03d 100644
+--- a/Marlin/Configuration.h
++++ b/Marlin/Configuration.h
+@@ -62,7 +62,7 @@
+ // @section info
+ 
+ // Author info of this build printed to the host during boot and M115
+-#define STRING_CONFIG_H_AUTHOR "(none, default config)" // Who made the changes.
++#define STRING_CONFIG_H_AUTHOR "wireddown"
+ //#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
+ 
+ /**
+-- 
+2.40.0.windows.1
+

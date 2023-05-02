@@ -1,0 +1,25 @@
+From 2dfefc30f2a609c5ebfc6ae0772fac1e494eb0b0 Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Sun, 30 Apr 2023 10:41:33 -0700
+Subject: [PATCH 04/16] Set DEFAULT_MAX_FEEDRATE to 300 on XY
+
+---
+ Marlin/Configuration.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Marlin/Configuration.h b/Marlin/Configuration.h
+index e489ee65e6..bdc7146c16 100644
+--- a/Marlin/Configuration.h
++++ b/Marlin/Configuration.h
+@@ -1093,7 +1093,7 @@
+  * Override with M203
+  *                                      X, Y, Z [, I [, J [, K]]], E0 [, E1[, E2...]]
+  */
+-#define DEFAULT_MAX_FEEDRATE          { 500, 500, 5, 25 }
++#define DEFAULT_MAX_FEEDRATE          { 300, 300, 5, 25 }
+ 
+ //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
+ #if ENABLED(LIMITED_MAX_FR_EDITING)
+-- 
+2.40.0.windows.1
+
