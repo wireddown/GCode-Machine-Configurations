@@ -32,8 +32,9 @@ Cloning into 'tmp.marlinfw'...
 remote: Enumerating objects: 2922, done.
 remote: Counting objects: 100% (2922/2922), done.
 remote: Compressing objects: 100% (2157/2157), done.
-Receiving objects: 100% (2922/2922), 7.76 MiB | 21.48 MiB/s, done.ed 0
-Resolving deltas: 100% (877/877), done.
+remote: Total 2922 (delta 880), reused 2375 (delta 725), pack-reused 0
+Receiving objects: 100% (2922/2922), 7.76 MiB | 16.49 MiB/s, done.
+Resolving deltas: 100% (880/880), done.
 
 Downloading Marlin firmware configuration branch bugfix-2.0.x
 Cloning into 'tmp.marlincfg'...
@@ -41,15 +42,16 @@ remote: Enumerating objects: 1440, done.
 remote: Counting objects: 100% (1440/1440), done.
 remote: Compressing objects: 100% (600/600), done.
 remote: Total 1440 (delta 775), reused 1430 (delta 770), pack-reused 0
-Receiving objects: 100% (1440/1440), 18.44 MiB | 24.21 MiB/s, done.
+Receiving objects: 100% (1440/1440), 18.44 MiB | 21.46 MiB/s, done.
 Resolving deltas: 100% (775/775), done.
 
 Switched to a new branch 'ender3v2-crtouch-hemera'
 Copy baseline Ender 3 V2 configuration from Marlin/Configurations/../CrealityV422/CrealityUI
+
 Copy custom boot screen
 M  Marlin/private/image/0.jpg
 
-Patching to match Ender-3 V2 'GD-Ender-3 V2-Marlin2.0.8.2-HW-V4.2.2-SW-V1.0.7_E_N_BLTouch
+Patching to match Ender-3 V2 'GD-Ender-3 V2-Marlin2.0.8.2-HW-V4.2.2-SW-V1.0.7_E_N_BLTouch'
 Applying: Enable long filename listing
 Applying: Enable emergency parser
 Applying: Enable and configure BLTouch Z probe
@@ -63,18 +65,37 @@ Applying: Tune homing speed for XY
 Applying: Tune bed leveling configuration
 Applying: Enable bed mesh after homing
 Applying: Keep alphabetical sort for SD file list
+Applying: Update PID coefficients for bed after tuning
 
 Enabling additional Marlin features
 Applying: Enable hotend parking for SD cancel
 Applying: Enable hotend parking for SD pause
 
+Configuring E3D Hemera hotend + direct drive extruder
+Applying: Configure Hemera for temp sensor and range
+Applying: Configure Hemera for extruder steps per mm
+Applying: Update Hemera hotend temperature range for 0..300C
+Applying: Update PID coefficients after tuning Hemera hotend
+Applying: Update Hemera extruder scaling after calibration
+Applying: Update Hemera nozzle to probe offset after measuring
+Applying: Update Hemera home position and bed size after measuring
+Applying: Update Hemera homing speed
+Applying: Update safe Z homing XY coordinate for Hemera
+Applying: Tune autoleveling behavior for Hemera
 Setting version and custom identifiers
+
 Applying: Changes for unique identification
 Applying: Set wireddown as author
 Applying: Set PlatformIO for STM32F103RE_creality environment
+Launching VS Code
 ```
 
-## Differences
+## Differences between Creality and Upstream Firmware
+
+These diffs compare the settings for
+
+- the firmware from Creality's download center (red)
+- the firmware from Marlin's source on GitHub (green)
 
 ### Firmware capabilities
 
