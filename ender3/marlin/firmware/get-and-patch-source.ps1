@@ -25,7 +25,7 @@ $fw_config_printer_subfolder = "CrealityV422/CrealityUI"
 $patch_branch_name = "ender3v2-crtouch-hemera"
 $patch_folder = (Join-Path $PWD "patches") | Resolve-Path 
 $fw_patch_message_for_folder = [ordered]@{
-    (Join-Path $patch_folder "01-stock") = "Patching to match Ender-3 V2 'GD-Ender-3 V2-Marlin2.0.8.2-HW-V4.2.2-SW-V1.0.7_E_N_BLTouch";
+    (Join-Path $patch_folder "01-stock") = "Patching to match Ender-3 V2 'GD-Ender-3 V2-Marlin2.0.8.2-HW-V4.2.2-SW-V1.0.7_E_N_BLTouch'";
     (Join-Path $patch_folder "02-tuning") = "Tuning movement and fixing stock settings";
     (Join-Path $patch_folder "03-features") = "Enabling additional Marlin features";
     (Join-Path $patch_folder "04-hemera") = "Configuring E3D Hemera hotend + direct drive extruder";
@@ -75,4 +75,4 @@ foreach ($folder in $fw_patch_message_for_folder.Keys) {
 Pop-Location
 
 Write-Host -ForegroundColor Green "Launching VS Code"
-# code $fw_root_folder
+code $fw_root_folder
