@@ -1,0 +1,25 @@
+From f4d44875cad44e42e4febc7f18ea82d4c003682f Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Mon, 8 May 2023 21:42:04 -0700
+Subject: [PATCH 21/21] Update Hemera homing speed
+
+---
+ Marlin/Configuration.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Marlin/Configuration.h b/Marlin/Configuration.h
+index 081789fe5d..3cc21f8671 100644
+--- a/Marlin/Configuration.h
++++ b/Marlin/Configuration.h
+@@ -1953,7 +1953,7 @@
+ #endif
+ 
+ // Homing speeds (mm/min)
+-#define HOMING_FEEDRATE_MM_M { (60*60), (80*60), (4*60) }
++#define HOMING_FEEDRATE_MM_M { (40*60), (60*60), (4*60) }
+ 
+ // Validate that endstops are triggered on homing moves
+ #define VALIDATE_HOMING_ENDSTOPS
+-- 
+2.40.1.windows.1
+

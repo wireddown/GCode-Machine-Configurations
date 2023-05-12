@@ -1,0 +1,38 @@
+From aee000bba7fc7852d7eb1965060d817dfeea1f80 Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Mon, 8 May 2023 21:41:53 -0700
+Subject: [PATCH 20/21] Update Hemera home position and bed size after measuring
+
+---
+ Marlin/Configuration.h | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/Marlin/Configuration.h b/Marlin/Configuration.h
+index 98581f8c34..081789fe5d 100644
+--- a/Marlin/Configuration.h
++++ b/Marlin/Configuration.h
+@@ -1577,8 +1577,8 @@
+ // @section machine
+ 
+ // The size of the printable area
+-#define X_BED_SIZE 220
+-#define Y_BED_SIZE 220
++#define X_BED_SIZE 215
++#define Y_BED_SIZE 215
+ 
+ // Travel limits (mm) after homing, corresponding to endstop positions.
+ #define X_MIN_POS 0
+@@ -1931,8 +1931,8 @@
+ 
+ // Manually set the home position. Leave these undefined for automatic settings.
+ // For DELTA this is the top-center of the Cartesian print volume.
+-//#define MANUAL_X_HOME_POS 0
+-//#define MANUAL_Y_HOME_POS 0
++#define MANUAL_X_HOME_POS -35
++#define MANUAL_Y_HOME_POS -25
+ //#define MANUAL_Z_HOME_POS 0
+ //#define MANUAL_I_HOME_POS 0
+ //#define MANUAL_J_HOME_POS 0
+-- 
+2.40.1.windows.1
+

@@ -1,0 +1,27 @@
+From e276cd652aa9a7068d6971c03fe4f6b504626a3f Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Mon, 8 May 2023 21:41:23 -0700
+Subject: [PATCH 19/21] Update Hemera nozzle to probe offset after measuring
+
+---
+ Marlin/Configuration.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Marlin/Configuration.h b/Marlin/Configuration.h
+index 55a24d4dee..98581f8c34 100644
+--- a/Marlin/Configuration.h
++++ b/Marlin/Configuration.h
+@@ -1377,8 +1377,8 @@
+  *     |    [-]    |
+  *     O-- FRONT --+
+  */
+-// Measured by tracing the stock nozzle and stock probe locations on paper
+-#define NOZZLE_TO_PROBE_OFFSET { -47, -5, 0 }
++// Measured by tracing the Hemera nozzle and probe locations on paper
++#define NOZZLE_TO_PROBE_OFFSET { 5, 23, 0 }
+ 
+ // Most probes should stay away from the edges of the bed, but
+ // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
+-- 
+2.40.1.windows.1
+

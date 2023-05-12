@@ -1,0 +1,30 @@
+From ecb29f8ce5513097e5030ec5538ed427a045a02e Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Mon, 8 May 2023 21:40:19 -0700
+Subject: [PATCH 17/21] Update PID coefficients after tuning Hemera hotend
+
+- M303 C5 S250
+---
+ Marlin/Configuration.h | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/Marlin/Configuration.h b/Marlin/Configuration.h
+index ab197bf5aa..55c2d6f84a 100644
+--- a/Marlin/Configuration.h
++++ b/Marlin/Configuration.h
+@@ -625,9 +625,9 @@
+     #define DEFAULT_Kd_LIST {  78.81,  78.81 }
+   #else
+     // Ender 3 v2
+-    #define DEFAULT_Kp  28.72
+-    #define DEFAULT_Ki   2.62
+-    #define DEFAULT_Kd  78.81
++    #define DEFAULT_Kp  35.89
++    #define DEFAULT_Ki   3.71
++    #define DEFAULT_Kd  86.85
+   #endif
+ #endif
+ 
+-- 
+2.40.1.windows.1
+

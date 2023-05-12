@@ -1,0 +1,44 @@
+From 55e45d1b8c6e3529899af40eda5d871b4f35730d Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Wed, 10 May 2023 17:28:48 -0700
+Subject: [PATCH 24/24] Tune autoleveling behavior for Hemera
+
+- Move between points more slowly
+- No risk of probing off the bed with new home offsets and smaller bed dimensions
+---
+ Marlin/Configuration.h     | 2 +-
+ Marlin/Configuration_adv.h | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/Marlin/Configuration.h b/Marlin/Configuration.h
+index a855103ce3..474337e76d 100644
+--- a/Marlin/Configuration.h
++++ b/Marlin/Configuration.h
+@@ -1385,7 +1385,7 @@
+ #define PROBING_MARGIN 10
+ 
+ // X and Y axis travel speed (mm/min) between probes
+-#define XY_PROBE_FEEDRATE (100*60)
++#define XY_PROBE_FEEDRATE (80*60)
+ 
+ // Feedrate (mm/min) for the first approach when double-probing (MULTIPLE_PROBING == 2)
+ #define Z_PROBE_FEEDRATE_FAST (4*60)
+diff --git a/Marlin/Configuration_adv.h b/Marlin/Configuration_adv.h
+index 167c6c6438..2c9159d4fe 100644
+--- a/Marlin/Configuration_adv.h
++++ b/Marlin/Configuration_adv.h
+@@ -2051,9 +2051,9 @@
+  * the probe to be unable to reach any points.
+  */
+ #if PROBE_SELECTED && !IS_KINEMATIC
+-  #define PROBING_MARGIN_LEFT  20
++  #define PROBING_MARGIN_LEFT   10
+   #define PROBING_MARGIN_RIGHT  0
+-  #define PROBING_MARGIN_FRONT 20
++  #define PROBING_MARGIN_FRONT  10
+   #define PROBING_MARGIN_BACK   0
+ #endif
+ 
+-- 
+2.40.1.windows.1
+

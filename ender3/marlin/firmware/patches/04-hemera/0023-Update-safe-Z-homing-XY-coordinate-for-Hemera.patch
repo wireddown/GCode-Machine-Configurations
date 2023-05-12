@@ -1,0 +1,28 @@
+From f112937f6299627d33727b61685fdea6c76ed928 Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Wed, 10 May 2023 17:27:25 -0700
+Subject: [PATCH 23/24] Update safe Z homing XY coordinate for Hemera
+
+- Using the center of the bed is best
+---
+ Marlin/Configuration.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Marlin/Configuration.h b/Marlin/Configuration.h
+index bdfd808580..a855103ce3 100644
+--- a/Marlin/Configuration.h
++++ b/Marlin/Configuration.h
+@@ -1948,8 +1948,8 @@
+ #define Z_SAFE_HOMING
+ 
+ #if ENABLED(Z_SAFE_HOMING)
+-  #define Z_SAFE_HOMING_X_POINT ((X_BED_SIZE - 10) / 2)    // X point for Z homing
+-  #define Z_SAFE_HOMING_Y_POINT ((Y_BED_SIZE - 10) / 2)    // Y point for Z homing
++  #define Z_SAFE_HOMING_X_POINT (X_BED_SIZE / 2)    // X point for Z homing
++  #define Z_SAFE_HOMING_Y_POINT (Y_BED_SIZE / 2)    // Y point for Z homing
+ #endif
+ 
+ // Homing speeds (mm/min)
+-- 
+2.40.1.windows.1
+

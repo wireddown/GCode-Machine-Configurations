@@ -1,0 +1,35 @@
+From fd0d33367dc98e1f234b034f9f5a518e8610492b Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Mon, 8 May 2023 21:39:23 -0700
+Subject: [PATCH 16/21] Update Hemera hotend temperature range for 0..300C
+
+- Set MAXTEMP to 315 to compensate for HOTEND_OVERSHOOT
+---
+ Marlin/Configuration.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Marlin/Configuration.h b/Marlin/Configuration.h
+index 8b45e8618f..ab197bf5aa 100644
+--- a/Marlin/Configuration.h
++++ b/Marlin/Configuration.h
+@@ -565,7 +565,7 @@
+ 
+ // Below this temperature the heater will be switched off
+ // because it probably indicates a broken thermistor wire.
+-#define HEATER_0_MINTEMP   5
++#define HEATER_0_MINTEMP   0
+ #define HEATER_1_MINTEMP   5
+ #define HEATER_2_MINTEMP   5
+ #define HEATER_3_MINTEMP   5
+@@ -579,7 +579,7 @@
+ // Above this temperature the heater will be switched off.
+ // This can protect components from overheating, but NOT from shorts and failures.
+ // (Use MINTEMP for thermistor short/failure protection.)
+-#define HEATER_0_MAXTEMP 300
++#define HEATER_0_MAXTEMP 315
+ #define HEATER_1_MAXTEMP 275
+ #define HEATER_2_MAXTEMP 275
+ #define HEATER_3_MAXTEMP 275
+-- 
+2.40.1.windows.1
+
