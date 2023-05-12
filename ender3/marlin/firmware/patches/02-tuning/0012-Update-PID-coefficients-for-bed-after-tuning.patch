@@ -1,0 +1,30 @@
+From 3741b60694e95c71754e3244ac6a8ee195224d48 Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Wed, 10 May 2023 17:26:01 -0700
+Subject: [PATCH 22/24] Update PID coefficients for bed after tuning
+
+- M303 E-1 C5 S75
+---
+ Marlin/Configuration.h | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/Marlin/Configuration.h b/Marlin/Configuration.h
+index 64878ddf1e..bdfd808580 100644
+--- a/Marlin/Configuration.h
++++ b/Marlin/Configuration.h
+@@ -707,9 +707,9 @@
+   //#define PID_BED_DEBUG // Sends debug data to the serial port.
+ 
+   // Ender 3 V2
+-  #define DEFAULT_bedKp 462.10
+-  #define DEFAULT_bedKi  85.47
+-  #define DEFAULT_bedKd 624.59
++  #define DEFAULT_bedKp 167.26
++  #define DEFAULT_bedKi  29.87
++  #define DEFAULT_bedKd 624.42
+ 
+   // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
+ #endif // PIDTEMPBED
+-- 
+2.40.1.windows.1
+
