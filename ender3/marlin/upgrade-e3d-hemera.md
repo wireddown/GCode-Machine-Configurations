@@ -64,6 +64,7 @@
 1. Print the mounting brackets
 1. Remove stock hotend and BLTouch sensor
 1. 🅰️ Install the back mounting bracket onto the X carriage
+   - See [corrected bracket for Ender 3](https://github.com/wireddown/openscad-models/tree/main/hemera-xaxis-mount-ender3)
 1. 🅱️ Install the side mounting bracket onto the Hemera
 1. Install the BLTouch onto the side mounting bracket
 1. Fasten the two brackets to each other
