@@ -44,7 +44,7 @@
    - Circles and rectangles show high and low spots fairly well
    - If you make further knob adjustments, periodically auto home to remove the accumulated drift from the machine's new physical shape
    - Continue adjusting the knobs until the shapes print cleanly for their first two layers
-   - If the layers are getting close but are not quite good enough, you can start a print in the problem area of the bed and _carefully_ adjust the closest knobs _live_, while the printer is ruinng.
+   - If the layers are getting close but are not quite good enough, you can start a print in the problem area of the bed and _carefully_ adjust the closest knobs _live_, while the printer is running.
    - ![tiles and skirt test pattern](./example-test-print-for-bed-leveling.png)
 
 ## Finding extruder steps per mm
