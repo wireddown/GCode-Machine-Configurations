@@ -128,6 +128,8 @@ More closely evaluate [the diffs between the community and upstream](https://git
     - However that comparison also shows both _release_ and _bugfix_ branches being merged from upstream, so some history is remixed with each rebase
     - Further the comparison is against the **default** configuration files from Marlin, not against the CR-30 configuration files from Marlin
   - We can recreate a pull request diff by taking the file trees from the upstream commits linked above and diffing the unified tree against the latest tree from CR30-Users
+    1. Base: [Copy the upstream CR-30 configuration](./history/0001-Marlin-apply-CR-30-configuration-to-default-files.patch.md) into the upstream firmware tree
+    1. Compare: [Apply the CR30-Users changes](./history/0002-CR30-Users-Add-community-customizations.patch.md) to the unified upstream tree
   - These differences are listed below
 
 #### List of Changes made in `CR30-Users`
