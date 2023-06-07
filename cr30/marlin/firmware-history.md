@@ -142,7 +142,7 @@ More closely evaluate [the diffs between the community and upstream](https://git
 | ❌ | Add `BELT_KINEMATICS_DEV` configuration option | doesn't build, code history lost |  |
 | ✅ | Misc movement coefficients and limits | identify machine-spefic constants | 🔷 |
 | ❌ | Decrease Y size from 250 to 240 | seems like an oversight or early prototype trait |  |
-| ❌ | Remove the negative Y offset and home position | seems like an oversight, still in YT videos |  |
+| ✅ | Add negative Y offset and home position |  |  |
 | ✅ | Allow Z to move backward below 0 |  |  |
 | ❌ | Reduce the thermal watch periods back to defaults | seems dangerous or early prototype trait |  |
 | ✅ | Enable controller fan on `PC1` |  |  |
