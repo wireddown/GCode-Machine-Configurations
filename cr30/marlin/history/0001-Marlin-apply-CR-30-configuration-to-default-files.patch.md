@@ -1,4 +1,7 @@
-# Marlin: Apply CR-30 configuration to default files
+# Marlin `v2.0.9.3`: Apply CR-30 configuration to default files
+
+- [Base](https://github.com/MarlinFirmware/Marlin/commits/73b8320e9caac23873169c8e10344f2f8060b389) _(Marlin `v2.0.9.3..73b8320` firmware)_
+- [Copy-from](https://github.com/MarlinFirmware/Configurations/commit/820725c157fe82720ab4b1f236d885c7f2dd84ea) _(Marlin `v2.0.9.3` configuration for CR-30)_
 
 ## Cover
 

@@ -1,4 +1,7 @@
-# CR30-Users: Add community customizations
+# CR30-Users: Add community customizations to Marlin `v2.0.9.3`
+
+- [Base](./0001-Marlin-apply-CR-30-configuration-to-default-files.patch.md) _(combined Marlin `v2.0.9.3` firmware and configuration for CR-30)_
+- [Copy-from](https://github.com/CR30-Users/Marlin-CR30/commit/4c8cd975d69b956d9a0ad9d7142d04a1ff1d07e6) _(CR30-Users default branch `2.0.x_cr30`)_
 
 ## Cover
 
