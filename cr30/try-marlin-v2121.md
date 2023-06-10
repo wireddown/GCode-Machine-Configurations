@@ -1,8 +1,9 @@
 # Upgrade to Marlin `v2.1.2.1` and bring CR30-Users changes
 
 - Basic machine movement ok
-- Animated bootscreen has major artifacts / "static snow"
+- Mainline official animated bootscreen has major artifacts / "static snow"
   - Perhaps a new frame dimension or bit-alignment
+  - Disabling `CUSTOM_BOOTSCREEN_BOTTOM_JUSTIFY` moves the animation but doesn't restore the frames
 
 ## M115
 
