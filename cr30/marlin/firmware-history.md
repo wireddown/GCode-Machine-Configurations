@@ -183,6 +183,42 @@ More closely evaluate [the diffs between the community and upstream](https://git
     - Splice pins on connectors between signals and sensors
   - Should be separated into its own patch
 
+## Recommendations
+
+1. Revert the changes marked with ❌ from the `CR30-Users` and `NAK3DDesigns` forks
+   - In addition, revert differences that only differ from upstream by ordering or formatting
+   - Full patch-set of [reverted changes](./history/002a-Revert-some-CR30-Users-changes.patch.md)
+1. Keep the changes marked with ✅ from the `CR30-Users` and `NAK3DDesigns` forks
+   - Full patch-set of [kept changes](./history/002b-Selected-CR30-Users-modifcations-to-v2.0.9.3.patch.md)
+1. Consider sending these upstream. Items 2, 7, 9 seem like the most beneficial to the broad user base.
+   1. Increase extruder max acceleration
+      - `DEFAULT_MAX_ACCELERATION` from `1000` to `5000` for `E`
+   1. Negative Y axis movement and home position
+      - `#define Y_MIN_POS 0`
+      - `//#define MIN_SOFTWARE_ENDSTOP_Y`
+      - `//#define MANUAL_Y_HOME_POS`
+      - `#define NOZZLE_PARK_POINT { (X_MIN_POS), (Y_MIN_POS + 100), 0 }`
+   1. Allow Z to move backwards below 0
+      - `//#define MIN_SOFTWARE_ENDSTOP_Z`
+   1. Set controller fan on `PC1`
+      - `#define USE_CONTROLLER_FAN`
+      - `#define CONTROLLER_FAN_PIN PC1`
+      - `#define CONTROLLER_FAN_EDITABLE`
+   1. Set auto hotend fan on `PC0`
+      - `#define E0_AUTO_FAN_PIN PC0`
+   1. Set case light on `PC14`
+      - `#define CASE_LIGHT_ENABLE`
+      - `#define CASE_LIGHT_PIN PC14`
+      - `#define CASE_LIGHT_DEFAULT_BRIGHTNESS 255`
+      - `#define CASE_LIGHT_MENU`
+   1. Decrease Y lift for SD complete and SD cancel
+      - `#define SD_FINISHED_RELEASECOMMAND "G28XY\nG1Y5\nM84"`
+      - ` #define EVENT_GCODE_SD_ABORT "G28XY\nG1Y5"`
+   1. Enable host action commands
+      - `#define HOST_ACTION_COMMANDS`
+   1. Allow baby stepping on Y axis
+      - See `Marlin/src/lcd/menu/menu_motion.cpp`
+
 ## References
 
 - _"deque mutated during iteration"_
