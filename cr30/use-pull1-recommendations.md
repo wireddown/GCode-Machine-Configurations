@@ -1,7 +1,8 @@
 # Apply `pull/1` changes and flash firmware
 
 - Flashing the firmware takes about 10-12 seconds.
-- ❌ Seems to have lost USB connectivity
+- ~~Seems to have lost USB connectivity~~
+- USB connectivity was stale on the host side. Firmware was respsonsive after refreshing the host.
 
 ## M115
 
