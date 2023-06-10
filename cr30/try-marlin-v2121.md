@@ -4,7 +4,7 @@
 - Mainline official animated bootscreen has major artifacts / "static snow"
   - Perhaps a new frame dimension or bit-alignment
   - Disabling `CUSTOM_BOOTSCREEN_BOTTOM_JUSTIFY` moves the animation but doesn't restore the frames
-  - A symbol changed names (at some point, still looking)
+  - A symbol changed names on 7 Feb 2021 ([commit](https://github.com/MarlinFirmware/Marlin/commits/5f824c5708191f8d170a735e1a2ab2257fdc9e54))
     - Old name: `CUSTOM_BOOTSCREEN_TIME_PER_FRAME`
     - New name: `CUSTOM_BOOTSCREEN_ANIMATED_FRAME_TIME`
   - Build errors
