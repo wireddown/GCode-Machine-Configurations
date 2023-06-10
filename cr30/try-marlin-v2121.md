@@ -1,62 +1,71 @@
 # Upgrade to Marlin `v2.1.2.1` and bring CR30-Users changes
 
 - Basic machine movement ok
-- Mainline official animated bootscreen has major artifacts / "static snow"
-  - Perhaps a new frame dimension or bit-alignment
-  - Disabling `CUSTOM_BOOTSCREEN_BOTTOM_JUSTIFY` moves the animation but doesn't restore the frames
-  - A symbol changed names on 7 Feb 2021 ([commit](https://github.com/MarlinFirmware/Marlin/commits/5f824c5708191f8d170a735e1a2ab2257fdc9e54))
-    - Old name: `CUSTOM_BOOTSCREEN_TIME_PER_FRAME`
-    - New name: `CUSTOM_BOOTSCREEN_ANIMATED_FRAME_TIME`
-  - Build errors
+
+## Mainline issues
+
+Mainline official animated bootscreen showed major artifacts / "static snow".
+
+- Perhaps a new frame dimension or bit-alignment
+- Disabling `CUSTOM_BOOTSCREEN_BOTTOM_JUSTIFY` moves the animation but doesn't restore the frames
+- A symbol changed names on 7 Feb 2021 ([commit](https://github.com/MarlinFirmware/Marlin/commits/5f824c5708191f8d170a735e1a2ab2257fdc9e54))
+  - Old name: `CUSTOM_BOOTSCREEN_TIME_PER_FRAME`
+  - New name: `CUSTOM_BOOTSCREEN_ANIMATED_FRAME_TIME`
+- Build errors with `CUSTOM_BOOTSCREEN_ANIMATED_FRAME_TIME`
+  ```
+  In file included from Marlin\src\lcd\dogm\../../inc/../HAL/../HAL/STM32/../shared/Marduino.h:89,
+                   from Marlin\src\lcd\dogm\../../inc/../HAL/../HAL/STM32/HAL.h:28,
+                   from Marlin\src\lcd\dogm\../../inc/../HAL/HAL.h:30,
+                   from Marlin\src\lcd\dogm\../../inc/MarlinConfig.h:31,
+                   from Marlin\src\lcd\dogm\HAL_LCD_class_defines.h:24,
+                   from Marlin\src\lcd\dogm\marlinui_DOGM.h:31,
+                   from Marlin\src\lcd\dogm\marlinui_DOGM.cpp:42:
+  Marlin\src\lcd\dogm\marlinui_DOGM.cpp: In static member function 'static void MarlinUI::draw_custom_bootscreen(uint8_t)':
+  Marlin\src\lcd\dogm\marlinui_DOGM.cpp:127:114: error: request for member 'bitmap' in 'custom_bootscreen_animation[((int)frame)]', which is of pointer type 'const boot_frame_t* const' (maybe you meant to use '->' ?)
+    127 |           const u8g_pgm_uint8_t * const bmp = (u8g_pgm_uint8_t*)pgm_read_ptr(&custom_bootscreen_animation[frame].bitmap);
+        |                                                                                                                  ^~~~~~
+  Marlin\src\lcd\dogm\../../inc/../HAL/../HAL/STM32/../shared/progmem.h:188:40: note: in definition of macro 'pgm_read_ptr'
+    188 | #define pgm_read_ptr(addr) (*((void**)(addr)))
+        |                                        ^~~~
     ```
-    In file included from Marlin\src\lcd\dogm\../../inc/../HAL/../HAL/STM32/../shared/Marduino.h:89,
-                     from Marlin\src\lcd\dogm\../../inc/../HAL/../HAL/STM32/HAL.h:28,
-                     from Marlin\src\lcd\dogm\../../inc/../HAL/HAL.h:30,
-                     from Marlin\src\lcd\dogm\../../inc/MarlinConfig.h:31,
-                     from Marlin\src\lcd\dogm\HAL_LCD_class_defines.h:24,
-                     from Marlin\src\lcd\dogm\marlinui_DOGM.h:31,
-                     from Marlin\src\lcd\dogm\marlinui_DOGM.cpp:42:
-    Marlin\src\lcd\dogm\marlinui_DOGM.cpp: In static member function 'static void MarlinUI::draw_custom_bootscreen(uint8_t)':
-    Marlin\src\lcd\dogm\marlinui_DOGM.cpp:127:114: error: request for member 'bitmap' in 'custom_bootscreen_animation[((int)frame)]', which is of pointer type 'const boot_frame_t* const' (maybe you meant to use '->' ?)
-      127 |           const u8g_pgm_uint8_t * const bmp = (u8g_pgm_uint8_t*)pgm_read_ptr(&custom_bootscreen_animation[frame].bitmap);
-          |                                                                                                                  ^~~~~~
-    Marlin\src\lcd\dogm\../../inc/../HAL/../HAL/STM32/../shared/progmem.h:188:40: note: in definition of macro 'pgm_read_ptr'
-      188 | #define pgm_read_ptr(addr) (*((void**)(addr)))
-          |                                        ^~~~
-      ```
-  - Build errors
-    ```
-    In file included from C:\Users\mux\.platformio\packages\framework-arduinoststm32\cores\arduino/WString.h:29,
-                     from C:\Users\mux\.platformio\packages\framework-arduinoststm32\cores\arduino/Print.h:27,
-                     from .pio\libdeps\STM32F103RE_creality\U8glib-HAL\src/U8glib-HAL.h:43,
-                     from Marlin\src\lcd\dogm\marlinui_DOGM.h:30,
-    Compiling .pio\build\STM32F103RE_creality\src\src\lcd\menu\menu_configuration.cpp.o
-                     from Marlin\src\lcd\dogm\marlinui_DOGM.cpp:42:
-    Marlin\src\lcd\dogm\marlinui_DOGM.cpp: In static member function 'static void MarlinUI::show_custom_bootscreen()':
-    Marlin\src\lcd\dogm\marlinui_DOGM.cpp:164:88: error: request for member 'duration' in 'custom_bootscreen_animation[((int)fr)]', which is of pointer type 'const boot_frame_t* const' (maybe you meant to use '->' ?)
-      164 |             const millis_t frame_time = pgm_read_word(&custom_bootscreen_animation[fr].duration);
-          |                                                                                        ^~~~~~~~
-    C:\Users\mux\.platformio\packages\framework-arduinoststm32\cores\arduino/avr/pgmspace.h:102:10: note: in definition of macro 'pgm_read_word'
-      102 |   typeof(addr) _addr = (addr); \
-          |          ^~~~
-    Marlin\src\lcd\dogm\marlinui_DOGM.cpp:164:88: error: request for member 'duration' in 'custom_bootscreen_animation[((int)fr)]', which is of pointer type 'const boot_frame_t* const' (maybe you meant to use '->' ?)
-    Compiling .pio\build\STM32F103RE_creality\src\src\lcd\menu\menu_filament.cpp.o
-      164 |             const millis_t frame_time = pgm_read_word(&custom_bootscreen_animation[fr].duration);
-          |                                                                                        ^~~~~~~~
-    C:\Users\mux\.platformio\packages\framework-arduinoststm32\cores\arduino/avr/pgmspace.h:102:25: note: in definition of macro 'pgm_read_word'
-      102 |   typeof(addr) _addr = (addr); \
-          |                         ^~~~
-    ```
-  - This seems like a memory access change when compared against the [only other 3D printer with an amimated bootscreen](https://github.com/MarlinFirmware/Configurations/blob/import-2.1.x/config/examples/delta/Velleman/K8800/_Bootscreen.h#L284)
-    ```
-      // Each frame has its own custom duration
-      const boot_frame_t custom_bootscreen_animation[] PROGMEM = {
-        { custom_start_bmp1,  1000 },  // 1.0s
-        { custom_start_bmp2,  1000 },  // 1.0s
-        { custom_start_bmp3,  1000 },  // 1.0s
-        { custom_start_bmp4,   500 }   // 0.5s
-      };
-    ```
+- Build errors with `CUSTOM_BOOTSCREEN_ANIMATED_FRAME_TIME`
+  ```
+  In file included from C:\Users\mux\.platformio\packages\framework-arduinoststm32\cores\arduino/WString.h:29,
+                   from C:\Users\mux\.platformio\packages\framework-arduinoststm32\cores\arduino/Print.h:27,
+                   from .pio\libdeps\STM32F103RE_creality\U8glib-HAL\src/U8glib-HAL.h:43,
+                   from Marlin\src\lcd\dogm\marlinui_DOGM.h:30,
+  Compiling .pio\build\STM32F103RE_creality\src\src\lcd\menu\menu_configuration.cpp.o
+                   from Marlin\src\lcd\dogm\marlinui_DOGM.cpp:42:
+  Marlin\src\lcd\dogm\marlinui_DOGM.cpp: In static member function 'static void MarlinUI::show_custom_bootscreen()':
+  Marlin\src\lcd\dogm\marlinui_DOGM.cpp:164:88: error: request for member 'duration' in 'custom_bootscreen_animation[((int)fr)]', which is of pointer type 'const boot_frame_t* const' (maybe you meant to use '->' ?)
+    164 |             const millis_t frame_time = pgm_read_word(&custom_bootscreen_animation[fr].duration);
+        |                                                                                        ^~~~~~~~
+  C:\Users\mux\.platformio\packages\framework-arduinoststm32\cores\arduino/avr/pgmspace.h:102:10: note: in definition of macro 'pgm_read_word'
+    102 |   typeof(addr) _addr = (addr); \
+        |          ^~~~
+  Marlin\src\lcd\dogm\marlinui_DOGM.cpp:164:88: error: request for member 'duration' in 'custom_bootscreen_animation[((int)fr)]', which is of pointer type 'const boot_frame_t* const' (maybe you meant to use '->' ?)
+  Compiling .pio\build\STM32F103RE_creality\src\src\lcd\menu\menu_filament.cpp.o
+    164 |             const millis_t frame_time = pgm_read_word(&custom_bootscreen_animation[fr].duration);
+        |                                                                                        ^~~~~~~~
+  C:\Users\mux\.platformio\packages\framework-arduinoststm32\cores\arduino/avr/pgmspace.h:102:25: note: in definition of macro 'pgm_read_word'
+    102 |   typeof(addr) _addr = (addr); \
+        |                         ^~~~
+  ```
+- This seems like a memory access change when compared against the [only other 3D printer with an amimated bootscreen](https://github.com/MarlinFirmware/Configurations/blob/import-2.1.x/config/examples/delta/Velleman/K8800/_Bootscreen.h#L284)
+  ```
+    // Each frame has its own custom duration
+    const boot_frame_t custom_bootscreen_animation[] PROGMEM = {
+      { custom_start_bmp1,  1000 },  // 1.0s
+      { custom_start_bmp2,  1000 },  // 1.0s
+      { custom_start_bmp3,  1000 },  // 1.0s
+      { custom_start_bmp4,   500 }   // 0.5s
+    };
+  ```
+- Declaring the sequence with `const boot_frame_t custom_bootscreen_animation[]` fixes the animation visuals
+
+## CR30-Users issues
+
+
 
 ## M115
 
