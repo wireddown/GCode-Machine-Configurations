@@ -1,6 +1,7 @@
 # Apply `pull/1` changes and flash firmware
 
-Flashing the firmware takes about 10-12 seconds.
+- Flashing the firmware takes about 10-12 seconds.
+- ❌ Seems to have lost USB connectivity
 
 ## M115
 
