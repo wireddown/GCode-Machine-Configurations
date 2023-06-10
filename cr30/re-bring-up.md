@@ -70,3 +70,11 @@ echo:  M414 S0
 echo:; repeat markers count:
 echo:  M808 L0
 ```
+
+## Basic checks
+
+[x] Motion
+[x] Homing
+    - Relies on optical endstop
+[x] Heating
+[x] Extrusion
