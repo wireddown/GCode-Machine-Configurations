@@ -63,11 +63,12 @@ Mainline official animated bootscreen showed major artifacts / "static snow".
   ```
 - Declaring the sequence with `const boot_frame_t custom_bootscreen_animation[]` fixes the animation visuals
 
-## CR30-Users issues
+## CR30-Users tests
 
 - Copy in `_Bootscreen.h` and `_Statusscreen.h_`
 - The animation sequence is declared as `const unsigned char * const custom_bootscreen_animation[]`
 - Builds without error
+- Animates without error
 
 ## M115
 
