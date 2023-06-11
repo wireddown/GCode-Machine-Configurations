@@ -73,7 +73,7 @@ Mainline official animated bootscreen showed major artifacts / "static snow".
 ## M115
 
 ```
-FIRMWARE_NAME:Marlin 2.1.2.1 + pull/1 (Jun 10 2023 15:06:15) SOURCE_CODE_URL:github.com/wireddown/GCode-Machine-Configurations PROTOCOL_VERSION:1.0 MACHINE_TYPE:camina EXTRUDER_COUNT:1 UUID:CA319A00-0000-0000-0000-00BE174103D4
+FIRMWARE_NAME:Marlin 2.1.2.1 + pull/1 (Jun 10 2023 16:54:06) SOURCE_CODE_URL:github.com/wireddown/GCode-Machine-Configurations PROTOCOL_VERSION:1.0 MACHINE_TYPE:camina EXTRUDER_COUNT:1 UUID:CA319A00-0000-0000-0000-00BE174103D4
 Cap:SERIAL_XON_XOFF:0
 Cap:BINARY_FILE_TRANSFER:0
 Cap:EEPROM:1
