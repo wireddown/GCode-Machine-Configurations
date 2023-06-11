@@ -26,5 +26,6 @@
 - Set home offsets
 - Save to EEPROM
 
+- Would befefit from `LCD_DECIMAL_SMALL_XY`
 
 - Ready to print
