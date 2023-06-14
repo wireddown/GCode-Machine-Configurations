@@ -27,3 +27,4 @@ After updating to version `2.1.2.1`.
   G92 E0
   ```
 - Measured 97 mm
+- `137.65` * (97 / 100) = 133.5
