@@ -23,16 +23,17 @@ After updating to version `2.1.2.1`.
   ```
   M302 P1
   G92 E0
-  G0 E-100 F600
+  G0 E-100 F400
   G92 E0
   ```
 - Measured 97 mm
 - ~~`137.65` * (100 / 97) = 141.9~~
-- Looped and arrived at `139`
+  - Measured 103
+- Looped and arrived at `138.8`
   ```
   M92 Exxxxx
   G92 E0
-  G0 E-15
+  G0 E-15 F400
   G0 E-115
   G0 E-130
   ```
