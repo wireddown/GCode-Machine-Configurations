@@ -104,9 +104,16 @@ index 8075f1389d..6550bd9528 100644
   * Junction Deviation Factor
   *
   * See:
-@@ -1383,11 +1383,11 @@
+@@ -1377,13 +1380,13 @@
+ //#define J_HOME_DIR -1
+ //#define K_HOME_DIR -1
+ 
+ // @section machine
+ 
+// The size of the printable area
  #define X_BED_SIZE 220
- #define Y_BED_SIZE 250
+-#define Y_BED_SIZE 250
++#define Y_BED_SIZE 240
  
  // Travel limits (mm) after homing, corresponding to endstop positions.
  #define X_MIN_POS 0
@@ -262,6 +269,19 @@ index 97c89a006b..e15f4836b3 100644
      #define PE_LEDS_COMPLETED_TIME  (30*60) // (seconds) Time to keep the LED "done" color before restoring normal illumination
    #endif
  
+@@ -1375,11 +1375,11 @@
+ 
+   // Add an 'M73' G-code to set the current percentage
+   //#define LCD_SET_PROGRESS_MANUALLY
+ 
+   // Show the E position (filament used) during printing
+-  #define LCD_SHOW_E_TOTAL
++  //#define LCD_SHOW_E_TOTAL
+ #endif
+ 
+ // LCD Print Progress options
+ #if EITHER(SDSUPPORT, LCD_SET_PROGRESS_MANUALLY)
+   #if CAN_SHOW_REMAINING_TIME
 @@ -1729,11 +1729,11 @@
  #if HAS_MARLINUI_U8GLIB || IS_DWIN_MARLINUI
    // Show SD percentage next to the progress bar

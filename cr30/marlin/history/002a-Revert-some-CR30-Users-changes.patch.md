@@ -182,8 +182,7 @@ index 54d03546e7..d6202b02db 100644
 -// The size of the print bed
 +// The size of the printable area
  #define X_BED_SIZE 220
--#define Y_BED_SIZE 240
-+#define Y_BED_SIZE 250
+ #define Y_BED_SIZE 240
  
  // Travel limits (mm) after homing, corresponding to endstop positions.
  #define X_MIN_POS 0
@@ -322,19 +321,6 @@ index 01b6d09718..7c80a830b0 100644
  
  /**
   * Thermal Protection parameters for the heated chamber.
-@@ -1373,11 +1375,11 @@
- 
-   // Add an 'M73' G-code to set the current percentage
-   //#define LCD_SET_PROGRESS_MANUALLY
- 
-   // Show the E position (filament used) during printing
--  //#define LCD_SHOW_E_TOTAL
-+  #define LCD_SHOW_E_TOTAL
- #endif
- 
- // LCD Print Progress options
- #if EITHER(SDSUPPORT, LCD_SET_PROGRESS_MANUALLY)
-   #if CAN_SHOW_REMAINING_TIME
 @@ -1948,11 +1950,11 @@
    //#define BABYSTEP_WITHOUT_HOMING
    #define BABYSTEP_ALWAYS_AVAILABLE         // Allow babystepping at all times (not just during movement).

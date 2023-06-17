@@ -141,14 +141,14 @@ More closely evaluate [the diffs between the community and upstream](https://git
 | ✅ | Add PID autotune to the LCD menu |  |  |
 | ❌ | Add `BELT_KINEMATICS_DEV` configuration option | doesn't build, code history lost |  |
 | ✅ | Misc movement coefficients and limits | identify machine-spefic constants | 🔷 |
-| ❌ | Decrease Y size from 250 to 240 | seems like an oversight or early prototype trait |  |
+| ✅ | Decrease Y size from 250 to 240 |  |  |
 | ✅ | Add negative Y offset and home position |  |  |
 | ✅ | Allow Z to move backward below 0 |  |  |
 | ❌ | Reduce the thermal watch periods back to defaults | seems dangerous or early prototype trait |  |
 | ✅ | Enable controller fan on `PC1` |  |  |
 | ✅ | Enable the hotend autofan on `PC0` |  |  |
 | ✅ | Enable the case light on `PC14` |  |  |
-| ❌ | Remove the total-E on the print status screen | a useful stat for some users and use cases |  |
+| ✅ | Remove the total-E on the print status screen | otherwise you can't see X or Y |  |
 | ✅ | Reduce Y lift after SD finished or SD canceled |  |  |
 | ✅ | Force the media menu to the top of the LCD menu |  |  |
 | ✅ | Enable hollow frame menus |  |  |
@@ -213,7 +213,7 @@ More closely evaluate [the diffs between the community and upstream](https://git
       - `#define CASE_LIGHT_MENU`
    1. Decrease Y lift for SD complete and SD cancel
       - `#define SD_FINISHED_RELEASECOMMAND "G28XY\nG1Y5\nM84"`
-      - ` #define EVENT_GCODE_SD_ABORT "G28XY\nG1Y5"`
+      - `#define EVENT_GCODE_SD_ABORT "G28XY\nG1Y5"`
    1. Enable host action commands
       - `#define HOST_ACTION_COMMANDS`
    1. Allow baby stepping on Y axis
