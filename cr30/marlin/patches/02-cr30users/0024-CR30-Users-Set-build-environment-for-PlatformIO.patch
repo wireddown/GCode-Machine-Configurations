@@ -1,0 +1,29 @@
+From 66bc5128788621a7ebec767924771b5e3ce23443 Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Sun, 4 Jun 2023 23:17:28 -0700
+Subject: CR30-Users: Set build environment for PlatformIO
+
+---
+ platformio.ini | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/platformio.ini b/platformio.ini
+index 8b79ea2..f6ecbbd 100644
+--- a/platformio.ini
++++ b/platformio.ini
+@@ -11,11 +11,11 @@
+ #targets = upload
+ 
+ [platformio]
+ src_dir      = Marlin
+ boards_dir   = buildroot/share/PlatformIO/boards
+-default_envs = mega2560
++default_envs = STM32F103RE_creality
+ include_dir  = Marlin
+ extra_configs =
+     Marlin/config.ini
+     ini/avr.ini
+     ini/due.ini
+-- 
+2.41.0.windows.1
+

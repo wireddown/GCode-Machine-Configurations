@@ -1,0 +1,32 @@
+From 2b16ed997d732bfcf1e041781e07843fd7c81428 Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Sun, 4 Jun 2023 22:53:19 -0700
+Subject: CR30-Users: Reduce Y lift after SD canceled
+
+- Home X Y
+- Lift Y 5mm
+- Disable steppers
+---
+ Marlin/Configuration_adv.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Marlin/Configuration_adv.h b/Marlin/Configuration_adv.h
+index 225911d..13db107 100644
+--- a/Marlin/Configuration_adv.h
++++ b/Marlin/Configuration_adv.h
+@@ -1551,11 +1551,11 @@
+ 
+   //#define BROWSE_MEDIA_ON_INSERT          // Open the file browser when media is inserted
+ 
+   //#define MEDIA_MENU_AT_TOP               // Force the media menu to be listed on the top of the main menu
+ 
+-  #define EVENT_GCODE_SD_ABORT "G28XY\nG1Y100" // G-code to run on SD Abort Print (e.g., "G28XY" or "G27")
++  #define EVENT_GCODE_SD_ABORT "G28XY\nG1Y5"   // Home X Y, lift Y 5mm
+ 
+   #if ENABLED(PRINTER_EVENT_LEDS)
+     #define PE_LEDS_COMPLETED_TIME  (30*60) // (seconds) Time to keep the LED "done" color before restoring normal illumination
+   #endif
+ 
+-- 
+2.41.0.windows.1
+

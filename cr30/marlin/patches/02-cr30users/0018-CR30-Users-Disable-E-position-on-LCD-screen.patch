@@ -1,0 +1,29 @@
+From 9b3072ef46d5ea1404f790aae49e3a005c3178db Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Thu, 15 Jun 2023 19:27:22 -0700
+Subject: CR30-Users: Disable E position on LCD screen
+
+---
+ Marlin/Configuration_adv.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Marlin/Configuration_adv.h b/Marlin/Configuration_adv.h
+index 9649ee2..83dd610 100644
+--- a/Marlin/Configuration_adv.h
++++ b/Marlin/Configuration_adv.h
+@@ -1448,11 +1448,11 @@
+ 
+   // On the Info Screen, display XY with one decimal place when possible
+   //#define LCD_DECIMAL_SMALL_XY
+ 
+   // Show the E position (filament used) during printing
+-  #define LCD_SHOW_E_TOTAL
++  //#define LCD_SHOW_E_TOTAL
+ 
+   /**
+    * LED Control Menu
+    * Add LED Control to the LCD menu
+    */
+-- 
+2.41.0.windows.1
+

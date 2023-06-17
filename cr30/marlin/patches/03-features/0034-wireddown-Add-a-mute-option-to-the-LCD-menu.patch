@@ -1,0 +1,29 @@
+From f4906a63617ede433109fd029805b8a075271037 Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Sun, 4 Jun 2023 23:13:27 -0700
+Subject: @wireddown: Add a mute option to the LCD menu
+
+---
+ Marlin/Configuration_adv.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Marlin/Configuration_adv.h b/Marlin/Configuration_adv.h
+index 3708f80..fd669e7 100644
+--- a/Marlin/Configuration_adv.h
++++ b/Marlin/Configuration_adv.h
+@@ -1423,11 +1423,11 @@
+   //#define PREHEAT_SHORTCUT_MENU_ITEM
+ 
+ #endif // HAS_MARLINUI_MENU
+ 
+ #if ANY(HAS_DISPLAY, DWIN_LCD_PROUI, DWIN_CREALITY_LCD_JYERSUI)
+-  //#define SOUND_MENU_ITEM   // Add a mute option to the LCD menu
++  #define SOUND_MENU_ITEM     // Add a mute option to the LCD menu
+   #define SOUND_ON_DEFAULT    // Buzzer/speaker default enabled state
+ #endif
+ 
+ #if EITHER(HAS_DISPLAY, DWIN_LCD_PROUI)
+   // The timeout to return to the status screen from sub-menus
+-- 
+2.41.0.windows.1
+

@@ -1,0 +1,29 @@
+From b932989e9db0556415d07bfe5a9557c0da0dbb91 Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Thu, 15 Jun 2023 21:06:18 -0700
+Subject: @wireddown: Set build date
+
+---
+ Marlin/Version.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Marlin/Version.h b/Marlin/Version.h
+index 83cb3e1..0a0891f 100644
+--- a/Marlin/Version.h
++++ b/Marlin/Version.h
+@@ -39,11 +39,11 @@
+ /**
+  * The STRING_DISTRIBUTION_DATE represents when the binary file was built,
+  * here we define this default string as the date where the latest release
+  * version was tagged.
+  */
+-//#define STRING_DISTRIBUTION_DATE "2023-05-16"
++#define STRING_DISTRIBUTION_DATE "2023-06-17"
+ 
+ /**
+  * Defines a generic printer name to be output to the LCD after booting Marlin.
+  */
+ //#define MACHINE_NAME "3D Printer"
+-- 
+2.41.0.windows.1
+

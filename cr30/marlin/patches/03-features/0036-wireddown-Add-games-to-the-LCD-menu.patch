@@ -1,0 +1,33 @@
+From 9ab850c0c7cfc4423033681486828fc718331782 Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Sun, 4 Jun 2023 23:16:06 -0700
+Subject: @wireddown: Add games to the LCD menu
+
+---
+ Marlin/Configuration_adv.h | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/Marlin/Configuration_adv.h b/Marlin/Configuration_adv.h
+index fd669e7..a23fb9f 100644
+--- a/Marlin/Configuration_adv.h
++++ b/Marlin/Configuration_adv.h
+@@ -1840,13 +1840,13 @@
+   //#define STATUS_FAN_FRAMES 3       // :[0,1,2,3,4] Number of fan animation frames
+   //#define STATUS_HEAT_PERCENT       // Show heating in a progress bar
+   //#define BOOT_MARLIN_LOGO_ANIMATED // Animated Marlin logo. Costs ~3260 (or ~940) bytes of flash.
+ 
+   // Frivolous Game Options
+-  //#define MARLIN_BRICKOUT
+-  //#define MARLIN_INVADERS
+-  //#define MARLIN_SNAKE
++  #define MARLIN_BRICKOUT
++  #define MARLIN_INVADERS
++  #define MARLIN_SNAKE
+   //#define GAMES_EASTER_EGG          // Add extra blank lines above the "Games" sub-menu
+ 
+ #endif // HAS_MARLINUI_U8GLIB
+ 
+ #if HAS_MARLINUI_U8GLIB || IS_DWIN_MARLINUI
+-- 
+2.41.0.windows.1
+

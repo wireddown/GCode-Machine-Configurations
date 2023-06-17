@@ -1,0 +1,69 @@
+From bc8d13c70c33680452ab8d2d9153917e2baca4b6 Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Sat, 10 Jun 2023 16:43:07 -0700
+Subject: Marlin v2.1.2.1: Fix CR-30 animated bootscreen
+
+* Symptom: garbled screen animation on boot
+* Use the AnimationExample to declare the frame sequence
+* Tested on physical CR-30
+---
+ Marlin/_Bootscreen.h | 40 ++++++++++++++++++----------------------
+ 1 file changed, 18 insertions(+), 22 deletions(-)
+
+diff --git a/Marlin/_Bootscreen.h b/Marlin/_Bootscreen.h
+index f5423a2..52834ad 100644
+--- a/Marlin/_Bootscreen.h
++++ b/Marlin/_Bootscreen.h
+@@ -720,31 +720,27 @@ const unsigned char custom_start_bmp[] PROGMEM = {
+     B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,
+     B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,
+     B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000
+   };
+ 
+-  #define CUSTOM_BOOTSCREEN_TIME_PER_FRAME
++  #define CUSTOM_BOOTSCREEN_ANIMATED_FRAME_TIME
+ 
+-  static const boot_frame_t boot_frame_0  PROGMEM = { custom_start_bmp1,   200 };
+-  static const boot_frame_t boot_frame_1  PROGMEM = { custom_start_bmp2,   150 };
+-  static const boot_frame_t boot_frame_2  PROGMEM = { custom_start_bmp3,   150 };
+-  static const boot_frame_t boot_frame_3  PROGMEM = { custom_start_bmp4,   150 };
+-  static const boot_frame_t boot_frame_4  PROGMEM = { custom_start_bmp5,   150 };
+-  static const boot_frame_t boot_frame_5  PROGMEM = { custom_start_bmp6,   150 };
+-  static const boot_frame_t boot_frame_6  PROGMEM = { custom_start_bmp7,   150 };
+-  static const boot_frame_t boot_frame_7  PROGMEM = { custom_start_bmp8,   150 };
+-  static const boot_frame_t boot_frame_8  PROGMEM = { custom_start_bmp9,   150 };
+-  static const boot_frame_t boot_frame_9  PROGMEM = { custom_start_bmp10,  150 };
+-  static const boot_frame_t boot_frame_10 PROGMEM = { custom_start_bmp11,  150 };
+-  static const boot_frame_t boot_frame_11 PROGMEM = { custom_start_bmp12,  150 };
+-  static const boot_frame_t boot_frame_12 PROGMEM = { custom_start_bmp,   1000 };
+-  static const boot_frame_t boot_frame_13 PROGMEM = { custom_start_bmp14,  150 };
+-  static const boot_frame_t boot_frame_14 PROGMEM = { custom_start_bmp15,  150 };
+-  static const boot_frame_t boot_frame_15 PROGMEM = { custom_start_bmp16, 1000 };
+-
+-  static const boot_frame_t * const custom_bootscreen_animation[] PROGMEM = {
+-    &boot_frame_0, &boot_frame_1, &boot_frame_2, &boot_frame_3, &boot_frame_4,
+-    &boot_frame_5, &boot_frame_6, &boot_frame_7, &boot_frame_8, &boot_frame_9,
+-    &boot_frame_10, &boot_frame_11, &boot_frame_12, &boot_frame_13, &boot_frame_14, &boot_frame_15
++  const boot_frame_t custom_bootscreen_animation[] PROGMEM = {
++    { custom_start_bmp1,   200 },
++    { custom_start_bmp2,   150 },
++    { custom_start_bmp3,   150 },
++    { custom_start_bmp4,   150 },
++    { custom_start_bmp5,   150 },
++    { custom_start_bmp6,   150 },
++    { custom_start_bmp7,   150 },
++    { custom_start_bmp8,   150 },
++    { custom_start_bmp9,   150 },
++    { custom_start_bmp10,  150 },
++    { custom_start_bmp11,  150 },
++    { custom_start_bmp12,  150 },
++    { custom_start_bmp,   1000 },
++    { custom_start_bmp14,  150 },
++    { custom_start_bmp15,  150 },
++    { custom_start_bmp16, 1000 }
+   };
+ 
+ #endif
+-- 
+2.41.0.windows.1
+

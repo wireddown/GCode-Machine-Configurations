@@ -1,0 +1,29 @@
+From 3cd526830078847eb0a6295c3ed8aec6df5c94e6 Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Sun, 4 Jun 2023 23:09:22 -0700
+Subject: @wireddown: Scroll long SD file names
+
+---
+ Marlin/Configuration_adv.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Marlin/Configuration_adv.h b/Marlin/Configuration_adv.h
+index 1e2f689..8a9f17f 100644
+--- a/Marlin/Configuration_adv.h
++++ b/Marlin/Configuration_adv.h
+@@ -1634,11 +1634,11 @@
+ 
+   //#define LONG_FILENAME_HOST_SUPPORT    // Get the long filename of a file/folder with 'M33 <dosname>' and list long filenames with 'M20 L'
+   //#define LONG_FILENAME_WRITE_SUPPORT   // Create / delete files with long filenames via M28, M30, and Binary Transfer Protocol
+   //#define M20_TIMESTAMP_SUPPORT         // Include timestamps by adding the 'T' flag to M20 commands
+ 
+-  //#define SCROLL_LONG_FILENAMES         // Scroll long filenames in the SD card menu
++  #define SCROLL_LONG_FILENAMES           // Scroll long filenames in the SD card menu
+ 
+   //#define SD_ABORT_NO_COOLDOWN          // Leave the heaters on after Stop Print (not recommended!)
+ 
+   /**
+    * Abort SD printing when any endstop is triggered.
+-- 
+2.41.0.windows.1
+

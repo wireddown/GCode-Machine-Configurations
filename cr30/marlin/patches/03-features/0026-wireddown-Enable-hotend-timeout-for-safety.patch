@@ -1,0 +1,32 @@
+From 14ea193b639407a061e6100f2203032d741c6c32 Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Sun, 4 Jun 2023 23:06:23 -0700
+Subject: @wireddown: Enable hotend timeout for safety
+
+> Prevent filament in the nozzle from charring and causing a critical jam.
+
+- Wait 5 minutes without extruder movement, and then turn off the hotend
+---
+ Marlin/Configuration_adv.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Marlin/Configuration_adv.h b/Marlin/Configuration_adv.h
+index 5a8d1da..27a3cf0 100644
+--- a/Marlin/Configuration_adv.h
++++ b/Marlin/Configuration_adv.h
+@@ -511,11 +511,11 @@
+ 
+ /**
+  * Hotend Idle Timeout
+  * Prevent filament in the nozzle from charring and causing a critical jam.
+  */
+-//#define HOTEND_IDLE_TIMEOUT
++#define HOTEND_IDLE_TIMEOUT
+ #if ENABLED(HOTEND_IDLE_TIMEOUT)
+   #define HOTEND_IDLE_TIMEOUT_SEC (5*60)    // (seconds) Time without extruder movement to trigger protection
+   #define HOTEND_IDLE_MIN_TRIGGER   180     // (°C) Minimum temperature to enable hotend protection
+   #define HOTEND_IDLE_NOZZLE_TARGET   0     // (°C) Safe temperature for the nozzle after timeout
+   #define HOTEND_IDLE_BED_TARGET      0     // (°C) Safe temperature for the bed after timeout
+-- 
+2.41.0.windows.1
+

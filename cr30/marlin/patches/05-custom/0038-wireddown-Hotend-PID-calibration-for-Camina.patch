@@ -1,0 +1,33 @@
+From 319cf252cc166adbe8ec9b4ea328d234b24f8960 Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Thu, 15 Jun 2023 19:25:18 -0700
+Subject: @wireddown: Hotend PID calibration for Camina
+
+---
+ Marlin/Configuration.h | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/Marlin/Configuration.h b/Marlin/Configuration.h
+index 2f4943d..2c48783 100644
+--- a/Marlin/Configuration.h
++++ b/Marlin/Configuration.h
+@@ -668,13 +668,13 @@
+     #define DEFAULT_Kp_LIST {  24.19,  24.19 }
+     #define DEFAULT_Ki_LIST {   2.14,   2.14 }
+     #define DEFAULT_Kd_LIST {  68.33,  68.33 }
+   #else
+     // Creality 3DPrintMill U-shaped cooling duct and 100% fan tuned at 220c
+-    #define DEFAULT_Kp  24.19
+-    #define DEFAULT_Ki   2.14
+-    #define DEFAULT_Kd  68.33
++    #define DEFAULT_Kp  21.81  // M303 C5 S220
++    #define DEFAULT_Ki   2.25
++    #define DEFAULT_Kd  52.78
+   #endif
+ #endif
+ 
+ /**
+  * Model Predictive Control for hotend
+-- 
+2.41.0.windows.1
+

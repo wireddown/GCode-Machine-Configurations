@@ -1,0 +1,29 @@
+From 4ad8987cdbfab09d74157e57cacfbcf604757af1 Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Thu, 15 Jun 2023 19:28:42 -0700
+Subject: @wireddown: Enable sub-mm XY coordinates on LCD
+
+---
+ Marlin/Configuration_adv.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Marlin/Configuration_adv.h b/Marlin/Configuration_adv.h
+index e99d12a..f130b7e 100644
+--- a/Marlin/Configuration_adv.h
++++ b/Marlin/Configuration_adv.h
+@@ -1445,11 +1445,11 @@
+ 
+   // Apply a timeout to low-priority status messages
+   //#define STATUS_MESSAGE_TIMEOUT_SEC 30 // (seconds)
+ 
+   // On the Info Screen, display XY with one decimal place when possible
+-  //#define LCD_DECIMAL_SMALL_XY
++  #define LCD_DECIMAL_SMALL_XY  // Helpful when leveling the bed and troubleshooting belt adhesion
+ 
+   // Show the E position (filament used) during printing
+   //#define LCD_SHOW_E_TOTAL
+ 
+   /**
+-- 
+2.41.0.windows.1
+
