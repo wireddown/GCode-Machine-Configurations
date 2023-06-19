@@ -19,21 +19,16 @@ After updating to version `2.1.2.1`.
 
 ## E
 
-- Retracted 100 mm
+- Enable cold extruder moves
+- **Retract** 100 mm
+- Measure result
+- G-code
   ```
-  M302 P1
-  G92 E0
-  G0 E-100 F400
-  G92 E0
+  M302 P1       ; Enable code extruder moves
+  M92 E138.0    ; Set extruder steps
+  G92 E0        ; Set E position to 0
+  G0 E-15 F400  ; Retract 15 mm, then mark filament with a marker
+  G0 E-115      ; Retract 100 mm, then mark filament with a marker againg
+  G0 E-130      ; Retract another 15 mm, then cut filament and measure
   ```
-- Measured 97 mm
-- ~~`137.65` * (100 / 97) = 141.9~~
-  - Measured 103
 - Looped and arrived at `138.8`
-  ```
-  M92 Exxxxx
-  G92 E0
-  G0 E-15 F400
-  G0 E-115
-  G0 E-130
-  ```
