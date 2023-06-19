@@ -2,10 +2,22 @@
 
 After updating to version `2.1.2.1`.
 
-## Z
+## Z axis calibration
 
-- Printed 100 mm long block
-- Measured 100.0 mm
+1. Slice a block that measures 100 mm long, 20 mm wide, and 5 mm tall
+1. Measure Z axis scaling
+   1. Print the block
+   1. Measure its length
+   1. Estimate new Z steps coefficient
+      - `new_z_steps = old_z_steps * (100 / measured_z_length)`
+   1. Set new Z steps coefficient
+   1. Repeat until the block's length is 100 mm
+1. Example G-code loop
+   ```
+   M92 Z1148.4      ; Begin loop: Set Z axis steps
+   ; (human action) ;   Print the block and measure its length
+   ```
+   - For my CR-30, value was unchanged `1148.4`
 
 ## Extruder calibration
 
