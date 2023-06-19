@@ -7,23 +7,35 @@ After updating to version `2.1.2.1`.
 - Printed 100 mm long block
 - Measured 100.0 mm
 
-## E
+## Extruder calibration
 
-- Enable cold extruder moves
-- **Retract** 100 mm
-- Measure result
-- G-code
-  ```
-  M302 P1       ; Enable code extruder moves
-  M92 E138.0    ; Set extruder steps
-  G92 E0        ; Set E position to 0
-  G0 E-15 F400  ; Retract 15 mm, then mark filament with a marker
-  G0 E-115      ; Retract 100 mm, then mark filament with a marker againg
-  G0 E-130      ; Retract another 15 mm, then cut filament and measure
-  ```
-- Looped and arrived at `138.8`
+1. Prepare for cold retractions
+   - Heat the hotend and remove the filament completely
+   - Turn off the hotend so that it cools
+   - Clip the end of the filament so that it is square
+   - Insert the filament until it reaches the bowden coupler on the hotend
+   - Clip the filament between the extruder and runout sensor
+   - During the loop below, if the filament runs out, reload more filament
+1. Enable cold extruder moves
+1. **Retract** 100 mm
+1. Measure result
+1. Set new extruder steps coefficient
+   - Increase the value if the measurement was less than 100 mm
+   - Decrease the value if the measurement was greater than 100 mm
+   - Increase or decrease the value by 5 until the measurement crosses 100 mm
+   - Then increase or decrease by half for each additional crossing
+1. Example G-code loop
+   ```
+   M302 P1       ; Enable code extruder moves
+   M92 E138.0    ; Begin loop: Set extruder steps
+   G92 E0        ;   Set E position to 0
+   G0 E-15 F400  ;   Retract 15 mm, then mark filament at the extruder entrance with a marker
+   G0 E-115      ;   Retract 100 mm, then mark filament with a marker again
+   G0 E-130      ;   Retract another 15 mm, then cut filament and measure
+   ```
+  - For my CR-30, arrived at `138.8`
 
-## Hotend
+## Hotend control loop calibration
 
 - `M303 C5 S220`
 - `bias: 98 d: 98 min: 216.16 max: 223.02 Ku: 36.35 Tu: 19.36`
