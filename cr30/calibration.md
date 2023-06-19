@@ -32,3 +32,9 @@ After updating to version `2.1.2.1`.
   G0 E-130      ; Retract another 15 mm, then cut filament and measure
   ```
 - Looped and arrived at `138.8`
+
+## References
+
+- [GridSpace/BeltPrinting Wiki Z-Steps](https://github.com/GridSpace/BeltPrinting/wiki/Z-Steps)
+- [NAK3DDesigns Z Axis Calibration Thing](https://www.thingiverse.com/thing:4794626)
+- [GridSpace/BeltPrinting Wiki E-Steps](https://github.com/GridSpace/BeltPrinting/wiki/E-Steps)
