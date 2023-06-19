@@ -7,16 +7,6 @@ After updating to version `2.1.2.1`.
 - Printed 100 mm long block
 - Measured 100.0 mm
 
-## Hotend
-
-- `M303 C5 S220`
-- `bias: 98 d: 98 min: 216.16 max: 223.02 Ku: 36.35 Tu: 19.36`
-  ```c
-  #define DEFAULT_Kp 21.81
-  #define DEFAULT_Ki 2.25
-  #define DEFAULT_Kd 52.78
-  ```
-
 ## E
 
 - Enable cold extruder moves
@@ -32,6 +22,16 @@ After updating to version `2.1.2.1`.
   G0 E-130      ; Retract another 15 mm, then cut filament and measure
   ```
 - Looped and arrived at `138.8`
+
+## Hotend
+
+- `M303 C5 S220`
+- `bias: 98 d: 98 min: 216.16 max: 223.02 Ku: 36.35 Tu: 19.36`
+  ```c
+  #define DEFAULT_Kp 21.81
+  #define DEFAULT_Ki 2.25
+  #define DEFAULT_Kd 52.78
+  ```
 
 ## References
 
