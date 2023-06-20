@@ -111,6 +111,10 @@ Also more commonly called bed leveling 🙃
 
 ## References
 
-- [GridSpace/BeltPrinting Wiki Z-Steps](https://github.com/GridSpace/BeltPrinting/wiki/Z-Steps)
-- [NAK3DDesigns Z Axis Calibration Thing](https://www.thingiverse.com/thing:4794626)
-- [GridSpace/BeltPrinting Wiki E-Steps](https://github.com/GridSpace/BeltPrinting/wiki/E-Steps)
+- NAK 3D Designs ▶️ [3DPrintMill aligning Y-axis stop switch, bed leveling and setting Y-offset](https://youtu.be/3c2PW5GNZrE)
+- GridSpace ▶️ [CR-30 Belt Leveling with Looping GCode](https://youtu.be/PYmVhtjwH9Q)
+- GridSpace ▶️ [CR-30 Belt Leveling Front to Back](https://youtu.be/CvUnHj6OMWo)
+- GrideSpace/BeltPrinting 📖 [Belt Adhesion](https://github.com/GridSpace/BeltPrinting/wiki/Belt-Adhesion)
+- GridSpace/BeltPrinting 📖 [Z-Steps](https://github.com/GridSpace/BeltPrinting/wiki/Z-Steps)
+- NAK 3D Designs 📖 [Z Axis Calibration Thing](https://www.thingiverse.com/thing:4794626)
+- GridSpace/BeltPrinting 📖 [E-Steps](https://github.com/GridSpace/BeltPrinting/wiki/E-Steps)
