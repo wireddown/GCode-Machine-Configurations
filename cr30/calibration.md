@@ -2,6 +2,54 @@
 
 After updating to version `2.1.2.1`.
 
+## Squaring the belt to the X axis
+
+Also more commonly called bed leveling 🙃
+
+1. Install the conveyor belt bed assembly
+1. Turn all knobs all the way clockwise so the bed carriage is fully flush with the conveyor frame
+   - ⤵️ CW lowers the bed
+   - ⤴️ CCW raises the bed
+   - 🫙 Like opening a screw top container
+1. Set the position of Y axis optical endstop
+   - Loosen the four retaining screws by a half turn
+   - Loosen the positioning screw until its free
+   - Tighten the positioning screw until the retaining screws move at least 1 mm
+   - Tighten the retaining screws
+   - A higher endstop position causes the nozzle to home higher, which is safer for the belt
+1. Set the position of Y axis physical endstops
+   - Move the hotend carriage down the Y axis until the nozzle touches the bed
+   - Loosen the retaining screws for the left side physical endstop
+   - Lift the endstop until it pinches the gap gauge against the Y axis roller carriage
+   - Tighten the retaining screws for the physical endstop
+   - Similarly, use the gap gauge to set the position of the right side physical endstop
+1. Auto home
+   - Screen :: Motion :: Auto home
+   - Confirm the nozzle homes above the belt
+1. Physically level the print bed
+   1. Move nozzle along X to both ends of the axis
+      - `G0 X0`
+      - `G0 X220`
+   1. Move nozzle down along Y until it touches the bed
+   1. Track the end with the highest bed position
+   1. Turn the knob on the lowest end CCW to raise the bed until the nozzle catches the gap gauge
+   1. Turn the knob on the other end CCW to raise the bed until the nozzle catches the gap gauge
+   1. Confirm the nozzle also catches the gap gauge when it's at the center of the belt
+   1. Goal: All three positions catch the gap gauge equally
+   1. Once the nozzle-side knobs are set, adjust the exit-side knobs until the bed carriage is level with the conveyor frame
+1. Print some test patterns to determine the correct home offset for good belt adhesion
+   - Wide boxes show high and low spots fairly well
+   - Change the Y axis home offsets between trial prints to find the best adhesion
+     - Auto home
+     - Move Y axis down to -0.100 mm
+     - Set home offsets
+     - Save configuration
+     - Power cycle the printer
+     - Auto home
+     - Confirm new Y home offset
+     - Repeat until good belt adhesion
+     - To reset the home offsets, auto home and then set them without moving the nozzle
+
 ## Z axis calibration
 
 1. Slice a block that measures 100 mm long, 20 mm wide, and 5 mm tall
