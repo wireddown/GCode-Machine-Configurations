@@ -220,6 +220,11 @@ These diffs compare the settings for
                z_raised = z_print + info.zraise;
     ```
     - This was introduced by the `BELTPRINTER` preprocessor defintion
+- Power loss recovery fails
+  - Does not home XY
+  - Advances Z too far
+  - Positions hotend high above belt
+  - Resumes printing filament in midair
 
 ## Snippets
 
