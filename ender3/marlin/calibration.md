@@ -60,7 +60,7 @@
    1. Cut the filament at the exit of the heater block
    1. Measure the distance between the marks
 1. Calculate the new steps per mm
-   - `new_steps = (old_steps * 100) / mm_between_marks`
+   - `new_e_steps = old_e_steps * (100 / measured_filament_length)`
 1. Update and reflash the firmware
 1. Do another 10mm-mark-100mm-mark-10mm extrusion measurement
 1. Adjust `new_steps` until an extrusion of 100mm yields 100mm of filament
