@@ -1,4 +1,4 @@
-From adaf944032c0d344e80bb092c093ef6e56568749 Mon Sep 17 00:00:00 2001
+From 878a1c661e22d04f18ba055dcad8df8f2d05e7d8 Mon Sep 17 00:00:00 2001
 From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
 Date: Thu, 15 Jun 2023 19:29:00 -0700
 Subject: @wireddown: Move Z and Y more after SD cancel, disable heaters after
@@ -9,7 +9,7 @@ Subject: @wireddown: Move Z and Y more after SD cancel, disable heaters after
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/Marlin/Configuration_adv.h b/Marlin/Configuration_adv.h
-index f130b7e..b334b71 100644
+index f130b7e..bca0f91 100644
 --- a/Marlin/Configuration_adv.h
 +++ b/Marlin/Configuration_adv.h
 @@ -1536,26 +1536,26 @@
@@ -35,7 +35,7 @@ index f130b7e..b334b71 100644
    #define MEDIA_MENU_AT_TOP                 // Force the media menu to be listed on the top of the main menu
  
 -  #define EVENT_GCODE_SD_ABORT "G28XY\nG1Y5"   // Home X Y, lift Y 5mm
-+  #define EVENT_GCODE_SD_ABORT "G91\nG0Z5Y5\nG0Z45\nG90\nG0Y50\nM84"   // Lift nozzle and move Z 50 mm, Move Y to 50 mm, disable steppers
++  #define EVENT_GCODE_SD_ABORT "G91\nG1E-8F3600\nG0Z5Y5F1800\nG0Z45\nG90\nG0Y50\nM84"   // Retract, lift nozzle and move Z 50 mm, Move Y to 50 mm, disable steppers
  
    #if ENABLED(PRINTER_EVENT_LEDS)
      #define PE_LEDS_COMPLETED_TIME  (30*60) // (seconds) Time to keep the LED "done" color before restoring normal illumination

@@ -1,0 +1,60 @@
+From 2ddcf80740faa1e2f3756e68dbc87593a19013d6 Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Sat, 24 Jun 2023 18:23:37 -0700
+Subject: Marlin v2.1.2.1: Fix CR-30 power loss recovery
+
+- Home XY in case the hotend moved while the power was out
+- Set Z position rather than moving to Z position
+---
+ Marlin/src/feature/powerloss.cpp | 20 ++++++++++++++++++--
+ 1 file changed, 18 insertions(+), 2 deletions(-)
+
+diff --git a/Marlin/src/feature/powerloss.cpp b/Marlin/src/feature/powerloss.cpp
+index 1037f82..937654c 100644
+--- a/Marlin/src/feature/powerloss.cpp
++++ b/Marlin/src/feature/powerloss.cpp
+@@ -447,10 +447,16 @@ void PrintJobRecovery::resume() {
+     }
+ 
+     // Home XY with no Z raise
+     PROCESS_SUBCOMMANDS_NOW(F("G28R0XY")); // No raise during G28
+ 
++  #elif ENABLED(BELTPRINTER)
++
++    // Home XY with no Z raise
++    UNUSED(z_raised);
++    PROCESS_SUBCOMMANDS_NOW(F("G28R0XY")); // No raise during G28
++
+   #endif
+ 
+   #if HOMING_Z_DOWN
+     // Move to a safe XY position and home Z while avoiding the print.
+     const xy_pos_t p = xy_pos_t(POWER_LOSS_ZHOME_POS) TERN_(HOMING_Z_WITH_PROBE, - probe.offset_xy);
+@@ -568,12 +574,22 @@ void PrintJobRecovery::resume() {
+     dtostrf(info.current_position.x, 1, 3, str_1),
+     dtostrf(info.current_position.y, 1, 3, str_2)
+   );
+   PROCESS_SUBCOMMANDS_NOW(cmd);
+ 
+-  // Move back down to the saved Z for printing
+-  sprintf_P(cmd, PSTR("G1Z%sF600"), dtostrf(z_print, 1, 3, str_1));
++  #if ENABLED(BELTPRINTER)
++
++    // Restore Z position with G92.9
++    sprintf_P(cmd, PSTR("G92.9Z%s"), dtostrf(z_print, 1, 3, str_1));
++
++  #else
++
++    // Move back down to the saved Z for printing
++    sprintf_P(cmd, PSTR("G1Z%sF600"), dtostrf(z_print, 1, 3, str_1));
++
++  #endif
++
+   PROCESS_SUBCOMMANDS_NOW(cmd);
+ 
+   // Restore the feedrate
+   sprintf_P(cmd, PSTR("G1F%d"), info.feedrate);
+   PROCESS_SUBCOMMANDS_NOW(cmd);
+-- 
+2.41.0.windows.1
+

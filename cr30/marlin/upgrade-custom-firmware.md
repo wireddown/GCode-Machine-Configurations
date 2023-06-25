@@ -211,20 +211,22 @@ These diffs compare the settings for
 -echo:  M808 L0
 ```
 
-## Open issues
+## Uncovered issues
 
-- Build warnings
+- ✅ Build warnings
   - ```
     Marlin\src\feature\powerloss.cpp: In static member function 'static void PrintJobRecovery::resume()':
     Marlin\src\feature\powerloss.cpp:408:15: warning: unused variable 'z_raised' [-Wunused-variable]
                z_raised = z_print + info.zraise;
     ```
     - This was introduced by the `BELTPRINTER` preprocessor defintion
-- Power loss recovery fails
+  - Fixed in patch 23
+- ✅ Power loss recovery fails
   - Does not home XY
   - Advances Z too far
   - Positions hotend high above belt
   - Resumes printing filament in midair
+  - Fixed in patch 23
 
 ## Snippets
 
