@@ -51,6 +51,23 @@ Copy-Item -v -force "$fw_config_folder/$fw_config_printer_folder/*.h" "Marlin"
 git add Marlin
 git commit -q -m "$message"
 
+# Patch the patches
+
+## Head
+$head_sha = git show-ref | grep origin | cut -c 1-9
+Write-Host "Upstream baseline is $head_sha"
+$head_patch_file = grep -rl "__HEAD__SHA__" "$patch_folder"
+$content = [System.IO.File]::ReadAllText($head_patch_file).Replace("__HEAD__SHA__", $head_sha)
+[System.IO.File]::WriteAllText($head_patch_file, $content)
+
+## Date
+$patch_date = Get-Date -Format "yyyy-MM-dd"
+$date_patch_file = grep -rl "__PATCH__DATE__" "$patch_folder"
+$content = [System.IO.File]::ReadAllText($date_patch_file).Replace("__PATCH__DATE__", $patch_date)
+[System.IO.File]::WriteAllText($date_patch_file, $content)
+
+# Apply the patches
+
 foreach ($folder in $fw_patch_message_for_folder.Keys) {
     $message = $($fw_patch_message_for_folder["$folder"])
     Write-Host -ForegroundColor Green "$message"
