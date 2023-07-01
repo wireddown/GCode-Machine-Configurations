@@ -46,6 +46,7 @@ Resolving deltas: 100% (728/728), done.
 Switched to a new branch 'cr30-stock-with-tuning'
 Official: Copy baseline configuration from Marlin/Configurations/config/examples/Creality/CR-30 PrintMill
 
+Upstream baseline is 2e51bf423
 Applying CR30-Users improvements
 Applying: CR30-Users: Define custom Version.h
 Applying: CR30-Users: Allow fine movements on the Y axis in the LCD menu
@@ -67,6 +68,7 @@ Applying: CR30-Users: Disable E position on LCD screen
 Applying: CR30-Users: Disable double-click for baby stepping
 Applying: CR30-Users: Enable host action commands
 Applying: Marlin v2.1.2.1: Fix CR-30 animated bootscreen
+Applying: Marlin v2.1.2.1: Fix CR-30 power loss recovery
 Applying: CR30-Users: Add animated boot screen and status screen
 Applying: CR30-Users: Set build environment for PlatformIO
 
