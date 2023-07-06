@@ -46,7 +46,7 @@ Resolving deltas: 100% (728/728), done.
 Switched to a new branch 'cr30-stock-with-tuning'
 Official: Copy baseline configuration from Marlin/Configurations/config/examples/Creality/CR-30 PrintMill
 
-Upstream baseline is 2e51bf423
+Upstream baseline is 09d0b4d15
 Applying CR30-Users improvements
 Applying: CR30-Users: Define custom Version.h
 Applying: CR30-Users: Allow fine movements on the Y axis in the LCD menu
@@ -76,6 +76,8 @@ Enabling additional Marlin features
 Applying: @wireddown: Allow Z to move forward infinitely
 Applying: @wireddown: Enable hotend timeout for safety
 Applying: @wireddown: Enable emergency parser
+Applying: @wireddown: Switch to Junction Deviation and S Curve Acceleration
+Applying: @wireddown: Enable input shaping for X and Y
 Applying: @wireddown: Enable sub-mm XY coordinates on LCD
 Applying: @wireddown: Move Z and Y more after SD cancel, disable heaters after SD complete
 Applying: @wireddown: SD sort by alpha

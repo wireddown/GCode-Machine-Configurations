@@ -18,7 +18,7 @@ index 83cb3e1..0a0891f 100644
   * version was tagged.
   */
 -//#define STRING_DISTRIBUTION_DATE "2023-05-16"
-+#define STRING_DISTRIBUTION_DATE "__PATCH__DATE__"
++#define STRING_DISTRIBUTION_DATE "2023-07-05"
  
  /**
   * Defines a generic printer name to be output to the LCD after booting Marlin.
