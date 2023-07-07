@@ -225,13 +225,13 @@ These diffs compare the settings for
                z_raised = z_print + info.zraise;
     ```
     - This was introduced by the `BELTPRINTER` preprocessor defintion
-  - Fixed in patch 23
+  - Fixed in [patch 23](./patches/02-cr30users/0023-Marlin-v2.1.2.1-Fix-CR-30-power-loss-recovery.patch)
 - ✅ Power loss recovery fails
   - Does not home XY
   - Advances Z too far
   - Positions hotend high above belt
   - Resumes printing filament in midair
-  - Fixed in patch 23
+  - Fixed in [patch 23](./patches/02-cr30users/0023-Marlin-v2.1.2.1-Fix-CR-30-power-loss-recovery.patch)
 
 ## Snippets
 
