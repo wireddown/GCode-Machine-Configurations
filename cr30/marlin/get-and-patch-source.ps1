@@ -1,9 +1,11 @@
 # Usage
-#  PS> Unblock-File .\get-and-patch-source.ps
-#  PS> .\get-and-patch-source.ps
+#  PS> Unblock-File .\get-and-patch-source.ps1
+#  PS> .\get-and-patch-source.ps1
 
 
 # Settings
+
+$working_folder = "C:/dev/scratch/cr30"
 
 # Select the branch to build from the "Active branches" list
 #   https://github.com/MarlinFirmware/Marlin/branches
@@ -14,9 +16,9 @@ $cfg_branch_name = "release-2.1.2.1"
 
 
 # Constants
-$fw_root_folder = "C:/dev/scratch/cr30/tmp.marlinfw"
+$fw_root_folder = "$working_folder/tmp.marlinfw"
 
-$fw_config_folder = "C:/dev/scratch/cr30/tmp.marlincfg"
+$fw_config_folder = "$working_folder/tmp.marlincfg"
 $fw_config_printer_folder = "config/examples/Creality/CR-30 PrintMill"
 
 $patch_branch_name = "cr30-stock-with-tuning"
@@ -52,7 +54,6 @@ git add Marlin
 git commit -q -m "$message"
 
 # Patch the patches
-
 ## Head
 $head_sha = git show-ref | grep origin | cut -c 1-9
 Write-Host "Upstream baseline is $head_sha"
@@ -67,7 +68,6 @@ $content = [System.IO.File]::ReadAllText($date_patch_file).Replace("__PATCH__DAT
 [System.IO.File]::WriteAllText($date_patch_file, $content)
 
 # Apply the patches
-
 foreach ($folder in $fw_patch_message_for_folder.Keys) {
     $message = $($fw_patch_message_for_folder["$folder"])
     Write-Host -ForegroundColor Green "$message"
