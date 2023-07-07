@@ -218,6 +218,12 @@ These diffs compare the settings for
 
 ## Uncovered issues
 
+- ✅ Scrambled bootscreen
+  - A symbol changed names on 7 Feb 2021 ([commit](https://github.com/MarlinFirmware/Marlin/commits/5f824c5708191f8d170a735e1a2ab2257fdc9e54))
+    - Old name: `CUSTOM_BOOTSCREEN_TIME_PER_FRAME`
+    - New name: `CUSTOM_BOOTSCREEN_ANIMATED_FRAME_TIME`
+  - Declaring the sequence with `const boot_frame_t custom_bootscreen_animation[]` fixes the animation visuals
+  - Fixed in [patch 22](./patches/02-cr30users/0022-Marlin-v2.1.2.1-Fix-CR-30-animated-bootscreen.patch)
 - ✅ Build warnings
   - ```
     Marlin\src\feature\powerloss.cpp: In static member function 'static void PrintJobRecovery::resume()':
