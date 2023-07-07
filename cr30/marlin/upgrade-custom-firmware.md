@@ -19,6 +19,13 @@
 - [VS Code](https://code.visualstudio.com/Download)
   - [PlatformIO](https://marketplace.visualstudio.com/items?itemName=platformio.platformio-ide) extension
 
+### Usage
+
+1. Delete any patch files you do not want to use
+1. Modify any patch files you want to change
+   - **NB:** do not insert or delete any _lines_, only change _values_ on lines prefixed with `+`
+1. Change or confirm the settings at the top of [`get-and-patch-source.ps1`](./get-and-patch-source.ps1)
+
 ### Example session
 
 ```powershell
