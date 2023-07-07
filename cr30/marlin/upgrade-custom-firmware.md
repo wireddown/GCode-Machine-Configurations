@@ -1,4 +1,4 @@
-# CR-30 3dPrintMill
+# CR-30 3DPrintMill
 
 - [Product page](https://www.creality.com/products/creality-cr-30-3d-printer)
 - Marlin Firmware [G Codes](https://marlinfw.org/meta/gcode/)
@@ -248,4 +248,6 @@ These diffs compare the settings for
 
 ## Snippets
 
-`git format-patch --unified=5 --inter-hunk-context=12 --output-directory patches --no-numbered --keep-subject <sinceSHA>`
+```
+git format-patch --unified=5 --inter-hunk-context=12 --output-directory patches --no-numbered --keep-subject <sinceSHA>
+```
