@@ -22,11 +22,11 @@
 ### Example session
 
 ```powershell
-PS> Unblock-File .\get-and-patch-source.ps
-PS> .\get-and-patch-source.ps
+PS> Unblock-File .\get-and-patch-source.ps1
+PS> .\get-and-patch-source.ps1
 
 Downloading Marlin firmware source code branch 2.1.x
-Cloning into 'C:/dev/scratch/cr30/xxtmp.marlinfw'...
+Cloning into 'C:/dev/scratch/cr30/tmp.marlinfw'...
 remote: Enumerating objects: 3027, done.
 remote: Counting objects: 100% (3027/3027), done.
 remote: Compressing objects: 100% (2219/2219), done.
@@ -35,7 +35,7 @@ Receiving objects: 100% (3027/3027), 7.83 MiB | 15.36 MiB/s, done.
 Resolving deltas: 100% (1015/1015), done.
 
 Downloading Marlin firmware configuration branch release-2.1.2.1
-Cloning into 'C:/dev/scratch/cr30/xxtmp.marlincfg'...
+Cloning into 'C:/dev/scratch/cr30/tmp.marlincfg'...
 remote: Enumerating objects: 1441, done.
 remote: Counting objects: 100% (1441/1441), done.
 remote: Compressing objects: 100% (664/664), done.
