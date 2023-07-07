@@ -1,0 +1,141 @@
+From 2d57d28b2b1df84639b94a504ab97fa6d9b0c9f3 Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Sun, 4 Jun 2023 23:01:53 -0700
+Subject: CR30-Users: Enable UART IO with TMC drivers REQUIRES rework
+
+Using this change REQUIRES a board rework.
+
+See the wiki: https://github.com/CR30-Users/Marlin-CR30/wiki/Creality-4.2.10-UART-mod-(CR-30)
+
+- Reallocate serial IO resources by disabling the 2nd serial port
+- Set the driver types for the axes to TMC2208
+- Set an advance K value for Linear Advance
+- Enable TMC debuggint
+- Map the serial IO pins to the Creality headers
+---
+ Marlin/Configuration.h                        | 10 +++++-----
+ Marlin/Configuration_adv.h                    |  4 ++--
+ Marlin/src/pins/stm32f1/pins_CREALITY_V4210.h | 20 ++++++++++++++++++-
+ 3 files changed, 26 insertions(+), 8 deletions(-)
+
+diff --git a/Marlin/Configuration.h b/Marlin/Configuration.h
+index d6e7bcabc3..519518e582 100644
+--- a/Marlin/Configuration.h
++++ b/Marlin/Configuration.h
+@@ -120,11 +120,11 @@
+ /**
+  * Select a secondary serial port on the board to use for communication with the host.
+  * Currently Ethernet (-2) is only supported on Teensy 4.1 boards.
+  * :[-2, -1, 0, 1, 2, 3, 4, 5, 6, 7]
+  */
+-#define SERIAL_PORT_2 3
++//#define SERIAL_PORT_2  -1   // REQUIRES a board rework
+ //#define BAUDRATE_2 250000   // :[2400, 9600, 19200, 38400, 57600, 115200, 250000, 500000, 1000000] Enable to override BAUDRATE
+ 
+ /**
+  * Select a third serial port on the board to use for communication with the host.
+  * Currently only supported for AVR, DUE, LPC1768/9 and STM32/STM32F1
+@@ -158,25 +158,25 @@
+  *          TMC2208, TMC2208_STANDALONE, TMC2209, TMC2209_STANDALONE,
+  *          TMC26X,  TMC26X_STANDALONE,  TMC2660, TMC2660_STANDALONE,
+  *          TMC5130, TMC5130_STANDALONE, TMC5160, TMC5160_STANDALONE
+  * :['A4988', 'A5984', 'DRV8825', 'LV8729', 'TB6560', 'TB6600', 'TMC2100', 'TMC2130', 'TMC2130_STANDALONE', 'TMC2160', 'TMC2160_STANDALONE', 'TMC2208', 'TMC2208_STANDALONE', 'TMC2209', 'TMC2209_STANDALONE', 'TMC26X', 'TMC26X_STANDALONE', 'TMC2660', 'TMC2660_STANDALONE', 'TMC5130', 'TMC5130_STANDALONE', 'TMC5160', 'TMC5160_STANDALONE']
+  */
+-#define X_DRIVER_TYPE TMC2208_STANDALONE
+-#define Y_DRIVER_TYPE TMC2208_STANDALONE
+-#define Z_DRIVER_TYPE TMC2208_STANDALONE
++#define X_DRIVER_TYPE TMC2208  // REQUIRES a board rework
++#define Y_DRIVER_TYPE TMC2208  // REQUIRES a board rework
++#define Z_DRIVER_TYPE TMC2208  // REQUIRES a board rework
+ //#define X2_DRIVER_TYPE A4988
+ //#define Y2_DRIVER_TYPE A4988
+ //#define Z2_DRIVER_TYPE A4988
+ //#define Z3_DRIVER_TYPE A4988
+ //#define Z4_DRIVER_TYPE A4988
+ //#define I_DRIVER_TYPE  A4988
+ //#define J_DRIVER_TYPE  A4988
+ //#define K_DRIVER_TYPE  A4988
+ //#define U_DRIVER_TYPE  A4988
+ //#define V_DRIVER_TYPE  A4988
+ //#define W_DRIVER_TYPE  A4988
+-#define E0_DRIVER_TYPE TMC2208_STANDALONE
++#define E0_DRIVER_TYPE TMC2208  // REQUIRES a board rework
+ //#define E1_DRIVER_TYPE A4988
+ //#define E2_DRIVER_TYPE A4988
+ //#define E3_DRIVER_TYPE A4988
+ //#define E4_DRIVER_TYPE A4988
+ //#define E5_DRIVER_TYPE A4988
+diff --git a/Marlin/Configuration_adv.h b/Marlin/Configuration_adv.h
+index 28c6d0a441..eee2175288 100644
+--- a/Marlin/Configuration_adv.h
++++ b/Marlin/Configuration_adv.h
+@@ -2110,11 +2110,11 @@
+ #define LIN_ADVANCE
+ #if ENABLED(LIN_ADVANCE)
+   #if ENABLED(DISTINCT_E_FACTORS)
+     #define ADVANCE_K { 0.0 }     // (mm) Compression length per 1mm/s extruder speed, per extruder
+   #else
+-    #define ADVANCE_K 0.0         // (mm) Compression length applying to all extruders
++    #define ADVANCE_K 0.22        // REQUIRES a board rework -- (mm) Compression length applying to all extruders
+   #endif
+   //#define ADVANCE_K_EXTRA       // Add a second linear advance constant, configurable with M900 L.
+   //#define LA_DEBUG              // Print debug information to serial during operation. Disable for production use.
+   //#define EXPERIMENTAL_SCURVE   // Allow S-Curve Acceleration to be used with LA.
+   //#define ALLOW_LOW_EJERK       // Allow a DEFAULT_EJERK value of <10. Recommended for direct drive hotends.
+@@ -3199,11 +3199,11 @@
+ 
+   /**
+    * Enable M122 debugging command for TMC stepper drivers.
+    * M122 S0/1 will enable continuous reporting.
+    */
+-  //#define TMC_DEBUG
++  #define TMC_DEBUG  // REQUIRES a board rework
+ 
+   /**
+    * You can set your own advanced settings by filling in predefined functions.
+    * A list of available functions can be found on the library github page
+    * https://github.com/teemuatlut/TMCStepper
+diff --git a/Marlin/src/pins/stm32f1/pins_CREALITY_V4210.h b/Marlin/src/pins/stm32f1/pins_CREALITY_V4210.h
+index f3b7e4f308..335790d13b 100644
+--- a/Marlin/src/pins/stm32f1/pins_CREALITY_V4210.h
++++ b/Marlin/src/pins/stm32f1/pins_CREALITY_V4210.h
+@@ -61,11 +61,13 @@
+ #endif
+ 
+ //
+ // Servos
+ //
+-#define SERVO0_PIN                          PB0   // BLTouch OUT
++#if !HAS_TMC_UART
++  #define SERVO0_PIN                        PB0   // BLTouch OUT
++#endif
+ 
+ //
+ // Limit Switches
+ //
+ #define X_STOP_PIN                          PA3
+@@ -213,5 +215,21 @@
+   #ifndef BEEPER_PIN
+     #define BEEPER_PIN               EXP3_06_PIN
+   #endif
+ 
+ #endif
++
++#if HAS_TMC_UART  // REQUIRES a board rework
++  #define X_SERIAL_TX_PIN                   PB0
++  #define X_SERIAL_RX_PIN                   PB0
++
++  #define Y_SERIAL_TX_PIN                   PB1
++  #define Y_SERIAL_RX_PIN                   PB1
++
++  #define Z_SERIAL_TX_PIN                   PA13
++  #define Z_SERIAL_RX_PIN                   PA13
++
++  #define E0_SERIAL_TX_PIN                  PA14
++  #define E0_SERIAL_RX_PIN                  PA14
++
++  #define TMC_BAUD_RATE                    19200
++#endif
+-- 
+2.40.1.windows.1
+

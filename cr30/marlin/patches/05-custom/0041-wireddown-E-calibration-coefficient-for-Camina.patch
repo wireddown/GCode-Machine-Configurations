@@ -1,0 +1,29 @@
+From 0210c636847bf7abf08c1b98e3633413641fc682 Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Thu, 15 Jun 2023 19:25:43 -0700
+Subject: @wireddown: E calibration coefficient for Camina
+
+---
+ Marlin/Configuration.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Marlin/Configuration.h b/Marlin/Configuration.h
+index 2c48783..9fb2ed7 100644
+--- a/Marlin/Configuration.h
++++ b/Marlin/Configuration.h
+@@ -1168,11 +1168,11 @@
+ /**
+  * Default Axis Steps Per Unit (linear=steps/mm, rotational=steps/°)
+  * Override with M92
+  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
+  */
+-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 1148.4, 137.65 }  // Z and E should be calibrated for each machine
++#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 1148.4, 138.8 }  // Z and E should be calibrated for each machine
+ 
+ /**
+  * Default Max Feed Rate (linear=mm/s, rotational=°/s)
+  * Override with M203
+  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
+-- 
+2.41.0.windows.1
+

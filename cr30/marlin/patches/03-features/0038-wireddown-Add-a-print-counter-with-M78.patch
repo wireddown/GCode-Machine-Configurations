@@ -1,0 +1,29 @@
+From 640d5b7bf8afcb5209663509fe84b654ff5c4dae Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Sun, 4 Jun 2023 23:14:02 -0700
+Subject: @wireddown: Add a print counter with M78
+
+---
+ Marlin/Configuration.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Marlin/Configuration.h b/Marlin/Configuration.h
+index 6b3504a..f0666d9 100644
+--- a/Marlin/Configuration.h
++++ b/Marlin/Configuration.h
+@@ -2368,11 +2368,11 @@
+  *  - Total failed print jobs
+  *  - Total time printing
+  *
+  * View the current statistics with M78.
+  */
+-//#define PRINTCOUNTER
++#define PRINTCOUNTER
+ #if ENABLED(PRINTCOUNTER)
+   #define PRINTCOUNTER_SAVE_INTERVAL 60 // (minutes) EEPROM save interval during print. A value of 0 will save stats at end of print.
+ #endif
+ 
+ // @section security
+-- 
+2.41.0.windows.1
+

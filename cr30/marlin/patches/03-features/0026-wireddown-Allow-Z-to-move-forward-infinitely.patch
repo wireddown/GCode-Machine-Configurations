@@ -1,0 +1,30 @@
+From dc210bd73df97e469d2cfbe04140eb7bef03c7c9 Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Sun, 4 Jun 2023 23:03:51 -0700
+Subject: @wireddown: Allow Z to move forward infinitely
+
+Because 20000000 mm might sound like too much Z _today,_ but I'm not gonna Bill Gates this. The headline says infinite-z, so let's deliver!
+---
+ Marlin/Configuration.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Marlin/Configuration.h b/Marlin/Configuration.h
+index 0983008..6b3504a 100644
+--- a/Marlin/Configuration.h
++++ b/Marlin/Configuration.h
+@@ -1745,11 +1745,11 @@
+ // Max software endstops constrain movement within maximum coordinate bounds
+ #define MAX_SOFTWARE_ENDSTOPS
+ #if ENABLED(MAX_SOFTWARE_ENDSTOPS)
+   #define MAX_SOFTWARE_ENDSTOP_X
+   #define MAX_SOFTWARE_ENDSTOP_Y
+-  #define MAX_SOFTWARE_ENDSTOP_Z
++  //#define MAX_SOFTWARE_ENDSTOP_Z  // Allow Z to move forward infinitely
+   #define MAX_SOFTWARE_ENDSTOP_I
+   #define MAX_SOFTWARE_ENDSTOP_J
+   #define MAX_SOFTWARE_ENDSTOP_K
+   #define MAX_SOFTWARE_ENDSTOP_U
+   #define MAX_SOFTWARE_ENDSTOP_V
+-- 
+2.41.0.windows.1
+

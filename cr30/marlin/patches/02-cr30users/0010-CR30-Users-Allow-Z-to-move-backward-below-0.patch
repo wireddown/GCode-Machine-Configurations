@@ -1,0 +1,29 @@
+From c7daa6cb48d43f4dd9a8e46c8044a38743fafb04 Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Sun, 4 Jun 2023 22:46:05 -0700
+Subject: CR30-Users: Allow Z to move backward below 0
+
+---
+ Marlin/Configuration.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Marlin/Configuration.h b/Marlin/Configuration.h
+index 41365a7..0983008 100644
+--- a/Marlin/Configuration.h
++++ b/Marlin/Configuration.h
+@@ -1731,11 +1731,11 @@
+ // Min software endstops constrain movement within minimum coordinate bounds
+ #define MIN_SOFTWARE_ENDSTOPS
+ #if ENABLED(MIN_SOFTWARE_ENDSTOPS)
+   #define MIN_SOFTWARE_ENDSTOP_X
+   //#define MIN_SOFTWARE_ENDSTOP_Y  // Allow Y to move below 0 to help leveling and homing
+-  #define MIN_SOFTWARE_ENDSTOP_Z
++  //#define MIN_SOFTWARE_ENDSTOP_Z  // Allow Z to move backward below 0
+   #define MIN_SOFTWARE_ENDSTOP_I
+   #define MIN_SOFTWARE_ENDSTOP_J
+   #define MIN_SOFTWARE_ENDSTOP_K
+   #define MIN_SOFTWARE_ENDSTOP_U
+   #define MIN_SOFTWARE_ENDSTOP_V
+-- 
+2.41.0.windows.1
+

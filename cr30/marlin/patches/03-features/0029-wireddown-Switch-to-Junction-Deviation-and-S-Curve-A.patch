@@ -1,0 +1,78 @@
+From 7756920e1890785969587c6ddd16287e2efa3882 Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Wed, 5 Jul 2023 18:26:38 -0700
+Subject: @wireddown: Switch to Junction Deviation and S Curve Acceleration
+
+* Requires disabling Linear Advance, which had `ADVANCE_K` set to `0` anyway
+```
+"LIN_ADVANCE and S_CURVE_ACCELERATION may not play well together! Enable EXPERIMENTAL_SCURVE to continue."
+```
+---
+ Marlin/Configuration.h     | 6 +++---
+ Marlin/Configuration_adv.h | 2 +-
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/Marlin/Configuration.h b/Marlin/Configuration.h
+index 6b3504a..94664d3 100644
+--- a/Marlin/Configuration.h
++++ b/Marlin/Configuration.h
+@@ -1215,11 +1215,11 @@
+  *
+  * "Jerk" specifies the minimum speed change that requires acceleration.
+  * When changing speed and direction, if the difference is less than the
+  * value set here, it may happen instantaneously.
+  */
+-#define CLASSIC_JERK
++//#define CLASSIC_JERK
+ #if ENABLED(CLASSIC_JERK)
+   #define DEFAULT_XJERK  6.0
+   #define DEFAULT_YJERK  6.0
+   #define DEFAULT_ZJERK  0.4
+   //#define DEFAULT_IJERK  0.3
+@@ -1245,24 +1245,24 @@
+  * See:
+  *   https://reprap.org/forum/read.php?1,739819
+  *   https://blog.kyneticcnc.com/2018/10/computing-junction-deviation-for-marlin.html
+  */
+ #if DISABLED(CLASSIC_JERK)
+-  #define JUNCTION_DEVIATION_MM 0.013 // (mm) Distance from real junction edge
++  #define JUNCTION_DEVIATION_MM 0.048 // (mm) Distance from real junction edge. d = 0.4 * J^2 / a
+   #define JD_HANDLE_SMALL_SEGMENTS    // Use curvature estimation instead of just the junction angle
+                                       // for small segments (< 1mm) with large junction angles (> 135°).
+ #endif
+ 
+ /**
+  * S-Curve Acceleration
+  *
+  * This option eliminates vibration during printing by fitting a Bézier
+  * curve to move acceleration, producing much smoother direction changes.
+  *
+  * See https://github.com/synthetos/TinyG/wiki/Jerk-Controlled-Motion-Explained
+  */
+-//#define S_CURVE_ACCELERATION
++#define S_CURVE_ACCELERATION
+ 
+ //===========================================================================
+ //============================= Z Probe Options =============================
+ //===========================================================================
+ // @section probes
+diff --git a/Marlin/Configuration_adv.h b/Marlin/Configuration_adv.h
+index e99d12a..4071472 100644
+--- a/Marlin/Configuration_adv.h
++++ b/Marlin/Configuration_adv.h
+@@ -2105,11 +2105,11 @@
+  * If this algorithm produces a higher speed offset than the extruder can handle (compared to E jerk)
+  * print acceleration will be reduced during the affected moves to keep within the limit.
+  *
+  * See https://marlinfw.org/docs/features/lin_advance.html for full instructions.
+  */
+-#define LIN_ADVANCE
++//#define LIN_ADVANCE
+ #if ENABLED(LIN_ADVANCE)
+   #if ENABLED(DISTINCT_E_FACTORS)
+     #define ADVANCE_K { 0.0 }     // (mm) Compression length per 1mm/s extruder speed, per extruder
+   #else
+     #define ADVANCE_K 0.0         // (mm) Compression length applying to all extruders
+-- 
+2.41.0.windows.1
+

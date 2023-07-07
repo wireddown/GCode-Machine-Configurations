@@ -1,0 +1,29 @@
+From 461f96175fa8f9aa3df79ec3be59b469426e38f2 Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Sat, 17 Jun 2023 09:05:08 -0700
+Subject: CR30-Users: Set Y axis maximum to 240 mm
+
+---
+ Marlin/Configuration.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Marlin/Configuration.h b/Marlin/Configuration.h
+index eb71c41..9003829 100644
+--- a/Marlin/Configuration.h
++++ b/Marlin/Configuration.h
+@@ -1695,11 +1695,11 @@
+ 
+ // @section geometry
+ 
+ // The size of the printable area
+ #define X_BED_SIZE 220
+-#define Y_BED_SIZE 250
++#define Y_BED_SIZE 240
+ 
+ // Travel limits (linear=mm, rotational=°) after homing, corresponding to endstop positions.
+ #define X_MIN_POS 0
+ #define Y_MIN_POS -5
+ #define Z_MIN_POS 0
+-- 
+2.41.0.windows.1
+

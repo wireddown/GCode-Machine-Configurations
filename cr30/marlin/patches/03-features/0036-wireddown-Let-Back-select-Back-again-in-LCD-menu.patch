@@ -1,0 +1,29 @@
+From ca27203ec22fd8636ac43de14e2a5f792434d946 Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Sun, 4 Jun 2023 23:13:05 -0700
+Subject: @wireddown: Let Back select Back again in LCD menu
+
+---
+ Marlin/Configuration_adv.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Marlin/Configuration_adv.h b/Marlin/Configuration_adv.h
+index a6e136f..3708f80 100644
+--- a/Marlin/Configuration_adv.h
++++ b/Marlin/Configuration_adv.h
+@@ -1415,11 +1415,11 @@
+   #if ENABLED(LCD_INFO_MENU)
+     //#define LCD_PRINTER_INFO_IS_BOOTSCREEN // Show bootscreen(s) instead of Printer Info pages
+   #endif
+ 
+   // BACK menu items keep the highlight at the top
+-  //#define TURBO_BACK_MENU_ITEM
++  #define TURBO_BACK_MENU_ITEM
+ 
+   // Insert a menu for preheating at the top level to allow for quick access
+   //#define PREHEAT_SHORTCUT_MENU_ITEM
+ 
+ #endif // HAS_MARLINUI_MENU
+-- 
+2.41.0.windows.1
+

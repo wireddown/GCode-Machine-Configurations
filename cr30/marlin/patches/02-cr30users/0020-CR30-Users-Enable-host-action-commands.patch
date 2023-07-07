@@ -1,0 +1,29 @@
+From 9eebf93af98645a1ddda0fb504bb2121845d3bb5 Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Sun, 4 Jun 2023 22:54:56 -0700
+Subject: CR30-Users: Enable host action commands
+
+---
+ Marlin/Configuration_adv.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Marlin/Configuration_adv.h b/Marlin/Configuration_adv.h
+index 93963cf..5a8d1da 100644
+--- a/Marlin/Configuration_adv.h
++++ b/Marlin/Configuration_adv.h
+@@ -3845,11 +3845,11 @@
+  * Some features add reason codes to extend these commands.
+  *
+  * Host Prompt Support enables Marlin to use the host for user prompts so
+  * filament runout and other processes can be managed from the host side.
+  */
+-//#define HOST_ACTION_COMMANDS
++#define HOST_ACTION_COMMANDS
+ #if ENABLED(HOST_ACTION_COMMANDS)
+   //#define HOST_PAUSE_M76                // Tell the host to pause in response to M76
+   //#define HOST_PROMPT_SUPPORT           // Initiate host prompts to get user feedback
+   #if ENABLED(HOST_PROMPT_SUPPORT)
+     //#define HOST_STATUS_NOTIFICATIONS   // Send some status messages to the host as notifications
+-- 
+2.41.0.windows.1
+

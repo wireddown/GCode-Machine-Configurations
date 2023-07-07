@@ -1,0 +1,46 @@
+From 878a1c661e22d04f18ba055dcad8df8f2d05e7d8 Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Thu, 15 Jun 2023 19:29:00 -0700
+Subject: @wireddown: Move Z and Y more after SD cancel, disable heaters after
+ SD complete
+
+---
+ Marlin/Configuration_adv.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Marlin/Configuration_adv.h b/Marlin/Configuration_adv.h
+index f130b7e..bca0f91 100644
+--- a/Marlin/Configuration_adv.h
++++ b/Marlin/Configuration_adv.h
+@@ -1536,26 +1536,26 @@
+   #define GCODE_REPEAT_MARKERS              // Enable G-code M808 to set repeat markers and do looping
+ 
+   #define SD_PROCEDURE_DEPTH 1              // Increase if you need more nested M32 calls
+ 
+   #define SD_FINISHED_STEPPERRELEASE true   // Disable steppers when SD Print is finished
+-  #define SD_FINISHED_RELEASECOMMAND "G28XY\nG1Y5\nM84"  // Home X Y, lift Y 5mm, disable steppers
++  #define SD_FINISHED_RELEASECOMMAND "M104S0\nM140S0"  // Disable heaters
+ 
+   // Reverse SD sort to show "more recent" files first, according to the card's FAT.
+   // Since the FAT gets out of order with usage, SDCARD_SORT_ALPHA is recommended.
+   #define SDCARD_RATHERRECENTFIRST
+ 
+   #define SD_MENU_CONFIRM_START             // Confirm the selected SD file before printing
+ 
+   //#define NO_SD_AUTOSTART                 // Remove auto#.g file support completely to save some Flash, SRAM
+   //#define MENU_ADDAUTOSTART               // Add a menu option to run auto#.g files
+ 
+   //#define BROWSE_MEDIA_ON_INSERT          // Open the file browser when media is inserted
+ 
+   #define MEDIA_MENU_AT_TOP                 // Force the media menu to be listed on the top of the main menu
+ 
+-  #define EVENT_GCODE_SD_ABORT "G28XY\nG1Y5"   // Home X Y, lift Y 5mm
++  #define EVENT_GCODE_SD_ABORT "G91\nG1E-8F3600\nG0Z5Y5F1800\nG0Z45\nG90\nG0Y50\nM84"   // Retract, lift nozzle and move Z 50 mm, Move Y to 50 mm, disable steppers
+ 
+   #if ENABLED(PRINTER_EVENT_LEDS)
+     #define PE_LEDS_COMPLETED_TIME  (30*60) // (seconds) Time to keep the LED "done" color before restoring normal illumination
+   #endif
+ 
+-- 
+2.41.0.windows.1
+

@@ -1,0 +1,29 @@
+From 5e8480fffbd596b4549ee0cd4158f7598e9df2bc Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Sun, 4 Jun 2023 22:54:08 -0700
+Subject: CR30-Users: Enable hollow frame menus
+
+---
+ Marlin/Configuration_adv.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Marlin/Configuration_adv.h b/Marlin/Configuration_adv.h
+index 6069196..9649ee2 100644
+--- a/Marlin/Configuration_adv.h
++++ b/Marlin/Configuration_adv.h
+@@ -1848,11 +1848,11 @@
+   //#define GAMES_EASTER_EGG          // Add extra blank lines above the "Games" sub-menu
+ 
+ #endif // HAS_MARLINUI_U8GLIB
+ 
+ #if HAS_MARLINUI_U8GLIB || IS_DWIN_MARLINUI
+-  //#define MENU_HOLLOW_FRAME         // Enable to save many cycles by drawing a hollow frame on Menu Screens
++  #define MENU_HOLLOW_FRAME           // Enable to save many cycles by drawing a hollow frame on Menu Screens
+   //#define OVERLAY_GFX_REVERSE       // Swap the CW/CCW indicators in the graphics overlay
+ #endif
+ 
+ //
+ // Additional options for DGUS / DWIN displays
+-- 
+2.41.0.windows.1
+

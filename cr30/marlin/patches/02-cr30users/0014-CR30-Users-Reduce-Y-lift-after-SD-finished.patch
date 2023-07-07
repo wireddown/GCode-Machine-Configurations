@@ -1,0 +1,32 @@
+From 7a7e72ab9a78d0d56f01d52cbdb8225716e7ba00 Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Sun, 4 Jun 2023 22:52:34 -0700
+Subject: CR30-Users: Reduce Y lift after SD finished
+
+- Home X Y
+- Lift Y 5mm
+- Disable steppers
+---
+ Marlin/Configuration_adv.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Marlin/Configuration_adv.h b/Marlin/Configuration_adv.h
+index f3b2014..225911d 100644
+--- a/Marlin/Configuration_adv.h
++++ b/Marlin/Configuration_adv.h
+@@ -1536,11 +1536,11 @@
+   #define GCODE_REPEAT_MARKERS              // Enable G-code M808 to set repeat markers and do looping
+ 
+   #define SD_PROCEDURE_DEPTH 1              // Increase if you need more nested M32 calls
+ 
+   #define SD_FINISHED_STEPPERRELEASE true   // Disable steppers when SD Print is finished
+-  #define SD_FINISHED_RELEASECOMMAND "G28XY\nG1Y100\nM84"  // Use "M84XYE" to keep Z enabled so your bed stays in place
++  #define SD_FINISHED_RELEASECOMMAND "G28XY\nG1Y5\nM84"  // Home X Y, lift Y 5mm, disable steppers
+ 
+   // Reverse SD sort to show "more recent" files first, according to the card's FAT.
+   // Since the FAT gets out of order with usage, SDCARD_SORT_ALPHA is recommended.
+   #define SDCARD_RATHERRECENTFIRST
+ 
+-- 
+2.41.0.windows.1
+

@@ -1,0 +1,29 @@
+From 76cbdabce4121ae3a85016b9eabe772fbb4f1ad2 Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Thu, 8 Jun 2023 16:20:41 -0700
+Subject: CR30-Users: Define custom Version.h
+
+---
+ Marlin/Configuration.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Marlin/Configuration.h b/Marlin/Configuration.h
+index 3187504..96a5ee1 100644
+--- a/Marlin/Configuration.h
++++ b/Marlin/Configuration.h
+@@ -61,11 +61,11 @@
+ 
+ // @section info
+ 
+ // Author info of this build printed to the host during boot and M115
+ #define STRING_CONFIG_H_AUTHOR "3DPrintMill" // Who made the changes.
+-//#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
++#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
+ 
+ /**
+  * *** VENDORS PLEASE READ ***
+  *
+  * Marlin allows you to add a custom boot image for Graphical LCDs.
+-- 
+2.41.0.windows.1
+

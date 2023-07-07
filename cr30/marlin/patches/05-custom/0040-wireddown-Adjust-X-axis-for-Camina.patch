@@ -1,0 +1,29 @@
+From 831f3b001e354eb90b74078fa198d1f4b960edb2 Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Sat, 17 Jun 2023 09:36:45 -0700
+Subject:  @wireddown: Adjust X axis for Camina
+
+---
+ Marlin/Configuration.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Marlin/Configuration.h b/Marlin/Configuration.h
+index f0666d9..2f4943d 100644
+--- a/Marlin/Configuration.h
++++ b/Marlin/Configuration.h
+@@ -1694,11 +1694,11 @@
+ //#define W_HOME_DIR -1
+ 
+ // @section geometry
+ 
+ // The size of the printable area
+-#define X_BED_SIZE 220
++#define X_BED_SIZE 215
+ #define Y_BED_SIZE 240
+ 
+ // Travel limits (linear=mm, rotational=°) after homing, corresponding to endstop positions.
+ #define X_MIN_POS 0
+ #define Y_MIN_POS 0
+-- 
+2.41.0.windows.1
+

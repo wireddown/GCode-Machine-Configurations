@@ -1,0 +1,30 @@
+From a519097e1abce8c19bfda1e5779d9e6c92224b15 Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Sun, 4 Jun 2023 23:07:35 -0700
+Subject: @wireddown: Enable emergency parser
+
+> Currently handles M108, M112, M410, M876
+---
+ Marlin/Configuration_adv.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Marlin/Configuration_adv.h b/Marlin/Configuration_adv.h
+index 27a3cf0..e99d12a 100644
+--- a/Marlin/Configuration_adv.h
++++ b/Marlin/Configuration_adv.h
+@@ -2440,11 +2440,11 @@
+  * Add a low-level parser to intercept certain commands as they
+  * enter the serial receive buffer, so they cannot be blocked.
+  * Currently handles M108, M112, M410, M876
+  * NOTE: Not yet implemented for all platforms.
+  */
+-//#define EMERGENCY_PARSER
++#define EMERGENCY_PARSER
+ 
+ /**
+  * Realtime Reporting (requires EMERGENCY_PARSER)
+  *
+  * - Report position and state of the machine (like Grbl).
+-- 
+2.41.0.windows.1
+

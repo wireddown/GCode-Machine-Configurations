@@ -1,0 +1,29 @@
+From 4c65ce9b4652e6218f761d44cf5b2c8e2a91cb18 Mon Sep 17 00:00:00 2001
+From: Down to the Wire <8404598+wireddown@users.noreply.github.com>
+Date: Sun, 4 Jun 2023 22:53:41 -0700
+Subject: CR30-Users: Force the media menu to the top of the LCD menu
+
+---
+ Marlin/Configuration_adv.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Marlin/Configuration_adv.h b/Marlin/Configuration_adv.h
+index 13db107..6069196 100644
+--- a/Marlin/Configuration_adv.h
++++ b/Marlin/Configuration_adv.h
+@@ -1549,11 +1549,11 @@
+   //#define NO_SD_AUTOSTART                 // Remove auto#.g file support completely to save some Flash, SRAM
+   //#define MENU_ADDAUTOSTART               // Add a menu option to run auto#.g files
+ 
+   //#define BROWSE_MEDIA_ON_INSERT          // Open the file browser when media is inserted
+ 
+-  //#define MEDIA_MENU_AT_TOP               // Force the media menu to be listed on the top of the main menu
++  #define MEDIA_MENU_AT_TOP                 // Force the media menu to be listed on the top of the main menu
+ 
+   #define EVENT_GCODE_SD_ABORT "G28XY\nG1Y5"   // Home X Y, lift Y 5mm
+ 
+   #if ENABLED(PRINTER_EVENT_LEDS)
+     #define PE_LEDS_COMPLETED_TIME  (30*60) // (seconds) Time to keep the LED "done" color before restoring normal illumination
+-- 
+2.41.0.windows.1
+
