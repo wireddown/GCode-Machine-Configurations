@@ -103,13 +103,13 @@ Launching VS Code
 These diffs compare the settings for
 
 - the firmware from Creality's download center (red)
-- the firmware after applying the patch set from pull/1 (green)
+- the firmware after applying the patch set from pull/2 (green)
 
 ### Firmware capabilities
 
 ```diff
 -FIRMWARE_NAME:Marlin 2.0.6.3 (Jan 14 2021 18:24:36) SOURCE_CODE_URL:https://github.com/MarlinFirmware/Marlin PROTOCOL_VERSION:1.0 MACHINE_TYPE:3DPrintMill EXTRUDER_COUNT:1 UUID:cede2a2f-41a2-4748-9b12-c55c62f367ff
-+FIRMWARE_NAME:Marlin 0a30fac + pull/1 (Jun 17 2023 09:53:11) SOURCE_CODE_URL:github.com/wireddown/GCode-Machine-Configurations PROTOCOL_VERSION:1.0 MACHINE_TYPE:Camina EXTRUDER_COUNT:1 UUID:CA319A00-0000-0000-0000-00BE174103D4
++FIRMWARE_NAME:Marlin 09d0b4d15 + pull/2 (Jul  5 2023 18:42:22) SOURCE_CODE_URL:github.com/wireddown/GCode-Machine-Configurations PROTOCOL_VERSION:1.0 MACHINE_TYPE:Camina EXTRUDER_COUNT:1 UUID:CA319A00-0000-0000-0000-00BE174103D4
  Cap:SERIAL_XON_XOFF:0
  Cap:BINARY_FILE_TRANSFER:0
  Cap:EEPROM:1
@@ -176,12 +176,12 @@ These diffs compare the settings for
 +echo:; Acceleration (units/s2) (P<print-accel> R<retract-accel> T<travel-accel>):
  echo:  M204 P300.00 R300.00 T600.00
 -echo:; Advanced: B<min_segment_time_us> S<min_feedrate> T<min_travel_feedrate> X<max_x_jerk> Y<max_y_jerk> Z<max_z_jerk> E<max_e_jerk>
-+echo:; Advanced (B<min_segment_time_us> S<min_feedrate> T<min_travel_feedrate> X<max_jerk> Y<max_jerk> Z<max_jerk> E<max_jerk>):
++echo:; Advanced (B<min_segment_time_us> S<min_feedrate> T<min_travel_feedrate> J<junc_dev>):
 -echo:  M205 B20000.00 S0.00 T0.00 X6.00 Y6.00 Z0.40 E5.00
-+echo:  M205 B20000.00 S0.00 T0.00 X6.00 Y6.00 Z0.40 E10.00
++echo:  M205 B20000.00 S0.00 T0.00 J0.02
  echo:; Home offset:
 -echo:  M206 X0.00 Y0.00 Z0.00
-+echo:  M206 X0.00 Y0.20 Z0.00
++echo:  M206 X0.00 Y0.97 Z0.00
  echo:; Material heatup parameters:
 -echo:  M145 S0 H185 B55 F0
 +echo:  M145 S0 H185.00 B55.00 F0
@@ -200,8 +200,9 @@ These diffs compare the settings for
 +echo:; Power-loss recovery:
 -echo:  M413 S1
 +echo:  M413 S1 ; ON
-+echo:; Linear Advance:
-+echo:  M900 K0.00
++echo:; Input Shaping:
++echo:  M593 X F16.60 D0.15
++echo:  M593 Y F16.60 D0.15
 -echo:; Filament load/unload lengths:
 +echo:; Filament load/unload:
 -echo:  M603 L0.00 U100.00
