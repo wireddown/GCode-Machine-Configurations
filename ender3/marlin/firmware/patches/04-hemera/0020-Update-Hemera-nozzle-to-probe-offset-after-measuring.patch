@@ -18,7 +18,7 @@ index 55a24d4dee..98581f8c34 100644
 -// Measured by tracing the stock nozzle and stock probe locations on paper
 -#define NOZZLE_TO_PROBE_OFFSET { -47, -5, 0 }
 +// Measured by tracing the Hemera nozzle and probe locations on paper
-+#define NOZZLE_TO_PROBE_OFFSET { 5, 23, 0 }
++#define NOZZLE_TO_PROBE_OFFSET { 2, 25, 0 }
  
  // Most probes should stay away from the edges of the bed, but
  // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
