@@ -1,9 +1,11 @@
 # Usage
-#  PS> Unblock-File .\get-and-patch-source.ps
-#  PS> .\get-and-patch-source.ps
+#  PS> Unblock-File .\get-and-patch-source.ps1
+#  PS> .\get-and-patch-source.ps1
 
 
 # Settings
+
+$working_folder = "C:/dev/scratch/e3v2"
 
 # Select the latest bugfix branch from the "Active branches" list
 #   https://github.com/MarlinFirmware/Marlin/branches
@@ -16,9 +18,9 @@ $LCD_boot_screen_path = "image/0.jpg"
 
 
 # Constants
-$fw_root_folder = "tmp.marlinfw"
+$fw_root_folder = "$working_folder/tmp.marlinfw"
 
-$fw_config_folder = "tmp.marlincfg"
+$fw_config_folder = "$working_folder/tmp.marlincfg"
 $fw_config_printer_folder = "config/examples/Creality/Ender-3 V2"
 $fw_config_printer_subfolder = "CrealityV422/CrealityUI"
 
@@ -52,8 +54,8 @@ git switch --create $patch_branch_name
 
 $message = "Copy baseline Ender 3 V2 configuration from Marlin/Configurations/../$fw_config_printer_subfolder"
 Write-Host -ForegroundColor Green "$message"
-Copy-Item -v -force "../$fw_config_folder/$fw_config_printer_folder/$fw_config_printer_subfolder/*.h" "Marlin"
-Copy-Item -force -recurse -exclude "*private*.txt" "../$fw_config_folder/$fw_config_printer_folder/LCD Files/$LCD_screen_folder" "Marlin"
+Copy-Item -v -force "$fw_config_folder/$fw_config_printer_folder/$fw_config_printer_subfolder/*.h" "Marlin"
+Copy-Item -force -recurse -exclude "*private*.txt" "$fw_config_folder/$fw_config_printer_folder/LCD Files/$LCD_screen_folder" "Marlin"
 git add Marlin
 git commit -q -m "$message"
 
