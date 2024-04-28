@@ -19,9 +19,9 @@ index ab197bf5aa..55c2d6f84a 100644
 -    #define DEFAULT_Kp  28.72
 -    #define DEFAULT_Ki   2.62
 -    #define DEFAULT_Kd  78.81
-+    #define DEFAULT_Kp  35.89
-+    #define DEFAULT_Ki   3.71
-+    #define DEFAULT_Kd  86.85
++    #define DEFAULT_Kp  11.44
++    #define DEFAULT_Ki   0.67
++    #define DEFAULT_Kd  48.52
    #endif
  #endif
  
