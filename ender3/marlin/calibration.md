@@ -49,21 +49,29 @@
 
 ## Finding extruder steps per mm
 
-1. Remove the nozzle so filament can pass through the hotend
-1. Enable cold extrusions
-1. Take an extrusion measurement
-   1. Extrude 10 mm of filament
-   1. Mark the filament at the exit of the heater block
-   1. Extrude 100 mm of filament
-   1. Mark the filament at the exit of the heater block
-   1. Extrude 10 mm of filament
-   1. Cut the filament at the exit of the heater block
-   1. Measure the distance between the marks
-1. Calculate the new steps per mm
-   - `new_steps = (old_steps * 100) / mm_between_marks`
-1. Update and reflash the firmware
-1. Do another 10mm-mark-100mm-mark-10mm extrusion measurement
-1. Adjust `new_steps` until an extrusion of 100mm yields 100mm of filament
+1. Prepare for cold retractions
+   - Heat the hotend and remove the filament completely
+   - Turn off the hotend so that it cools
+   - Clip the end of the filament so that it is square
+   - Insert the filament until it reaches the bowden coupler on the hotend
+   - Clip the filament at the entrance to the extruder, leaving the filament in the bowden tube
+   - During the loop below, if the filament runs out, reload more filament
+1. Enable cold extruder moves
+1. Measure extruder scaling
+   - **Retract** 100 mm
+   - Measure result
+   - Calculate an estimate
+     -  `new_e_steps = old_e_steps * (100 / measured_filament_length)`
+   - Repeat until the extruder retracts 100 mm of filament
+1. Example G-code loop
+   ```
+   M302 P1       ; Enable code extruder moves
+   M92 E90.0     ; Begin loop: Set extruder steps
+   G92 E0        ;   Set E position to 0
+   G0 E-15 F400  ;   Retract 15 mm, then mark filament at the extruder entrance with a marker
+   G0 E-115      ;   Retract 100 mm, then mark filament with a marker again
+   G0 E-130      ;   Retract another 15 mm, then cut filament and measure
+   ```
 
 ## Finding PID coefficients for heaters
 
