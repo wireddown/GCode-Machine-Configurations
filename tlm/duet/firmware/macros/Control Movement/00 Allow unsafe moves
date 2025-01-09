@@ -1,0 +1,6 @@
+; Allow axis coordinates to be invalid
+; These are _DANGEROUS_ and can _DAMAGE_ the machine
+;  * Z: less than 0mm
+;  * Y: +/- 160m radius
+;  * X: +/- 160 mm radius
+M564 S0
