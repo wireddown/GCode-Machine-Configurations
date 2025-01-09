@@ -12,7 +12,8 @@ G0   S1   X405  Y405  Z405  F2400    ; Slow down as we approach
 
 G0   S2   X-10  Y-10  Z-10  F1200    ; Go down a few mm to do a second pass
 
-G0   S1   X6    Y6    Z6    F160     ; Move all towers up slowly
+G0   S1   X16   Y16   Z16   F160     ; Move all towers up slowly
 M400                                 ; Wait for all moves to complete
 
 G90                                  ; Set absolute positioning
+M83                                  ; ...but relative extruder moves
